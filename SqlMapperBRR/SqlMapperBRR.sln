@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlMapperBRR", "SqlMapperBRR\SqlMapperBRR.csproj", "{77CF4FFF-D02A-48AA-BF85-5FFA20407E3F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlMapperBRR.Tests", "SqlMapperBRR.Tests\SqlMapperBRR.Tests.csproj", "{F4ED9D31-AD54-41B8-94F5-5A163F5C0F65}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{77CF4FFF-D02A-48AA-BF85-5FFA20407E3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77CF4FFF-D02A-48AA-BF85-5FFA20407E3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77CF4FFF-D02A-48AA-BF85-5FFA20407E3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4ED9D31-AD54-41B8-94F5-5A163F5C0F65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4ED9D31-AD54-41B8-94F5-5A163F5C0F65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4ED9D31-AD54-41B8-94F5-5A163F5C0F65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4ED9D31-AD54-41B8-94F5-5A163F5C0F65}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
