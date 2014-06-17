@@ -48,7 +48,7 @@ namespace SqlMapperBRR
             {
                 con.ConnectionString = @"Data Source=" + datasource + "; Initial Catalog=ave; Integrated Security=True";
                 SqlCommand cmd = con.CreateCommand();
-                cmd.CommandText = "SELECT * from Product";
+                cmd.CommandText = "SELECT * from Products";
                 Console.WriteLine("Openning connection...");
                 con.Open();
                 SqlDataReader dr = cmd.ExecuteReader();

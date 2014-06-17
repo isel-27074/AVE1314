@@ -1,0 +1,3 @@
+USE AVE;
+
+DELETE FROM Products;
