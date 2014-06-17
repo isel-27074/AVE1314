@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
+using DataModel;
 
 namespace SqlMapperBRR
 {
@@ -14,6 +15,7 @@ namespace SqlMapperBRR
         {
             SqlConnection con = new SqlConnection();
 
+            #region menu
             string datasource = null;
 
             while (datasource == null || datasource.Equals(""))
@@ -44,41 +46,39 @@ namespace SqlMapperBRR
             }
 
             Console.WriteLine(datasource);
-            try
+            #endregion menu
+
+            
+            con.ConnectionString = @"Data Source=" + datasource + "; Initial Catalog=ave; Integrated Security=True";
+            //SqlCommand cmd = con.CreateCommand();
+            //cmd.CommandText = "SELECT * from Products";
+            //Console.WriteLine("Openning connection...");
+            //con.Open();
+
+            Builder b = new Builder(con.ConnectionString, "Products");
+            IDataMapper<Product> prodMapper = b.Build<Product>();
+
+            //SqlDataReader dr = cmd.ExecuteReader();
+
+            //dr.GetDataTypeName
+            //foreach (Object o in dr)
+            //{
+            //    //Console.WriteLine(dr["productName"]);
+            //    Console.WriteLine(o.ToString());
+            //}
+            int count = 0;
+
+            //prodMapper.GetAll
+            while (b.getSqlDataReader().Read())
             {
-                con.ConnectionString = @"Data Source=" + datasource + "; Initial Catalog=ave; Integrated Security=True";
-                SqlCommand cmd = con.CreateCommand();
-                cmd.CommandText = "SELECT * from Products";
-                Console.WriteLine("Openning connection...");
-                con.Open();
-                SqlDataReader dr = cmd.ExecuteReader();
-                //dr.GetDataTypeName
-                //foreach (Object o in dr)
-                //{
-                //    //Console.WriteLine(dr["productName"]);
-                //    Console.WriteLine(o.ToString());
-                //}
-                int count = 0;
-
-
-                while (dr.Read())
-                {
-                    Console.WriteLine(dr[count]);
-                    Console.WriteLine(dr["productName"]);
-                }
+                Console.WriteLine(b.getSqlDataReader()[count]);
+                Console.WriteLine(b.getSqlDataReader()["productName"]);
             }
-            catch (SqlException se) {
-                Console.WriteLine(se.Message);
-            }
+           
+            //Console.WriteLine("Ending connection...");
+            Console.ReadKey();
+            //SqlConnection teste = b.getBuilderConnection();
 
-            finally
-            {
-                Console.WriteLine("Ending connection...");
-                Console.ReadKey(); 
-                if (con.State != ConnectionState.Closed)
-                    con.Dispose();
-                    //con.Close();
-            }
         }
     }
 }

@@ -5,16 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using DataModel;
 
 namespace SqlMapperBRR
 {
     public class Builder
     {
-        /* connectionString="
-           Data Source=PCK8\MSSQLSERVER;
-           Initial Catalog=ave;
-           Integrated Security=True"
-        */
 
         //uma connection string por instância
         private readonly SqlConnection _builderConnection;
@@ -27,17 +23,22 @@ namespace SqlMapperBRR
             _table = table;
         }
 
-        public Builder(string table)
-        {
-            _builderConnection = new SqlConnection();
-            //String connectionString = @"Data Source=PCK8; Initial Catalog=ave; Integrated Security=True";
-            String connectionString = @"Data Source=DARKSTAR\SQLEXPRESS; Initial Catalog=ave; Integrated Security=True";
-            _builderConnection.ConnectionString = connectionString;
-            _table = table;
-        }
+        //public Builder(string table)
+        //{
+        //    _builderConnection = new SqlConnection();
+        //    //String connectionString = @"Data Source=PCK8; Initial Catalog=ave; Integrated Security=True";
+        //    String connectionString = @"Data Source=DARKSTAR\SQLEXPRESS; Initial Catalog=ave; Integrated Security=True";
+        //    _builderConnection.ConnectionString = connectionString;
+        //    _table = table;
+        //}
 
         public SqlConnection getBuilderConnection() {
             return _builderConnection;
+        }
+
+        public SqlDataReader getSqlDataReader()
+        {
+            return _dr;
         }
 
         //public IDataMapper<T> Build<T>() {
@@ -45,7 +46,7 @@ namespace SqlMapperBRR
         //    //return null;
         //}
 
-      /*  public IDataMapper<T> Build<T>()
+        public IDataMapper<T> Build<T>()
         {
             try
             {
@@ -56,26 +57,23 @@ namespace SqlMapperBRR
                 SqlCommand cmd = _builderConnection.CreateCommand();
                 cmd.CommandText = "SELECT * from " + _table;
                 _builderConnection.Open();
-                SqlDataReader dr = cmd.ExecuteReader();
-                int count = 0;
-
-                //while (dr.Read())
-                //{
-                //    Console.WriteLine(dr["productName"]);
-                //    yield return dr[count++];
-                //}
-                DataMapper<Product> dm = new DataMapper<Product>(dr);
-                //IDataMapper<T> id = new Builder<T>();
-                return dm;
+                Console.WriteLine("Builder - Openning connection...");
+                _dr = cmd.ExecuteReader();
+                
+                DataMapper<Product> dm = new DataMapper<Product>(_dr);
+                return (IDataMapper<T>)dm;
+            }
+            catch (SqlException se) {
+                Console.WriteLine(se.Message);
             }
             finally
             {
-                if (_builderConnection.State != ConnectionState.Closed)
-                    _builderConnection.Dispose();
-                //con.Close();
+                Console.WriteLine("Builder - Ending connection...");
+                //if (_builderConnection.State != ConnectionState.Closed)
+                    //_builderConnection.Dispose();
             }
-            //throw new NotImplementedException();
-        }*/
+            return null;
+        }
 
         //public IEnumerable<T> GetAll()
         //{
