@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SqlMapperBRR
+namespace DataModel
 {
-    [Table("Product")]
-    class Product
+    [Table("Products")]
+    public class Product
     {
+        [Key]
         public int ProductID { set; get; } 
         public string ProductName { set; get; } 
         public string QuantityPerUnit { set; get; } 
