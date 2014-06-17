@@ -1,5 +1,3 @@
---CREATE DATABASE AVE;
-
 USE AVE;
 
 INSERT INTO Product VALUES (1, 'produto A', '2', 5, 25, 15);
