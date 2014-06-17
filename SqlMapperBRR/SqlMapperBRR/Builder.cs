@@ -30,7 +30,8 @@ namespace SqlMapperBRR
         public Builder(string table)
         {
             _builderConnection = new SqlConnection();
-            String connectionString = @"Data Source=PCK8; Initial Catalog=ave; Integrated Security=True";
+            //String connectionString = @"Data Source=PCK8; Initial Catalog=ave; Integrated Security=True";
+            String connectionString = @"Data Source=DARKSTAR\SQLEXPRESS; Initial Catalog=ave; Integrated Security=True";
             _builderConnection.ConnectionString = connectionString;
             _table = table;
         }
@@ -44,7 +45,7 @@ namespace SqlMapperBRR
         //    //return null;
         //}
 
-        public IDataMapper<T> Build<T>()
+      /*  public IDataMapper<T> Build<T>()
         {
             try
             {
@@ -74,7 +75,7 @@ namespace SqlMapperBRR
                 //con.Close();
             }
             //throw new NotImplementedException();
-        }
+        }*/
 
         //public IEnumerable<T> GetAll()
         //{

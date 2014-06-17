@@ -15,7 +15,7 @@ namespace SqlMapperBRR
             SqlConnection con = new SqlConnection();
             try
             {
-                con.ConnectionString = @"Data Source=PCK8; 
+                con.ConnectionString = @"Data Source=DARKSTAR\SQLEXPRESS; 
                                         Initial Catalog=ave; 
                                         Integrated Security=True";
                 SqlCommand cmd = con.CreateCommand();
@@ -29,10 +29,13 @@ namespace SqlMapperBRR
                 //    Console.WriteLine(o.ToString());
                 //}
                 int count=0;
-                
+
 
                 while (dr.Read())
+                {
                     Console.WriteLine(dr[count]);
+                    Console.WriteLine(dr["productName"]);
+                }
 
             }
             finally
