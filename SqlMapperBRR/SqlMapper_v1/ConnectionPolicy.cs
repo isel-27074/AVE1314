@@ -12,11 +12,19 @@ namespace SqlMapper_v1
 
         public string initialCatalog { get; set; }
 
-        public string integratedSecuriry { get; set; }
+        public string integratedSecurity { get; set; }
 
         public string connectionTimeout { get; set; }
 
         public string pooling { get; set; }
+
+        public ConnectionPolicy(string ds, string icat, string isec, string ctime, string pooling) {
+            dataSource = ds;
+            initialCatalog = icat;
+            integratedSecurity = isec;
+            connectionTimeout = ctime;
+            this.pooling = pooling;            
+        }
 
     }
 }

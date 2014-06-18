@@ -58,8 +58,16 @@ namespace SqlMapperBRR
             //Console.WriteLine("Openning connection...");
             //con.Open();
 
-            Builder b = new Builder(con.ConnectionString, "Products");
-            //Builder b = new Builder(Dictionary<>, Dictionary<>); 
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            dic.Add("Products", "ProductName");
+            QueryData qd = new QueryData(dic);
+
+            string icat = "ave", isec = "True", ctime="15", pooling="True";
+            ConnectionPolicy cp = new ConnectionPolicy(datasource, icat, isec, ctime, pooling);
+
+            Builder b = new Builder(cp, qd);
+            
+            //Builder b = new Builder(con.ConnectionString, "Products");
             IDataMapper<Product> prodMapper = b.Build<Product>();
 
             //SqlDataReader dr = cmd.ExecuteReader();
@@ -75,7 +83,7 @@ namespace SqlMapperBRR
             //foreach (Product p in prods)
             //    Console.WriteLine(p);
 
-            prodMapper.GetAll2();
+            //prodMapper.GetAll2();
             Console.ReadKey();
             //prodMapper.GetAll
             while (b.GetSqlDataReader().Read())

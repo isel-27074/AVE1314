@@ -10,9 +10,14 @@ namespace SqlMapper_v1
     {
         public Dictionary<string, string> parTabelaColuna { get; set; }
 
+        public QueryData(Dictionary<string, string> ptc)
+        {
+            parTabelaColuna = ptc;
+        }
+
         public IEnumerable<string> GetTables()
         {
-            return parTabelaColuna.Keys;
+            return parTabelaColuna.Keys.Distinct();
         }
 
     }

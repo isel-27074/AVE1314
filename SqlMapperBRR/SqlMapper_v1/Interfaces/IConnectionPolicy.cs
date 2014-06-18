@@ -10,7 +10,7 @@ namespace SqlMapper_v1
     {
         string dataSource { get; set; } //local instance
         string initialCatalog { get; set; } //database
-        string integratedSecuriry { get; set; } //default true
+        string integratedSecurity { get; set; } //default true
         string connectionTimeout { get; set; } //default 15
         string pooling { get; set; } //true or false
         //string[] entities { get; set; } //table names
