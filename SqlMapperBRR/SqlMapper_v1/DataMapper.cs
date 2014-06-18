@@ -45,14 +45,23 @@ namespace SqlMapper_v1
             while (_dr.Read())
             {
                 T t = new T();
+               
                 Type tp = t.GetType();
+                Console.WriteLine("Fields");
                 FieldInfo[] fi = tp.GetFields();
                 foreach (FieldInfo fii in fi)
+                {
                     Console.WriteLine(fii.ToString());
+                }
+                Console.WriteLine("Properties");
+                
                 PropertyInfo[] pi = tp.GetProperties();
                 foreach (PropertyInfo pii in pi)
+                {
+                    Console.WriteLine(pii.MemberType);
+                    Console.WriteLine(pii.GetType());
                     Console.WriteLine(pii.ToString());
-
+                }
                // yield return (T)_dr[count++];
             }
             //return (ienumerable<t>)datareader;
