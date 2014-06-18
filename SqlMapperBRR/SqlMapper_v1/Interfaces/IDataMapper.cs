@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SqlMapperBRR
+namespace SqlMapper_v1
 {
     public interface IDataMapper<T>
     {

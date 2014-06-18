@@ -5,11 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
-using DataModel;
 
-namespace SqlMapperBRR
+namespace SqlMapper_v1
 {
-    public class Builder<T>
+    public class Builder
     {
 
         //uma connection string por instância
@@ -46,14 +45,13 @@ namespace SqlMapperBRR
         //    //return null;
         //}
 
-        public IDataMapper<T> Build<T>()
+        public IDataMapper<T> Build<T>() where T : class
         {
             try
             {
-                Type t = typeof(T);
-
-                object[] allAtributes = t.GetCustomAttributes(typeof(SQLTableName), true);
-                Console.WriteLine(t.ToString());
+                //Type t = typeof(T);
+                //object[] allAtributes = t.GetCustomAttributes(typeof(SQLTableName), true);
+                //Console.WriteLine(t.ToString());
                 
                 SqlCommand cmd = _builderConnection.CreateCommand();
                 cmd.CommandText = "SELECT * from " + _table;
@@ -61,7 +59,7 @@ namespace SqlMapperBRR
                 Console.WriteLine("Builder - Openning connection...");
                 _dr = cmd.ExecuteReader();
 
-                DataMapper <t> dm = new DataMapper<T>(_dr);
+                DataMapper<T> dm = new DataMapper<T>(_dr);
                 //return (IDataMapper<T>)dm;
                 return dm;
             }
