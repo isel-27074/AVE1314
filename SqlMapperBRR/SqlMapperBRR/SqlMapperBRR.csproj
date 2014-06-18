@@ -58,6 +58,14 @@
       <Project>{0963e729-443d-4245-8444-87495b3bc9d0}</Project>
       <Name>SqlMapper_v1</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SqlMapper_v2\SqlMapper_v2.csproj">
+      <Project>{2bfb8c8d-c4bc-44b9-b50a-298188861ab1}</Project>
+      <Name>SqlMapper_v2</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SqlMapper_v3\SqlMapper_v3.csproj">
+      <Project>{edd4ff6a-b82b-4b38-9f6b-1e802b0b95cf}</Project>
+      <Name>SqlMapper_v3</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

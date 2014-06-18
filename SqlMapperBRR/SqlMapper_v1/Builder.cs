@@ -22,28 +22,20 @@ namespace SqlMapper_v1
             _table = table;
         }
 
-        //public Builder(string table)
-        //{
-        //    _builderConnection = new SqlConnection();
-        //    //String connectionString = @"Data Source=PCK8; Initial Catalog=ave; Integrated Security=True";
-        //    String connectionString = @"Data Source=DARKSTAR\SQLEXPRESS; Initial Catalog=ave; Integrated Security=True";
-        //    _builderConnection.ConnectionString = connectionString;
-        //    _table = table;
-        //}
-
-        public SqlConnection getBuilderConnection() {
+        public SqlConnection GetBuilderConnection() {
             return _builderConnection;
         }
 
-        public SqlDataReader getSqlDataReader()
+        public SqlDataReader GetSqlDataReader()
         {
             return _dr;
         }
 
-        //public IDataMapper<T> Build<T>() {
-        //    throw new NotImplementedException();
-        //    //return null;
-        //}
+        public void Open()
+        {
+
+
+        }
 
         public IDataMapper<T> Build<T>() where T : class
         {
@@ -69,8 +61,8 @@ namespace SqlMapper_v1
             finally
             {
                 Console.WriteLine("Builder - Ending connection...");
-                //if (_builderConnection.State != ConnectionState.Closed)
-                    //_builderConnection.Dispose();
+                if (_builderConnection.State != ConnectionState.Closed)
+                    _builderConnection.Dispose();
             }
             return null;
         }

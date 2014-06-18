@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
 using DataModel;
-//using SqlMapper_v1;
+using SqlMapper_v1;
+//using SqlMapper_v2;
+//using SqlMapper_v3;
 
 namespace SqlMapperBRR
 {
@@ -57,6 +59,7 @@ namespace SqlMapperBRR
             //con.Open();
 
             Builder b = new Builder(con.ConnectionString, "Products");
+            b.open();
             IDataMapper<Product> prodMapper = b.Build<Product>();
 
             //SqlDataReader dr = cmd.ExecuteReader();
