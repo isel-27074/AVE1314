@@ -59,7 +59,7 @@ namespace SqlMapperBRR
             //con.Open();
 
             Builder b = new Builder(con.ConnectionString, "Products");
-            b.open();
+           // b.open();
             IDataMapper<Product> prodMapper = b.Build<Product>();
 
             //SqlDataReader dr = cmd.ExecuteReader();
@@ -71,14 +71,19 @@ namespace SqlMapperBRR
             //    Console.WriteLine(o.ToString());
             //}
             int count = 0;
+            //IEnumerable<Product> prods = prodMapper.GetAll();
+            //foreach (Product p in prods)
+            //    Console.WriteLine(p);
 
+            prodMapper.GetAll2();
+            Console.ReadKey();
             //prodMapper.GetAll
-            while (b.getSqlDataReader().Read())
+            while (b.GetSqlDataReader().Read())
             {
-                Console.WriteLine(b.getSqlDataReader()[count]);
-                Console.WriteLine(b.getSqlDataReader()["productName"]);
+                Console.WriteLine(b.GetSqlDataReader()[count]);
+                Console.WriteLine(b.GetSqlDataReader()["productName"]);
             }
-           
+            
             //Console.WriteLine("Ending connection...");
             Console.ReadKey();
             //SqlConnection teste = b.getBuilderConnection();

@@ -37,7 +37,7 @@ namespace SqlMapper_v1
 
         }
 
-        public IDataMapper<T> Build<T>() where T : class
+        public IDataMapper<T> Build<T>() where T : class, new()
         {
             try
             {
@@ -61,20 +61,22 @@ namespace SqlMapper_v1
             finally
             {
                 Console.WriteLine("Builder - Ending connection...");
-                if (_builderConnection.State != ConnectionState.Closed)
-                    _builderConnection.Dispose();
+                //if (_builderConnection.State != ConnectionState.Closed)
+                //    _builderConnection.Dispose();
             }
             return null;
         }
 
         //public IEnumerable<T> GetAll()
         //{
-        //    int count=0;
+        //    int count = 0;
         //    while (_dr.Read())
-        //        yield return (T)_dr[count++];
-            
-        //    //return (IEnumerable<T>)dataReader;
-
+        //    {
+        //        T t = new T();
+        //        yield return (T) _dr[count++];
+        //    }
+        //    //return (ienumerable<t>)datareader;
+        //    Console.WriteLine("bo dia");
         //}
 
         //public void Update(T val)
