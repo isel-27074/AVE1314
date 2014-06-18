@@ -6,7 +6,7 @@ GO
 
 USE AVE;
 
-if OBJECT_ID('Products') is not null
-	drop table [Products];
+if OBJECT_ID('Product') is not null
+	drop table [Product];
 
 

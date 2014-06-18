@@ -9,7 +9,7 @@ using DataModel;
 
 namespace SqlMapperBRR
 {
-    public class Builder
+    public class Builder<T>
     {
 
         //uma connection string por instância
@@ -51,17 +51,19 @@ namespace SqlMapperBRR
             try
             {
                 Type t = typeof(T);
-                object[] allAtributes = t.GetCustomAttributes(typeof(SQLTableName), true);
 
+                object[] allAtributes = t.GetCustomAttributes(typeof(SQLTableName), true);
+                Console.WriteLine(t.ToString());
                 
                 SqlCommand cmd = _builderConnection.CreateCommand();
                 cmd.CommandText = "SELECT * from " + _table;
                 _builderConnection.Open();
                 Console.WriteLine("Builder - Openning connection...");
                 _dr = cmd.ExecuteReader();
-                
-                DataMapper<Product> dm = new DataMapper<Product>(_dr);
-                return (IDataMapper<T>)dm;
+
+                DataMapper <t> dm = new DataMapper<T>(_dr);
+                //return (IDataMapper<T>)dm;
+                return dm;
             }
             catch (SqlException se) {
                 Console.WriteLine(se.Message);

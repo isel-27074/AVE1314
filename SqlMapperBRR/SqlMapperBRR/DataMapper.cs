@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 
 namespace SqlMapperBRR
 {
-    public class DataMapper<T> : IDataMapper<T> where T : class
+    public class DataMapper<T> : IDataMapper<T> where T : class , new ()
     {
         private SqlDataReader _dr;
 
