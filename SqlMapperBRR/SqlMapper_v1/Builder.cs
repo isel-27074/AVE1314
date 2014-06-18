@@ -31,6 +31,18 @@ namespace SqlMapper_v1
             return _dr;
         }
 
+        public void GetCSdata()
+        {
+            Console.WriteLine("mySqlConnection.ConnectionString = " + _builderConnection.ConnectionString);
+            Console.WriteLine("mySqlConnection.ConnectionTimeout = " + _builderConnection.ConnectionTimeout);
+            Console.WriteLine("mySqlConnection.Database = " + _builderConnection.Database);
+            Console.WriteLine("mySqlConnection.DataSource = " + _builderConnection.DataSource);
+            Console.WriteLine("mySqlConnection.PacketSize = " + _builderConnection.PacketSize);
+            Console.WriteLine("mySqlConnection.ServerVersion = " + _builderConnection.ServerVersion);
+            Console.WriteLine("mySqlConnection.State = " + _builderConnection.State);
+            Console.WriteLine("mySqlConnection.WorkstationId = " + _builderConnection.WorkstationId);
+        }
+
         public void Open()
         {
 
@@ -61,8 +73,8 @@ namespace SqlMapper_v1
             finally
             {
                 Console.WriteLine("Builder - Ending connection...");
-                if (_builderConnection.State != ConnectionState.Closed)
-                    _builderConnection.Dispose();
+                //if (_builderConnection.State != ConnectionState.Closed)
+                    //_builderConnection.Dispose();
             }
             return null;
         }

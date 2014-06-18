@@ -40,9 +40,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Builder.cs" />
+    <Compile Include="ConnectionPolicy.cs" />
     <Compile Include="DataMapper.cs" />
+    <Compile Include="Interfaces\IConnectionPolicy.cs" />
     <Compile Include="Interfaces\IDataMapper.cs" />
+    <Compile Include="Interfaces\IQueryData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryData.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

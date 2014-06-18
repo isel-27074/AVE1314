@@ -52,14 +52,14 @@ namespace SqlMapperBRR
             #endregion menu
 
             
-            con.ConnectionString = @"Data Source=" + datasource + "; Initial Catalog=ave; Integrated Security=True";
+            con.ConnectionString = @"Data Source=" + datasource + "; Initial Catalog=ave; Integrated Security=True; Connection Timeout=5;";
             //SqlCommand cmd = con.CreateCommand();
             //cmd.CommandText = "SELECT * from Products";
             //Console.WriteLine("Openning connection...");
             //con.Open();
 
             Builder b = new Builder(con.ConnectionString, "Products");
-            b.open();
+            //Builder b = new Builder(Dictionary<>, Dictionary<>); 
             IDataMapper<Product> prodMapper = b.Build<Product>();
 
             //SqlDataReader dr = cmd.ExecuteReader();
@@ -72,12 +72,17 @@ namespace SqlMapperBRR
             //}
             int count = 0;
 
+            //b.GetCSdata();
+            //System.Threading.Thread.Sleep(20000);
+            //b.GetCSdata();
             //prodMapper.GetAll
-            while (b.getSqlDataReader().Read())
+            while (b.GetSqlDataReader().Read())
             {
-                Console.WriteLine(b.getSqlDataReader()[count]);
-                Console.WriteLine(b.getSqlDataReader()["productName"]);
+                Console.WriteLine(b.GetSqlDataReader()[count]);
+                Console.WriteLine(b.GetSqlDataReader()["productName"]);
             }
+
+            
            
             //Console.WriteLine("Ending connection...");
             Console.ReadKey();
