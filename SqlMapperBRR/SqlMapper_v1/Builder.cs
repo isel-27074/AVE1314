@@ -13,16 +13,11 @@ namespace SqlMapper_v1
 
         //uma connection string por instância
         private readonly SqlConnection _builderConnection;
-        private string _table; //testes
-        private SqlDataReader _dr;
+        //private string _table; //nome da tabela ???
+        //private string[] columnlist; //nomes das colunas ???
 
-        //public Builder(string connection, string table) {
-        //    _builderConnection = new SqlConnection();
-        //    _builderConnection.ConnectionString = connection;
-        //    _table = table;
-        //}
-
-        public Builder(ConnectionPolicy cp, QueryData qd)
+    //    public Builder(ConnectionPolicy cp, QueryData qd)
+        public Builder(ConnectionPolicy cp)
         {
             _builderConnection = new SqlConnection();
             string connectionString = "";
@@ -32,53 +27,35 @@ namespace SqlMapper_v1
             connectionString = connectionString + "Connection Timeout=" + cp.connectionTimeout + "; ";
             connectionString = connectionString + "Pooling=" + cp.pooling + ";";
             _builderConnection.ConnectionString = connectionString;
-
-            List<string> lista = qd.GetTables().ToList();
-            _table = lista.First();
+            //columnlist = qd.columns;
+            //List<string> lista = qd.GetTables().ToList();
+            //_table = lista.First();
         }
 
         public SqlConnection GetBuilderConnection() {
             return _builderConnection;
         }
 
-        public SqlDataReader GetSqlDataReader() {
-            return _dr;
-        }
-
-        public void GetCSdata()
-        {
-            Console.WriteLine("mySqlConnection.ConnectionString = " + _builderConnection.ConnectionString);
-            Console.WriteLine("mySqlConnection.ConnectionTimeout = " + _builderConnection.ConnectionTimeout);
-            Console.WriteLine("mySqlConnection.Database = " + _builderConnection.Database);
-            Console.WriteLine("mySqlConnection.DataSource = " + _builderConnection.DataSource);
-            Console.WriteLine("mySqlConnection.PacketSize = " + _builderConnection.PacketSize);
-            Console.WriteLine("mySqlConnection.ServerVersion = " + _builderConnection.ServerVersion);
-            Console.WriteLine("mySqlConnection.State = " + _builderConnection.State);
-            Console.WriteLine("mySqlConnection.WorkstationId = " + _builderConnection.WorkstationId);
-        }
-
-        public void Open()
-        {
-
-
-        }
-
         public IDataMapper<T> Build<T>() where T : class, new()
         {
+            /* ver p nome da tabela:
+             * ir buscar o nome anotado como atributo "table"
+             * nomes das colunas da classe:
+             *  getfiels ou getproperties
+             *  criar instancia de datamaper correspondente à tabela em causa:
+             *  
+             * 
+             */
+
+            DataMapper<T> dm = new DataMapper<T>();
+
             try
             {
                 //Type t = typeof(T);
                 //object[] allAtributes = t.GetCustomAttributes(typeof(SQLTableName), true);
                 //Console.WriteLine(t.ToString());
                 
-                SqlCommand cmd = _builderConnection.CreateCommand();
-                cmd.CommandText = "SELECT * from " + _table;
-                _builderConnection.Open();
-                Console.WriteLine("Builder - Openning connection...");
-                _dr = cmd.ExecuteReader();
-                DataMapper<T> dm = new DataMapper<T>(_dr);
-                //return (IDataMapper<T>)dm;
-                return dm;
+
             }
             catch (SqlException se) {
                 Console.WriteLine(se.Message);
