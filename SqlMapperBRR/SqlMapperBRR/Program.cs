@@ -16,7 +16,7 @@ namespace SqlMapperBRR
     {
         static void Main(string[] args)
         {
-            SqlConnection con = new SqlConnection();
+            //SqlConnection con = new SqlConnection();
 
             #region menu
             string datasource = null;
@@ -52,7 +52,7 @@ namespace SqlMapperBRR
             #endregion menu
 
             
-            con.ConnectionString = @"Data Source=" + datasource + "; Initial Catalog=ave; Integrated Security=True; Connection Timeout=5;";
+            //con.ConnectionString = @"Data Source=" + datasource + "; Initial Catalog=ave; Integrated Security=True; Connection Timeout=5;";
             //SqlCommand cmd = con.CreateCommand();
             //cmd.CommandText = "SELECT * from Products";
             //Console.WriteLine("Openning connection...");
