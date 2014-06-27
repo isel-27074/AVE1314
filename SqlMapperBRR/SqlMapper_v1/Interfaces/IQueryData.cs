@@ -9,6 +9,6 @@ namespace SqlMapper_v1
     public interface IQueryData
     {
         //string[] columns { get; set; } //column names
-        Dictionary<string, string> parTabelaColuna { get; set; } //par tabela coluna
+        Dictionary<string, string[]> parTabelaColuna { get; set; } //par tabela coluna
     }
 }

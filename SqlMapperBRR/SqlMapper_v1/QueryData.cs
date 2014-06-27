@@ -10,7 +10,7 @@ namespace SqlMapper_v1
     {
         public Dictionary<string, string> parTabelaColuna { get; set; }
 
-        public QueryData(Dictionary<string, string> ptc)
+        public QueryData(Dictionary<string, string[]> ptc)
         {
             parTabelaColuna = ptc;
         }

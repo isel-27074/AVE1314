@@ -13,7 +13,7 @@ namespace SqlMapper_v1
 
         //uma connection string por instância
         private readonly SqlConnection _builderConnection;
-        private string _table;
+        private string _table; //testes
         private SqlDataReader _dr;
 
         //public Builder(string connection, string table) {
