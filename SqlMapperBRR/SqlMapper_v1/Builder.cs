@@ -41,8 +41,7 @@ namespace SqlMapper_v1
             return _builderConnection;
         }
 
-        public SqlDataReader GetSqlDataReader()
-        {
+        public SqlDataReader GetSqlDataReader() {
             return _dr;
         }
 
@@ -93,31 +92,5 @@ namespace SqlMapper_v1
             return null;
         }
 
-        //public IEnumerable<T> GetAll()
-        //{
-        //    int count = 0;
-        //    while (_dr.Read())
-        //    {
-        //        T t = new T();
-        //        yield return (T) _dr[count++];
-        //    }
-        //    //return (ienumerable<t>)datareader;
-        //    Console.WriteLine("bo dia");
-        //}
-
-        //public void Update(T val)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public void Delete(T val)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public void Insert(T val)
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }
