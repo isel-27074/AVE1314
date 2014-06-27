@@ -11,10 +11,26 @@ namespace SqlMapper_v1
     public class DataMapper<T> : IDataMapper<T> where T : class, new()
     {
         private SqlDataReader _dr;
+        private string[] _columnlist;
+        private string _tabela;
 
-        public DataMapper(SqlDataReader dr)
+        private string prepstategetall;
+        private string prepstateinsert;
+        private string prepstateupdate;
+        private string prepstatedelete;
+ 
+
+        public DataMapper()
         {
-            _dr = dr;
+            //SqlCommand cmd = _builderConnection.CreateCommand();
+            //cmd.CommandText = "SELECT * from " + _table;
+            //_builderConnection.Open();
+            //Console.WriteLine("Builder - Openning connection...");
+            //_dr = cmd.ExecuteReader();
+            //DataMapper<T> dm = new DataMapper<T>(_dr);
+            ////return (IDataMapper<T>)dm;
+            //return dm;
+            //_dr = dr;
         }
         
         public IEnumerable<T> GetAll()

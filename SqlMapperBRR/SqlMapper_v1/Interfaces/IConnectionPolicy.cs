@@ -13,7 +13,7 @@ namespace SqlMapper_v1
         string integratedSecurity { get; set; } //default true 
         string connectionTimeout { get; set; } //default 15
         string pooling { get; set; } //true or false
-        string[] entities { get; set; } //table names
+     //   string[] entities { get; set; } //table names
         /* só actuamos sobre uma tabela de cada vez, quando
          * actualizamos uma tabela que tenha uma FK temos de
          * ver a anotação desse campo ou propriedade e obter

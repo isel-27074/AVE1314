@@ -67,7 +67,7 @@ namespace SqlMapperBRR
             string icat = "ave", isec = "True", ctime="15", pooling="True";
             ConnectionPolicy cp = new ConnectionPolicy(datasource, icat, isec, ctime, pooling);
 
-            Builder b = new Builder(cp, qd);
+            Builder b = new Builder(cp);
             
             //Builder b = new Builder(con.ConnectionString, "Products");
             IDataMapper<Product> prodMapper = b.Build<Product>();
@@ -88,11 +88,11 @@ namespace SqlMapperBRR
             //prodMapper.GetAll2();
             Console.ReadKey();
             //prodMapper.GetAll
-            while (b.GetSqlDataReader().Read())
-            {
-                Console.WriteLine(b.GetSqlDataReader()[count]);
-                Console.WriteLine(b.GetSqlDataReader()["productName"]);
-            }
+            //while (b.GetSqlDataReader().Read())
+            //{
+            //    Console.WriteLine(b.GetSqlDataReader()[count]);
+            //    Console.WriteLine(b.GetSqlDataReader()["productName"]);
+            //}
 
             
            
