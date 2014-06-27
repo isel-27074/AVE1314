@@ -18,6 +18,8 @@ namespace SqlMapper_v1
 
         public string pooling { get; set; }
 
+        public string[] entities { get; set; }
+
         public ConnectionPolicy(string ds, string icat, string isec, string ctime, string pooling) {
             dataSource = ds;
             initialCatalog = icat;

@@ -58,8 +58,10 @@ namespace SqlMapperBRR
             //Console.WriteLine("Openning connection...");
             //con.Open();
 
-            Dictionary<string, string> dic = new Dictionary<string, string>();
-            dic.Add("Products", "ProductName");
+            Dictionary<string, string[]> dic = new Dictionary<string, string[]>();
+            string[] columns = new string[1];
+            columns[0] = "ProductName";
+            dic.Add("Products", columns);
             QueryData qd = new QueryData(dic);
 
             string icat = "ave", isec = "True", ctime="15", pooling="True";

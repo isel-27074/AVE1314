@@ -8,16 +8,18 @@ namespace SqlMapper_v1
 {
     public class QueryData : IQueryData
     {
-        public Dictionary<string, string> parTabelaColuna { get; set; }
+        public string[] columns { get; set; }
+        
+        public Dictionary<string, string[]> parTabelaColunas { get; set; }
 
-        public QueryData(Dictionary<string, string> ptc)
+        public QueryData(Dictionary<string, string[]> ptc)
         {
-            parTabelaColuna = ptc;
+            parTabelaColunas = ptc;
         }
 
         public IEnumerable<string> GetTables()
         {
-            return parTabelaColuna.Keys.Distinct();
+            return parTabelaColunas.Keys.Distinct();
         }
 
     }
