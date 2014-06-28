@@ -10,29 +10,80 @@ namespace SqlMapper_v1
 {
     public class DataMapper<T> : IDataMapper<T> where T : class, new()
     {
+        private SqlConnection _connnection;
+        private SqlCommand _command;
         private SqlDataReader _dr;
-        private string[] _columnlist;
-        private string _tabela;
+        private string[] _columns;
+        private string _table;
+        private bool _persistant;
 
         private string prepstategetall;
         private string prepstateinsert;
         private string prepstateupdate;
         private string prepstatedelete;
+        private List<T> _tmp;
  
 
-        public DataMapper()
+        public DataMapper(SqlConnection con, bool persistant, string table, string[] columns)
         {
+            _connnection = con;
+            _command = new SqlCommand(null, con);
+            _table = table;
+            _columns = columns;
+            _persistant = persistant;
+
+            if (_persistant) _connnection.Open();
+
             //SqlCommand cmd = _builderConnection.CreateCommand();
-            //cmd.CommandText = "SELECT * from " + _table;
-            //_builderConnection.Open();
-            //Console.WriteLine("Builder - Openning connection...");
-            //_dr = cmd.ExecuteReader();
-            //DataMapper<T> dm = new DataMapper<T>(_dr);
-            ////return (IDataMapper<T>)dm;
-            //return dm;
-            //_dr = dr;
+
+        }
+
+        //SELECT column_name,column_name
+        //FROM table_name;
+        // or
+        //SELECT * FROM table_name;
+        public IEnumerable<T> GetAll()
+        {
+            if (!_persistant) _connnection.Open();
+
+
+            if (!_persistant) _connnection.Close();
+            _tmp = new List<T>();
+            return _tmp.ToList();
+        }
+
+        private void PreparedSelect() {
+            _command.CommandText = "SELECT * from " + _table;
+            _dr = _command.ExecuteReader();
         }
         
+        //UPDATE table_name
+        //SET column1=value1,column2=value2,...
+        //WHERE some_column=some_value;
+        public void Update(T val)
+        {
+            throw new NotImplementedException();
+        }
+
+        //DELETE FROM table_name
+        //WHERE some_column = some_value;
+        public void Delete(T val)
+        {
+            throw new NotImplementedException();
+        }
+
+        //INSERT INTO table_name (column1,column2,column3,...)
+        //VALUES (value1,value2,value3,...);
+        public void Insert(T val)
+        {
+            //SqlTransaction
+            //http://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqltransaction.aspx
+            throw new NotImplementedException();
+        }
+
+
+        #region toCheck
+        /*
         public IEnumerable<T> GetAll()
         {
             int count = 0;
@@ -61,7 +112,7 @@ namespace SqlMapper_v1
             while (_dr.Read())
             {
                 T t = new T();
-               
+
                 Type tp = t.GetType();
                 Console.WriteLine("Fields");
                 FieldInfo[] fi = tp.GetFields();
@@ -70,7 +121,7 @@ namespace SqlMapper_v1
                     Console.WriteLine(fii.ToString());
                 }
                 Console.WriteLine("Properties");
-                
+
                 PropertyInfo[] pi = tp.GetProperties();
                 foreach (PropertyInfo pii in pi)
                 {
@@ -78,28 +129,15 @@ namespace SqlMapper_v1
                     Console.WriteLine(pii.GetType());
                     Console.WriteLine(pii.ToString());
                 }
-               // yield return (T)_dr[count++];
+                // yield return (T)_dr[count++];
             }
             //return (ienumerable<t>)datareader;
             Console.WriteLine("bo dia");
             //throw new NotImplementedException();
         }
-        public void Update(T val)
-        {
-            throw new NotImplementedException();
-        }
+        */
+        #endregion toCheck
 
-        public void Delete(T val)
-        {
-            throw new NotImplementedException();
-        }
-
-        //INSERT INTO table_name (column1,column2,column3,...)
-        //VALUES (value1,value2,value3,...);
-        public void Insert(T val)
-        {
-            throw new NotImplementedException();
-        }
 
     }
 }
