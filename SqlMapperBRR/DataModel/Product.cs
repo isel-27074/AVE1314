@@ -11,6 +11,7 @@ namespace DataModel
     [Table("Products")]
     public class Product
     {
+
         [Key]
         public int ProductID { set; get; } 
         public string ProductName { set; get; } 

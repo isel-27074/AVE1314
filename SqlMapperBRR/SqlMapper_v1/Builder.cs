@@ -18,8 +18,8 @@ namespace SqlMapper_v1
 
         //uma connection string por instância
         private readonly SqlConnection _builderConnection;
-        //private string _table; //nome da tabela ???
-        //private string[] columnlist; //nomes das colunas ???
+        private string _table; //nome da tabela ???
+        private string[] _columnlist; //nomes das colunas ???
 
     //    public Builder(ConnectionPolicy cp, QueryData qd)
         public Builder(ConnectionPolicy cp)
@@ -56,66 +56,34 @@ namespace SqlMapper_v1
             Console.WriteLine(t.Name.ToString());
             Console.ReadKey();
 
-
             Attribute[] attribs = Attribute.GetCustomAttributes(t);
             foreach (Attribute a in attribs)
             {
-                
                 if (a is TableAttribute) {
                     TableAttribute act = (TableAttribute)a;
                     Console.WriteLine(act.Name);
+                    _table = act.Name;
                 }
             }
             PropertyInfo[] props = t.GetProperties();
+            _columnlist = new String[props.Length];
+            int i = 0;
+            foreach (PropertyInfo prop in props)
+            {
+                Console.WriteLine(prop.Name);
+                _columnlist[i] = prop.Name;
+            }
+
             FieldInfo[] fields = t.GetFields();
-            //foreach (PropertyInfo prop in props)
-            //{
-                //object[] attrs = prop.GetCustomAttributes(true);
-                //foreach (object attr in attrs)
-                //{
-                //    TableAttribute authAttr = attr as TableAttribute;
-                //    if (authAttr != null)
-                //    {
-                //        string propName = prop.Name;
-                //        string auth = authAttr.Name;
-                //        Console.WriteLine(propName);
-                //        Console.WriteLine(auth);
-                //    }
-                //}
-            //}
+            foreach (FieldInfo field in fields)
+            {
+                Console.WriteLine(field.Name);
+            }
 
-            //var MyAttribute = Attribute.GetCustomAttribute(t, typeof(TableAttribute));
-            //Attribute[] oo = Attribute.GetCustomAttributes(t);
-            //Object ooo = t.GetCustomAttributes(typeof(TableAttribute), true);
-            //Console.WriteLine(MyAttribute.);
-            //Console.WriteLine(MyAttribute.TypeId.ToString());
-            //foreach (object o in oo)
-            //{
-            //   //Console.WriteLine(o.ToString());
-            //    a = (Attribute)o;
-
-            //    Console.WriteLine(a.GetType().GetProperties().GetValue(0).);
-            //    Console.WriteLine(a.GetType().GetProperties().GetValue(1));
-            //    Console.WriteLine(a.GetType().GetProperties().GetValue(2));
-            //    Console.WriteLine(a.GetType().Name);
-            //}
-            //try
-            //{typeof(Table),true t.GetCustomAttributes(typeof(TableAttribute), true);
-            //    //Type t = typeof(T);
-            //    //object[] allAtributes = t.GetCustomAttributes(typeof(SQLTableName), true);
-            //    //Console.WriteLine(t.ToString());
-                
-
-            //}
-            //catch (SqlException se) {
-            //    Console.WriteLine(se.Message);
-            //}
-            //finally
-            //{
-            //    Console.WriteLine("Builder - Ending connection...");
-            //    //if (_builderConnection.State != ConnectionState.Closed)
-            //        //_builderConnection.Dispose();
-            //}
+            DataMapper<T> dm = new DataMapper<T>(_builderConnection, true, _table, _columnlist);
+            Console.WriteLine("Builder - Ending connection...");
+            if (_builderConnection.State != ConnectionState.Closed)
+                _builderConnection.Dispose();
             return null;
         }
 
