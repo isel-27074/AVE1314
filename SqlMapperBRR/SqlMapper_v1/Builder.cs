@@ -5,6 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Reflection;
+
+
 
 namespace SqlMapper_v1
 {
@@ -47,25 +52,60 @@ namespace SqlMapper_v1
              * 
              */
 
-            DataMapper<T> dm = new DataMapper<T>();
+            Type t = typeof(T);
+            Console.WriteLine(t.Name.ToString());
+            Console.ReadKey();
 
-            try
+            
+            PropertyInfo[] props = t.GetProperties();
+            foreach (PropertyInfo prop in props)
             {
-                //Type t = typeof(T);
-                //object[] allAtributes = t.GetCustomAttributes(typeof(SQLTableName), true);
-                //Console.WriteLine(t.ToString());
+                object[] attrs = prop.GetCustomAttributes(true);
+                foreach (object attr in attrs)
+                {
+                    TableAttribute authAttr = attr as TableAttribute;
+                    if (authAttr != null)
+                    {
+                        string propName = prop.Name;
+                        string auth = authAttr.Name;
+                        Console.WriteLine(propName);
+                        Console.WriteLine(auth);
+                    }
+                }
+            }
+
+            //var MyAttribute = Attribute.GetCustomAttribute(t, typeof(TableAttribute));
+            //Attribute[] oo = Attribute.GetCustomAttributes(t);
+            //Object ooo = t.GetCustomAttributes(typeof(TableAttribute), true);
+            //Console.WriteLine(MyAttribute.);
+            //Console.WriteLine(MyAttribute.TypeId.ToString());
+            //foreach (object o in oo)
+            //{
+            //   //Console.WriteLine(o.ToString());
+            //    a = (Attribute)o;
+
+            //    Console.WriteLine(a.GetType().GetProperties().GetValue(0).);
+            //    Console.WriteLine(a.GetType().GetProperties().GetValue(1));
+            //    Console.WriteLine(a.GetType().GetProperties().GetValue(2));
+            //    Console.WriteLine(a.GetType().Name);
+            //}
+            //try
+            //{typeof(Table),true t.GetCustomAttributes(typeof(TableAttribute), true);
+            //    //Type t = typeof(T);
+            //    //object[] allAtributes = t.GetCustomAttributes(typeof(SQLTableName), true);
+            //    //Console.WriteLine(t.ToString());
                 
 
-            }
-            catch (SqlException se) {
-                Console.WriteLine(se.Message);
-            }
-            finally
-            {
-                Console.WriteLine("Builder - Ending connection...");
-                //if (_builderConnection.State != ConnectionState.Closed)
-                    //_builderConnection.Dispose();
-            }
+            //}
+            //catch (SqlException se) {
+            //    Console.WriteLine(se.Message);
+            //}
+            //finally
+            //{
+            //    Console.WriteLine("Builder - Ending connection...");
+            //    //if (_builderConnection.State != ConnectionState.Closed)
+            //        //_builderConnection.Dispose();
+            //}
             return null;
         }
 
