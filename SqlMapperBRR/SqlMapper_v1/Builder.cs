@@ -56,23 +56,33 @@ namespace SqlMapper_v1
             Console.WriteLine(t.Name.ToString());
             Console.ReadKey();
 
-            
-            PropertyInfo[] props = t.GetProperties();
-            foreach (PropertyInfo prop in props)
+
+            Attribute[] attribs = Attribute.GetCustomAttributes(t);
+            foreach (Attribute a in attribs)
             {
-                object[] attrs = prop.GetCustomAttributes(true);
-                foreach (object attr in attrs)
-                {
-                    TableAttribute authAttr = attr as TableAttribute;
-                    if (authAttr != null)
-                    {
-                        string propName = prop.Name;
-                        string auth = authAttr.Name;
-                        Console.WriteLine(propName);
-                        Console.WriteLine(auth);
-                    }
+                
+                if (a is TableAttribute) {
+                    TableAttribute act = (TableAttribute)a;
+                    Console.WriteLine(act.Name);
                 }
             }
+            PropertyInfo[] props = t.GetProperties();
+            FieldInfo[] fields = t.GetFields();
+            //foreach (PropertyInfo prop in props)
+            //{
+                //object[] attrs = prop.GetCustomAttributes(true);
+                //foreach (object attr in attrs)
+                //{
+                //    TableAttribute authAttr = attr as TableAttribute;
+                //    if (authAttr != null)
+                //    {
+                //        string propName = prop.Name;
+                //        string auth = authAttr.Name;
+                //        Console.WriteLine(propName);
+                //        Console.WriteLine(auth);
+                //    }
+                //}
+            //}
 
             //var MyAttribute = Attribute.GetCustomAttribute(t, typeof(TableAttribute));
             //Attribute[] oo = Attribute.GetCustomAttributes(t);
