@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Reflection;
+using System.Data;
 
 namespace SqlMapper_v1
 {
@@ -45,6 +46,14 @@ namespace SqlMapper_v1
         public IEnumerable<T> GetAll()
         {
             if (!_persistant) _connnection.Open();
+            if (_connnection.State != ConnectionState.Open)
+                _connnection.Open(); //abre se não estava aberta
+            PreparedSelect();
+
+            int numberOfColumns = 0;
+            foreach (var dr in _dr) {
+                Console.WriteLine(_dr.GetFieldType(numberOfColumns).Name);
+            }
 
 
             if (!_persistant) _connnection.Close();

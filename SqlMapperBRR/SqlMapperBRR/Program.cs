@@ -81,7 +81,7 @@ namespace SqlMapperBRR
             //    Console.WriteLine(o.ToString());
             //}
             int count = 0;
-            //IEnumerable<Product> prods = prodMapper.GetAll();
+            IEnumerable<Product> prods = prodMapper.GetAll();
             //foreach (Product p in prods)
             //    Console.WriteLine(p);
 
