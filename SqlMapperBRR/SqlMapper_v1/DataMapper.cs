@@ -33,7 +33,11 @@ namespace SqlMapper_v1
             _columns = columns;
             _persistant = persistant;
 
-            if (_persistant) _connnection.Open();
+            if (_persistant && (_connnection.State != ConnectionState.Open))
+            {
+                Console.WriteLine("Builder - Starting connection...");
+                _connnection.Open();
+            }
 
             //SqlCommand cmd = _builderConnection.CreateCommand();
 
@@ -50,14 +54,21 @@ namespace SqlMapper_v1
                 _connnection.Open(); //abre se não estava aberta
             PreparedSelect();
 
+            _tmp = new List<T>();
+            
             int numberOfColumns = 0;
             foreach (var dr in _dr) {
                 Console.WriteLine(_dr.GetFieldType(numberOfColumns).Name);
+                object[] o = new object[_columns.Length];
+                for (int i= 0; i<_columns.Length; i++){
+                    //Console.WriteLine(_dr[i]);
+                    o[i] = _dr[i];
+                }
+                T newT = (T)Activator.CreateInstance(typeof(T), o);
+                _tmp.Add(newT);
             }
 
-
             if (!_persistant) _connnection.Close();
-            _tmp = new List<T>();
             return _tmp.ToList();
         }
 

@@ -19,5 +19,21 @@ namespace DataModel
         public decimal UnitPrice { set; get; } 
         public short UnitsInStock { set; get; } 
         public short UnitsOnOrder { set; get; }
+
+        public Product() { }
+        public Product(int ProductID, string ProductName, string QuantityPerUnit, decimal UnitPrice, short UnitsInStock, short UnitsOnOrder) {
+            this.ProductID = ProductID;
+            this.ProductName = ProductName;
+            this.QuantityPerUnit = QuantityPerUnit;
+            this.UnitPrice = UnitPrice;
+            this.UnitsInStock = UnitsInStock;
+            this.UnitsOnOrder = UnitsOnOrder;
+        }
+
+        public override string ToString()
+        {
+            return ProductID + " - " + ProductName + " - " + QuantityPerUnit + " - " + UnitPrice + " - " + UnitsInStock + " - " + UnitsOnOrder;
+        }
+
     }
 }

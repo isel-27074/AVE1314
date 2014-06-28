@@ -24,14 +24,16 @@ namespace SqlMapper_v1
     //    public Builder(ConnectionPolicy cp, QueryData qd)
         public Builder(ConnectionPolicy cp)
         {
-            _builderConnection = new SqlConnection();
+            //_builderConnection = new SqlConnection();
             string connectionString = "";
             connectionString = @"Data Source=" + cp.dataSource + "; ";
             connectionString = connectionString + "Initial Catalog=" + cp.initialCatalog + "; ";
             connectionString = connectionString + "Integrated Security=" + cp.integratedSecurity + "; ";
             connectionString = connectionString + "Connection Timeout=" + cp.connectionTimeout + "; ";
             connectionString = connectionString + "Pooling=" + cp.pooling + ";";
-            _builderConnection.ConnectionString = connectionString;
+            _builderConnection = new SqlConnection(connectionString);
+            
+            //_builderConnection.ConnectionString = connectionString;
             //columnlist = qd.columns;
             //List<string> lista = qd.GetTables().ToList();
             //_table = lista.First();
@@ -53,7 +55,7 @@ namespace SqlMapper_v1
              */
 
             Type t = typeof(T);
-            Console.WriteLine(t.Name.ToString());
+            Console.WriteLine("Class name: " + t.Name.ToString());
             Console.ReadKey();
 
             Attribute[] attribs = Attribute.GetCustomAttributes(t);
@@ -80,11 +82,14 @@ namespace SqlMapper_v1
                 Console.WriteLine(field.Name);
             }
 
+            if (_builderConnection.State == ConnectionState.Open) Console.WriteLine("CON - Já estava aberta!");
+            else Console.WriteLine("CON - Está fechada!");
+
             DataMapper<T> dm = new DataMapper<T>(_builderConnection, true, _table, _columnlist);
             Console.WriteLine("Builder - Ending connection...");
-            if (_builderConnection.State != ConnectionState.Closed)
-                _builderConnection.Dispose();
-            return null;
+            //if (_builderConnection.State != ConnectionState.Closed)
+            //    _builderConnection.Dispose();
+            return dm;
         }
 
     }
