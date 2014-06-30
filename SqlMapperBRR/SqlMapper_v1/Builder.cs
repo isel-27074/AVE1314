@@ -67,6 +67,8 @@ namespace SqlMapper_v1
                     _table = act.Name;
                 }
             }
+
+            //Gets all properties in class T
             PropertyInfo[] props = t.GetProperties();
             _columnlist = new String[props.Length];
             int i = 0;
@@ -76,6 +78,7 @@ namespace SqlMapper_v1
                 _columnlist[i] = prop.Name;
             }
 
+            //Gets all fields in class T
             FieldInfo[] fields = t.GetFields();
             foreach (FieldInfo field in fields)
             {

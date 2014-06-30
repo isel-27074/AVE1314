@@ -21,6 +21,12 @@ namespace DataModel
         public short UnitsOnOrder { set; get; }
 
         public Product() { }
+
+        public Product(string ProductName, string QuantityPerUnit, decimal UnitPrice, short UnitsInStock, short UnitsOnOrder)
+            : this (0, ProductName, QuantityPerUnit, UnitPrice, UnitsInStock, UnitsOnOrder)
+        {
+        }
+
         public Product(int ProductID, string ProductName, string QuantityPerUnit, decimal UnitPrice, short UnitsInStock, short UnitsOnOrder) {
             this.ProductID = ProductID;
             this.ProductName = ProductName;

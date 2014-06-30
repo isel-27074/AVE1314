@@ -18,12 +18,10 @@ namespace SqlMapper_v1
         private string _table;
         private bool _persistant;
 
-        private string prepstategetall = "SELECT * from ";
-        private string prepstateinsert = "INSERT INTO {0} VALUES ('{1}', '{2}', {3}, {4}, {5})";
-        private string prepstateupdate;
-        private string prepstatedelete;
-        //private List<T> _tmp;
- 
+        private string prepStateGetAll = "SELECT * from {0}";
+        private string prepStateInsert = "INSERT INTO {0} VALUES ('{1}', '{2}', {3}, {4}, {5})";
+        private string prepStateUpdate; //= "UPDATE {0} SET column1=value1,column2=value2,... WHERE some_column=some_value";
+        private string prepStateDelete; //= "DELETE FROM {0} WHERE {1} = {2}";
 
         public DataMapper(SqlConnection con, bool persistant, string table, string[] columns)
         {
@@ -52,50 +50,37 @@ namespace SqlMapper_v1
             if (!_persistant) _connnection.Open();
             if (_connnection.State != ConnectionState.Open)
                 _connnection.Open(); //abre se não estava aberta
-            PreparedSelectAll();
-
-          //  _tmp = new List<T>();
+            PreparedGetAll(FormatStringGetAll(_table));
+            _dr = _command.ExecuteReader();
             
-            int numberOfColumns = 0;
+            int numberOfColumns = 0; //to remove
             foreach (var dr in _dr) {
-                Console.WriteLine(_dr.GetFieldType(numberOfColumns).Name);
+                Console.WriteLine(_dr.GetFieldType(numberOfColumns).Name); //to remove
                 object[] o = new object[_columns.Length];
                 for (int i= 0; i<_columns.Length; i++){
-                    //Console.WriteLine(_dr[i]);
+                    //Console.WriteLine(_dr[i]); //to remove
                     o[i] = _dr[i];
                 }
                 T newT = (T) Activator.CreateInstance(typeof(T), o);
-                //_tmp.Add(newT);
                 yield return newT;
             }
 
             if (!_persistant) _connnection.Close();
-            //return _tmp.ToList();
             _dr.Close();
         }
 
-        private void PreparedSelect() {
-            _command.CommandText = "SELECT * from " + _table;
-            _dr = _command.ExecuteReader();
-        }
-
-        //Usado no getALL
-        private void PreparedSelectAll()
+        //Preparação de Statement para o GetALL
+        private void PreparedGetAll(string instruction)
         {
-            _command.CommandText = prepstategetall + _table;
-            _dr = _command.ExecuteReader();
+            //_command.CommandText = "SELECT * from " + _table;
+            _command.CommandText = instruction;
         }
 
-        private void PreparedInsert(String s)
+        //dado um T, formatamos a string de Select
+        public string FormatStringGetAll(string tableName)
         {
-            _command.CommandText = s;
-            if (_command.ExecuteNonQuery() == 1)
-                Console.WriteLine("inserido");
-            else
-                Console.WriteLine("NAO inserido");
-            
+            return String.Format(prepStateGetAll, tableName);
         }
-
 
         //UPDATE table_name
         //SET column1=value1,column2=value2,...
@@ -116,13 +101,11 @@ namespace SqlMapper_v1
         //VALUES (value1,value2,value3,...);
         public void Insert(T val)
         {
-          //  Console.WriteLine("1"+_connnection.State);
             if (!_persistant) _connnection.Open();
             if (_connnection.State != ConnectionState.Open)
                 _connnection.Open(); //abre se não estava aberta
-        //    Console.WriteLine("2"+_connnection.State);
             PreparedInsert(FormatStringInsert(val));
-            //_command.ExecuteNonQuery()
+            _command.ExecuteNonQuery();
 
             //mFmt.format(pattern, values)
             //MessageFormat mFmt = new MessageFormat(pattern);
@@ -131,15 +114,22 @@ namespace SqlMapper_v1
             //throw new NotImplementedException();
         }
 
-
-        //dado um T, formatamos a string de insert
-        public String FormatStringInsert(T val)
+        //Preparação de Statement para o Insert
+        private void PreparedInsert(string s)
         {
-            object[] args = FormatParameterInsert(val);
-            return  String.Format(prepstateinsert, args);
+            _command.CommandText = s;
+            //if (_command.ExecuteNonQuery() == 1) Console.WriteLine("inserido");
+            //else Console.WriteLine("NAO inserido");
         }
 
-        //dado um T, devolvemos um array c o nome da tabela, e os dados do T
+        //Dado um T, formatamos a string de Insert
+        public string FormatStringInsert(T val)
+        {
+            object[] args = FormatParameterInsert(val);
+            return String.Format(prepStateInsert, args);
+        }
+
+        //Dado um T, devolvemos um array com o nome da tabela e os dados do T
         public object[] FormatParameterInsert(T val)
         {
             object[] newobj = new object[_columns.Length];
