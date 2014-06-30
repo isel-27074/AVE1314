@@ -18,8 +18,8 @@ namespace SqlMapper_v1
 
         //uma connection string por instância
         private readonly SqlConnection _builderConnection;
-        private string _table; //nome da tabela ???
-        private string[] _columnlist; //nomes das colunas ???
+        private string _table; //nome da tabela obtido no Build 
+        private string[] _columnlist; //nomes das colunas obtido no Build 
 
     //    public Builder(ConnectionPolicy cp, QueryData qd)
         public Builder(ConnectionPolicy cp)
@@ -82,13 +82,16 @@ namespace SqlMapper_v1
                 Console.WriteLine(field.Name);
             }
 
-            if (_builderConnection.State == ConnectionState.Open) Console.WriteLine("CON - Já estava aberta!");
-            else Console.WriteLine("CON - Está fechada!");
+            if (_builderConnection.State == ConnectionState.Open) 
+                Console.WriteLine("CON - Já estava aberta!");
+            else 
+                Console.WriteLine("CON - Está fechada!");
 
             DataMapper<T> dm = new DataMapper<T>(_builderConnection, true, _table, _columnlist);
             Console.WriteLine("Builder - Ending connection...");
             //if (_builderConnection.State != ConnectionState.Closed)
             //    _builderConnection.Dispose();
+
             return dm;
         }
 
