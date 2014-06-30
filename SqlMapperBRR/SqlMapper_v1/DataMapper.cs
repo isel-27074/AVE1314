@@ -94,7 +94,44 @@ namespace SqlMapper_v1
         //WHERE some_column = some_value;
         public void Delete(T val)
         {
-            throw new NotImplementedException();
+            if (!_persistant) _connnection.Open();
+            if (_connnection.State != ConnectionState.Open)
+                _connnection.Open(); //abre se não estava aberta
+            PreparedDelete(FormatStringDelete(val));
+            _command.ExecuteNonQuery();
+        }
+
+        //Preparação de Statement para o Insert
+        private void PreparedDelete(string instruction)
+        {
+            _command.CommandText = instruction;
+            //if (_command.ExecuteNonQuery() == 1) Console.WriteLine("inserido");
+            //else Console.WriteLine("NAO inserido");
+        }
+
+        //Dado um T, formatamos a string de Insert
+        //public string FormatStringDelete(string column, string value)
+        public string FormatStringDelete(T val)
+        {
+            object[] args = FormatParameterDelete(val);
+            return String.Format(prepStateInsert, args);
+        }
+
+        //Dado um T, devolvemos um array com o nome da tabela e os dados do T
+        public object[] FormatParameterDelete(T val)
+        {
+            object[] newobj = new object[_columns.Length];
+            newobj[0] = _table;
+            Type t = val.GetType();
+            PropertyInfo[] props = t.GetProperties();
+
+            for (int j = 1; j < props.Length; j++)
+            {
+                Console.WriteLine(props[j].GetValue(val));
+                newobj[j] = props[j].GetValue(val);
+            }
+
+            return newobj;
         }
 
         //INSERT INTO table_name (column1,column2,column3,...)
@@ -115,9 +152,9 @@ namespace SqlMapper_v1
         }
 
         //Preparação de Statement para o Insert
-        private void PreparedInsert(string s)
+        private void PreparedInsert(string instruction)
         {
-            _command.CommandText = s;
+            _command.CommandText = instruction;
             //if (_command.ExecuteNonQuery() == 1) Console.WriteLine("inserido");
             //else Console.WriteLine("NAO inserido");
         }
