@@ -19,7 +19,7 @@ namespace SqlMapper_v1
         private bool _persistant;
 
         private string prepstategetall = "SELECT * from ";
-        private string prepstateinsert;
+        private string prepstateinsert = "INSERT INTO {0} VALUES ('{1}', '{2}', {3}, {4}, {5})";
         private string prepstateupdate;
         private string prepstatedelete;
         //private List<T> _tmp;
@@ -71,6 +71,7 @@ namespace SqlMapper_v1
 
             if (!_persistant) _connnection.Close();
             //return _tmp.ToList();
+            _dr.Close();
         }
 
         private void PreparedSelect() {
@@ -85,10 +86,10 @@ namespace SqlMapper_v1
             _dr = _command.ExecuteReader();
         }
 
-        private void PreparedInsert()
+        private void PreparedInsert(String s)
         {
-            _command.CommandText = prepstateinsert + _table;
-            if (_command.ExecuteNonQuery()==1)
+            _command.CommandText = s;
+            if (_command.ExecuteNonQuery() == 1)
                 Console.WriteLine("inserido");
             else
                 Console.WriteLine("NAO inserido");
@@ -115,13 +116,51 @@ namespace SqlMapper_v1
         //VALUES (value1,value2,value3,...);
         public void Insert(T val)
         {
+          //  Console.WriteLine("1"+_connnection.State);
+            if (!_persistant) _connnection.Open();
+            if (_connnection.State != ConnectionState.Open)
+                _connnection.Open(); //abre se não estava aberta
+        //    Console.WriteLine("2"+_connnection.State);
+            PreparedInsert(FormatStringInsert(val));
+            //_command.ExecuteNonQuery()
 
-
-            //SqlTransaction
-            //http://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqltransaction.aspx
-            throw new NotImplementedException();
+            //mFmt.format(pattern, values)
+            //MessageFormat mFmt = new MessageFormat(pattern);
+            ////SqlTransaction
+            ////http://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqltransaction.aspx
+            //throw new NotImplementedException();
         }
 
+
+        //dado um T, formatamos a string de insert
+        public String FormatStringInsert(T val)
+        {
+            object[] args = FormatParameterInsert(val);
+            return  String.Format(prepstateinsert, args);
+        }
+
+        //dado um T, devolvemos um array c o nome da tabela, e os dados do T
+        public object[] FormatParameterInsert(T val)
+        {
+            object[] newobj = new object[_columns.Length];
+            newobj[0] = _table;
+            Type t = val.GetType();
+            PropertyInfo[] props = t.GetProperties();
+            int i = 1;
+            bool pri = true;
+            foreach (PropertyInfo prop in props)
+            {
+              //  prop.GetValue(val);
+                if (pri)
+                    pri = false;
+                else
+                {
+                    Console.WriteLine(prop.GetValue(val));
+                    newobj[i++] = prop.GetValue(val);
+                }
+            }
+            return newobj;
+        }
 
         #region toCheck
         /*
@@ -144,7 +183,8 @@ namespace SqlMapper_v1
             }
             //return (ienumerable<t>)datareader;
             Console.WriteLine("bo dia");
-            //throw new NotImplementedException();
+            //throw new NotImplemente
+         * dException();
         }
         public void GetAll2()
         {
