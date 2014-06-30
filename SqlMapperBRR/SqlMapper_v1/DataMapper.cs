@@ -146,19 +146,13 @@ namespace SqlMapper_v1
             newobj[0] = _table;
             Type t = val.GetType();
             PropertyInfo[] props = t.GetProperties();
-            int i = 1;
-            bool pri = true;
-            foreach (PropertyInfo prop in props)
+
+            for (int j = 1; j < props.Length ; j++)
             {
-              //  prop.GetValue(val);
-                if (pri)
-                    pri = false;
-                else
-                {
-                    Console.WriteLine(prop.GetValue(val));
-                    newobj[i++] = prop.GetValue(val);
-                }
+                    Console.WriteLine(props[j].GetValue(val));
+                    newobj[j] = props[j].GetValue(val);
             }
+
             return newobj;
         }
 
