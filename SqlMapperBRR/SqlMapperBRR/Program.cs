@@ -9,6 +9,7 @@ using DataModel;
 using SqlMapper_v1;
 //using SqlMapper_v2;
 //using SqlMapper_v3;
+using SqlMapperBRR.Tests;
 
 namespace SqlMapperBRR
 {
@@ -61,24 +62,20 @@ namespace SqlMapperBRR
             //Builder b = new Builder(con.ConnectionString, "Products");
             IDataMapper<Product> prodMapper = b.Build<Product>();
 
-            IEnumerable<Product> prods = prodMapper.GetAll();
+            //Test GetAll
+            UnitTest.TestGetAll(prodMapper);
+            
+            //Test Insert
+            UnitTest.TestInsert(prodMapper);
+            UnitTest.TestGetAll(prodMapper);
+            
 
-            foreach (Product p in prods)
-                Console.WriteLine(p.ToString());
+            //prods = prodMapper.GetAll();
 
-            Console.ReadKey();
-            //ProductID - desnecessário
-            //ProductName, QuantityPerUnit, UnitPrice, UnitsInStock, UnitsOnOrder
-            Product newprod = new Product("produto", "10", 12, 20, 0);
+            //foreach (Product p in prods)
+            //    Console.WriteLine(p.ToString());
 
-            prodMapper.Insert(newprod);
-
-            prods = prodMapper.GetAll();
-
-            foreach (Product p in prods)
-                Console.WriteLine(p.ToString());
-
-            Console.ReadKey();
+            //Console.ReadKey();
 
 
         }

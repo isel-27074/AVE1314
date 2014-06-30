@@ -54,6 +54,10 @@
       <Project>{94e370c2-013f-4559-b87d-4c8960a1eb6d}</Project>
       <Name>DataModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SqlMapperBRR.Tests\SqlMapperBRR.Tests.csproj">
+      <Project>{f4ed9d31-ad54-41b8-94f5-5a163f5c0f65}</Project>
+      <Name>SqlMapperBRR.Tests</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SqlMapper_v1\SqlMapper_v1.csproj">
       <Project>{0963e729-443d-4245-8444-87495b3bc9d0}</Project>
       <Name>SqlMapper_v1</Name>
