@@ -62,22 +62,33 @@ namespace SqlMapperBRR
             //Builder b = new Builder(con.ConnectionString, "Products");
             IDataMapper<Product> prodMapper = b.Build<Product>();
 
-            //Test GetAll
-            UnitTest.TestGetAll(prodMapper);
+            ////Test GetAll
+            //UnitTest.TestGetAll(prodMapper);
             
-            //Test Insert
-            UnitTest.TestInsert(prodMapper);
-            UnitTest.TestGetAll(prodMapper);
-            
+            ////Test Insert
+            //UnitTest.TestInsert(prodMapper);
+            //UnitTest.TestGetAll(prodMapper);
 
-            //prods = prodMapper.GetAll();
+            //TESTES
+            IEnumerable<Product> prods = prodMapper.GetAll();
 
-            //foreach (Product p in prods)
-            //    Console.WriteLine(p.ToString());
+            foreach (Product p in prods)
+                Console.WriteLine(p.ToString());
+
+            Console.ReadKey();
+
+            Product newprod = new Product("produto", "10", 12, 20, 0);
+
+            prodMapper.Insert(newprod);
+
+            Console.ReadKey();
+
+            prods = prodMapper.GetAll();
+
+            foreach (Product p in prods)
+                Console.WriteLine(p.ToString());
 
             //Console.ReadKey();
-
-
         }
     }
 }
