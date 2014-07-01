@@ -25,12 +25,12 @@ namespace DataModel
 
         public Customers() { }
 
-        public Customers(string CompanyName, string ContactName, string ContactTitle, string Address, string City, string Region, string PostalCode, string Country, string Phone)
+        public Customers(string CompanyName, string ContactName, string ContactTitle, string Address, string City, string Region, string PostalCode, string Country, int Phone)
             : this(0, CompanyName, ContactName, ContactTitle, Address, City, Region, PostalCode, Country, Phone)
         {
         }
 
-        public Customers(int CustomerID, string CompanyName, string ContactName, string ContactTitle, string Address, string City, string Region, string PostalCode, string Country, string Phone)
+        public Customers(int CustomerID, string CompanyName, string ContactName, string ContactTitle, string Address, string City, string Region, string PostalCode, string Country, int Phone)
         {
             this.CustomerID = CustomerID;
             this.CompanyName = CompanyName;
