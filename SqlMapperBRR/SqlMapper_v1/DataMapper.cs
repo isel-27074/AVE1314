@@ -57,7 +57,7 @@ namespace SqlMapper_v1
             PreparedGetAll(FormatStringGetAll(_table));
             _dr = _command.ExecuteReader();
             
-            int numberOfColumns = 0; //to remove
+            //int numberOfColumns = 0; //to remove
             foreach (var dr in _dr) {
                 //Console.WriteLine(_dr.GetFieldType(numberOfColumns).Name); //to remove
                 object[] o = new object[_columns.Length];
