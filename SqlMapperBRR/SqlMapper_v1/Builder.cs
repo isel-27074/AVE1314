@@ -63,7 +63,7 @@ namespace SqlMapper_v1
             {
                 if (a is TableAttribute) {
                     TableAttribute act = (TableAttribute)a;
-                    Console.WriteLine(act.Name);
+                    //Console.WriteLine(act.Name);
                     _table = act.Name;
                 }
             }
@@ -74,7 +74,7 @@ namespace SqlMapper_v1
             int i = 0;
             foreach (PropertyInfo prop in props)
             {
-                Console.WriteLine(prop.Name);
+                //Console.WriteLine(prop.Name); //to remove
                 _columnlist[i] = prop.Name;
             }
 
@@ -82,7 +82,7 @@ namespace SqlMapper_v1
             FieldInfo[] fields = t.GetFields();
             foreach (FieldInfo field in fields)
             {
-                Console.WriteLine(field.Name);
+                //Console.WriteLine(field.Name); //to remove
             }
 
             if (_builderConnection.State == ConnectionState.Open) 
@@ -91,7 +91,7 @@ namespace SqlMapper_v1
                 Console.WriteLine("CON - Está fechada!");
 
             DataMapper<T> dm = new DataMapper<T>(_builderConnection, true, _table, _columnlist);
-            Console.WriteLine("Builder - Ending connection...");
+            //Console.WriteLine("Builder - Ending connection...");
             //if (_builderConnection.State != ConnectionState.Closed)
             //    _builderConnection.Dispose();
 

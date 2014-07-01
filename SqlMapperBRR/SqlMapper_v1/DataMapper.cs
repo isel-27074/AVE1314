@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Reflection;
 using System.Data;
+using System.ComponentModel.DataAnnotations;
 
 namespace SqlMapper_v1
 {
@@ -24,7 +25,7 @@ namespace SqlMapper_v1
         private string prepStateGetAll = "SELECT * from {0}";
         private string prepStateInsert = "INSERT INTO {0} VALUES ('{1}', '{2}', {3}, {4}, {5})";
         private string prepStateUpdate; //= "UPDATE {0} SET column1=value1,column2=value2,... WHERE some_column=some_value";
-        private string prepStateDelete; //= "DELETE FROM {0} WHERE {1} = {2}";
+        private string prepStateDelete = "DELETE FROM {0} WHERE {1} = {2}";
 
         public DataMapper(SqlConnection con, bool persistant, string table, string[] columns)
         {
@@ -58,7 +59,7 @@ namespace SqlMapper_v1
             
             int numberOfColumns = 0; //to remove
             foreach (var dr in _dr) {
-                Console.WriteLine(_dr.GetFieldType(numberOfColumns).Name); //to remove
+                //Console.WriteLine(_dr.GetFieldType(numberOfColumns).Name); //to remove
                 object[] o = new object[_columns.Length];
                 for (int i= 0; i<_columns.Length; i++){
                     //Console.WriteLine(_dr[i]); //to remove
@@ -115,25 +116,33 @@ namespace SqlMapper_v1
         public string FormatStringDelete(T val)
         {
             object[] args = FormatParameterDelete(val);
-            return String.Format(prepStateInsert, args);
+            return String.Format(prepStateDelete, args);
         }
 
         //Dado um T, devolvemos um array com o nome da tabela e os dados do T
         public object[] FormatParameterDelete(T val)
         {
-            object[] newobj = new object[_columns.Length];
+            object[] newobj = new object[3];
             newobj[0] = _table;
+
             Type t = val.GetType();
-            PropertyInfo[] props = t.GetProperties();
+            MemberInfo[] mi = t.GetMembers();
+            string columnKey = null;
 
-            for (int j = 1; j < props.Length; j++)
+            foreach (MemberInfo m in mi)
             {
-                Console.WriteLine(props[j].GetValue(val));
-                newobj[j] = props[j].GetValue(val);
+                KeyAttribute attr = (KeyAttribute)m.GetCustomAttribute(typeof(KeyAttribute));
+                if (attr != null)
+                {
+                    columnKey = m.Name;
+                }
             }
-
+            newobj[1] = columnKey;
+            object value = val.GetType().GetProperty(columnKey).GetValue(val);
+            newobj[2] = (int)value;
             return newobj;
         }
+
 
         //INSERT INTO table_name (column1,column2,column3,...)
         //VALUES (value1,value2,value3,...);
@@ -161,8 +170,6 @@ namespace SqlMapper_v1
         private void PreparedInsert(string instruction)
         {
             _command.CommandText = instruction;
-            //if (_command.ExecuteNonQuery() == 1) Console.WriteLine("inserido");
-            //else Console.WriteLine("NAO inserido");
         }
 
         //Dado um T, formatamos a string de Insert
@@ -182,7 +189,7 @@ namespace SqlMapper_v1
 
             for (int j = 1; j < props.Length ; j++)
             {
-                    Console.WriteLine(props[j].GetValue(val));
+                    //Console.WriteLine(props[j].GetValue(val));
                     newobj[j] = props[j].GetValue(val);
             }
 
