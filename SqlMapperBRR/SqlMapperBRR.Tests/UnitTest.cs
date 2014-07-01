@@ -30,12 +30,14 @@ namespace SqlMapperBRR.Tests
             prodMapper.Insert(newprod);
         }
 
-        public static void TestDelete(IDataMapper<Product> prodMapper)
+
+        [TestMethod]
+        public static void TestUpdate(IDataMapper<Product> prodMapper)
         {
             //ProductID - desnecessário
             //ProductName, QuantityPerUnit, UnitPrice, UnitsInStock, UnitsOnOrder
-            Product newprod = new Product("produto", "10", 12, 20, 0);
-            prodMapper.Insert(newprod);
+            Product newprod = new Product(4,"cenouras", "10", 12, 20, 0);
+            prodMapper.Update(newprod);
         }
     }
 }
