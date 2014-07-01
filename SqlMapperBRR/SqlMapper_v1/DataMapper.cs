@@ -144,6 +144,11 @@ namespace SqlMapper_v1
             PreparedInsert(FormatStringInsert(val));
             _command.ExecuteNonQuery();
 
+            string query2 = "Select @@Identity";
+            _command.CommandText = query2;
+            var ID = _command.ExecuteScalar();
+            Console.WriteLine("registo inserido nº "+ID);
+
             //mFmt.format(pattern, values)
             //MessageFormat mFmt = new MessageFormat(pattern);
             ////SqlTransaction
