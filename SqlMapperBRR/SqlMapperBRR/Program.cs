@@ -68,7 +68,14 @@ namespace SqlMapperBRR
             //Test Insert
             UnitTest.TestInsert(prodMapper);
             UnitTest.TestGetAll(prodMapper);
-            
+
+            //Test Insert
+            //UnitTest.TestInsert(prodMapper);
+            //DataMapper<Product> prodMapper2 = (DataMapper<Product>)prodMapper;
+            //int lastRecord = prodMapper2.GetLastInsertedRecord();
+            //UnitTest.TestGetAll(prodMapper);
+            //UnitTest.TestDelete(prodMapper, lastRecord);
+            //UnitTest.TestGetAll(prodMapper);
 
             //prods = prodMapper.GetAll();
 

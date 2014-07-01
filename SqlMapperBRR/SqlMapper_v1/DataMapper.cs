@@ -17,6 +17,9 @@ namespace SqlMapper_v1
         private string[] _columns;
         private string _table;
         private bool _persistant;
+        
+        private string prepStateLastInsertedRecord = "Select @@Identity";
+        private int lastInsertedRecordID;
 
         private string prepStateGetAll = "SELECT * from {0}";
         private string prepStateInsert = "INSERT INTO {0} VALUES ('{1}', '{2}', {3}, {4}, {5})";
@@ -105,8 +108,6 @@ namespace SqlMapper_v1
         private void PreparedDelete(string instruction)
         {
             _command.CommandText = instruction;
-            //if (_command.ExecuteNonQuery() == 1) Console.WriteLine("inserido");
-            //else Console.WriteLine("NAO inserido");
         }
 
         //Dado um T, formatamos a string de Insert
@@ -144,10 +145,10 @@ namespace SqlMapper_v1
             PreparedInsert(FormatStringInsert(val));
             _command.ExecuteNonQuery();
 
-            string query2 = "Select @@Identity";
-            _command.CommandText = query2;
-            var ID = _command.ExecuteScalar();
-            Console.WriteLine("registo inserido nº "+ID);
+            //Obter o ID do ultimo item inserido
+            _command.CommandText = prepStateLastInsertedRecord;
+            var lastInsertedID = (decimal)_command.ExecuteScalar();
+            lastInsertedRecordID = Decimal.ToInt32(lastInsertedID);
 
             //mFmt.format(pattern, values)
             //MessageFormat mFmt = new MessageFormat(pattern);
@@ -165,14 +166,14 @@ namespace SqlMapper_v1
         }
 
         //Dado um T, formatamos a string de Insert
-        public string FormatStringInsert(T val)
+        private string FormatStringInsert(T val)
         {
             object[] args = FormatParameterInsert(val);
             return String.Format(prepStateInsert, args);
         }
 
         //Dado um T, devolvemos um array com o nome da tabela e os dados do T
-        public object[] FormatParameterInsert(T val)
+        private object[] FormatParameterInsert(T val)
         {
             object[] newobj = new object[_columns.Length];
             newobj[0] = _table;
@@ -187,6 +188,8 @@ namespace SqlMapper_v1
 
             return newobj;
         }
+
+        public int GetLastInsertedRecord() { return lastInsertedRecordID; }
 
         #region toCheck
         /*
