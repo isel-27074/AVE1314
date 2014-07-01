@@ -62,7 +62,7 @@ namespace SqlMapper_v1
             foreach (Attribute a in attribs)
             {
                 if (a is TableAttribute) {
-                    TableAttribute act = (TableAttribute)a;
+                    TableAttribute act = (TableAttribute) a;
                     //Console.WriteLine(act.Name);
                     _table = act.Name;
                 }

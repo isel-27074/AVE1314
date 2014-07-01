@@ -24,7 +24,7 @@ namespace SqlMapper_v1
 
         private string prepStateGetAll = "SELECT * from {0}";
         private string prepStateInsert = "INSERT INTO {0} VALUES ('{1}', '{2}', {3}, {4}, {5})";
-        private string prepStateUpdate; //= "UPDATE {0} SET column1=value1,column2=value2,... WHERE some_column=some_value";
+        private string prepStateUpdate = "UPDATE {0} SET {3}='{4}', {5}='{6}', {7}={8}, {9}={10}, {11}={12} WHERE {1}={2}";
         private string prepStateDelete = "DELETE FROM {0} WHERE {1} = {2}";
 
         public DataMapper(SqlConnection con, bool persistant, string table, string[] columns)
@@ -91,8 +91,57 @@ namespace SqlMapper_v1
         //WHERE some_column=some_value;
         public void Update(T val)
         {
-            throw new NotImplementedException();
+            if (!_persistant) _connnection.Open();
+            if (_connnection.State != ConnectionState.Open)
+                _connnection.Open(); //abre se não estava aberta
+
+            PreparedUpdate(FormatStringUpdate(val));
+            _dr = _command.ExecuteReader();
+            _dr.Close();
         }
+
+        private void PreparedUpdate(string instruction)
+        {
+            _command.CommandText = instruction;
+        }
+
+        //Dado um T, formatamos a string de Insert
+        //public string FormatStringDelete(string column, string value)
+        public string FormatStringUpdate(T val)
+        {
+            object[] args = FormatParameterUpdate(val);
+            return String.Format(prepStateUpdate, args);
+        }
+
+        //Dado um T, devolvemos um array com o nome da tabela e os dados do T
+        public object[] FormatParameterUpdate(T val)
+        {
+            int count = _columns.Length * 2 + 1;//colunas valores + nome tabela
+            object[] newobj = new object[count];
+            newobj[0] = _table;
+            Type t = val.GetType();
+            PropertyInfo[] props = t.GetProperties();
+
+            int i = 0;
+            for (int j = 1; j < count;)
+            {
+                
+                newobj[j] = props[i].Name ;
+                Console.WriteLine(newobj[j]);
+                j++;
+                newobj[j] = props[i].GetValue(val);
+                Console.WriteLine(newobj[j]);
+                j++;
+                i++;
+            }
+
+            return newobj;
+        }
+
+        //_____________________________
+
+
+
 
         //DELETE FROM table_name
         //WHERE some_column = some_value;
