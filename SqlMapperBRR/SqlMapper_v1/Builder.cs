@@ -19,7 +19,7 @@ namespace SqlMapper_v1
         //uma connection string por instância
         private readonly SqlConnection _builderConnection;
         private string _table; //nome da tabela obtido no Build 
-        private string[] _columnlist; //nomes das colunas obtido no Build 
+        private string[] _columnlist; //nomes das colunas obtido no Build
 
     //    public Builder(ConnectionPolicy cp, QueryData qd)
         public Builder(ConnectionPolicy cp)
