@@ -27,7 +27,7 @@ namespace SqlMapperBRR
                 Console.WriteLine("Escolha Data Source:");
                 Console.WriteLine("A - PCK8");
                 Console.WriteLine("B - Darkstar\\Sqlexpress");
-                Console.WriteLine("C - UTILIZADOR-PC ");
+                Console.WriteLine("C - FONTAINHA\\SQLEXPRESS");
                 Console.WriteLine("D - Introduzir nova DS");
                 datasource = Console.ReadLine();
                 switch (datasource.ToUpper())
@@ -39,7 +39,7 @@ namespace SqlMapperBRR
                         datasource = "darkstar\\sqlexpress";
                         break;
                     case "C":
-                        datasource = "UTILIZADOR-PC";
+                        datasource = "FONTAINHA\\SQLEXPRESS";
                         break;
                     default:
                         Console.WriteLine("Inserir Data Source:");
