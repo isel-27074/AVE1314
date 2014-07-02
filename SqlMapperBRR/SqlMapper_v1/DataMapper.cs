@@ -251,37 +251,63 @@ namespace SqlMapper_v1
         //Dado um T, devolvemos um array com o nome da tabela e os dados do T
         private object[] FormatParameterInsert(T val)
         {
-            //insert tem 3 argumentos, {0}tabela, {1}nome de colunas e {2}valores de colunas
+            //insert tem 3 argumentos, tabela, nome de colunas e valores de colunas
             object[] newobj = new object[3];
-            string colunas = "";
-            string valores = "";
+            string columnProperties = "";
+            string valuesProperties = "";
+            string columnFields = "";
+            string valuesFields = "";
+
             newobj[0] = _table; //como todos as tabelas sao identity, a 1 posição é o nome da tabela em causa
             Type t = val.GetType();
-            PropertyInfo[] props = t.GetProperties();
-            int last = props.Length;
-            for (int i = 1; i < last; i++)
+            PropertyInfo[] properties = t.GetProperties();
+            int numberOfProperties = properties.Length;
+            FieldInfo[] fields = t.GetFields();
+            int numberOfFields = fields.Length;
+            //int total = properties.Length + fields.Length;
+            //MemberInfo[] members = t.GetMembers();
+            //MemberInfo[] membersDefined = new MemberInfo[total];
+            //int idx = 0;
+            ////MemberInfo[] members = t.GetFields(BindingFlags.Public | BindingFlags.Instance).Cast<MemberInfo>().Concat(t.GetProperties(BindingFlags.Public | BindingFlags.Instance)).ToArray();
+            //foreach (var m in members) {
+            //    if (m.MemberType.Equals(MemberTypes.Field))
+            //    {
+            //        membersDefined[idx] = m;
+            //        idx++;
+            //    }
+            //    if (m.MemberType.Equals(MemberTypes.Property))
+            //    {
+            //        membersDefined[idx] = m;
+            //        idx++;
+            //    }
+            //}
+
+            //foreach (var md in membersDefined) Console.WriteLine(md.Name);
+            //Console.ReadKey();
+
+            for (int i = 0; i < numberOfProperties; i++)
             {
-                colunas += props[i].Name;
-                Console.WriteLine(props[i].GetValue(val).GetType());
-                Console.WriteLine(typeof(String));
-                if (props[i].GetValue(val).GetType() == typeof(String) || props[i].GetValue(val).GetType() == typeof(Char))
+                KeyAttribute attr = (KeyAttribute)props[i].GetCustomAttribute(typeof(KeyAttribute));
+                if (attr == null)
                 {
-                    valores = valores +"\'"+ props[i].GetValue(val) +"\'";
-                    Console.WriteLine(valores);
-                }
-                else
-                {
-                    valores += props[i].GetValue(val);
-                }
-                if (i != last - 1)
-                {
-                    colunas += ",";
-                    valores += ",";
+                    colunas += props[i].Name;
+                    if (props[i].GetValue(val).GetType() == typeof(String) || props[i].GetValue(val).GetType() == typeof(Char))
+                    {
+                        valores = valores + "\'" + props[i].GetValue(val) + "\'";
+                    }
+                    else
+                    {
+                        valores += props[i].GetValue(val);
+                    }
+                    if (i != last - 1)
+                    {
+                        colunas += ",";
+                        valores += ",";
+                    }
                 }
             }
             newobj[1] = colunas;
             newobj[2] = valores;
-
             return newobj;
         }
 

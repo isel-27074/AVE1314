@@ -35,9 +35,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DataModel">
-      <HintPath>..\DataModel\bin\Debug\DataModel.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -57,6 +54,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataModel\DataModel.csproj">
+      <Project>{94e370c2-013f-4559-b87d-4c8960a1eb6d}</Project>
+      <Name>DataModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SqlMapper_v1\SqlMapper_v1.csproj">
       <Project>{0963e729-443d-4245-8444-87495b3bc9d0}</Project>
       <Name>SqlMapper_v1</Name>
@@ -69,6 +70,9 @@
       <Project>{edd4ff6a-b82b-4b38-9f6b-1e802b0b95cf}</Project>
       <Name>SqlMapper_v3</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

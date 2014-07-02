@@ -37,7 +37,6 @@ namespace SqlMapperBRR.Tests
             UnitTest.TestInsert(prodMapper); //insiro registo
             DataMapper<Product> prodMapper2 = (DataMapper<Product>)prodMapper;
             int lastRecord = prodMapper2.GetLastInsertedRecord();
-            prodMapper2.GetAll();
             Product newprod = new Product(11, "", "", 0, 0, 0);
             prodMapper.Delete(newprod);
         }
