@@ -28,6 +28,7 @@ namespace SqlMapper_v1
         private string prepStateUpdate = "UPDATE {0} SET {2} WHERE {1}";
         private string prepStateDelete = "DELETE FROM {0} WHERE {1} = {2}";
 
+
         public DataMapper(SqlConnection con, bool persistant, string table, string[] columns)
         {
             _connnection = con;
