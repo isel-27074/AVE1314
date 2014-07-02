@@ -45,7 +45,7 @@ namespace SqlMapperBRR.Tests
         [TestMethod]
         public static void TestUpdate(IDataMapper<Product> prodMapper)
         {
-            Product newprod = new Product(11,"cebolinho", "10", 12, 20, 0);
+            Product newprod = new Product(5,"NN", "10", 12, 20, 0);
             prodMapper.Update(newprod);
         }
     }

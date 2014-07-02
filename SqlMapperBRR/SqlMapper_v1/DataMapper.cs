@@ -23,11 +23,9 @@ namespace SqlMapper_v1
         private int lastInsertedRecordID;
 
         private string prepStateGetAll = "SELECT * from {0}";
-       // private string prepStateInsert = "INSERT INTO {0} VALUES ('{1}', '{2}', {3}, {4}, {5})";
-        //INSERT INTO table_name (column1,column2,column3,...)
-        //VALUES (value1,value2,value3,...);
         private string prepStateInsert = "INSERT INTO {0} ({1}) VALUES ({2})";
-        private string prepStateUpdate = "UPDATE {0} SET {3}='{4}', {5}='{6}', {7}={8}, {9}={10}, {11}={12} WHERE {1}={2}";
+        //private string prepStateUpdate = "UPDATE {0} SET {3}='{4}', {5}='{6}', {7}={8}, {9}={10}, {11}={12} WHERE {1}={2}";
+        private string prepStateUpdate = "UPDATE {0} SET {2} WHERE {1}";
         private string prepStateDelete = "DELETE FROM {0} WHERE {1} = {2}";
 
         public DataMapper(SqlConnection con, bool persistant, string table, string[] columns)
@@ -106,6 +104,7 @@ namespace SqlMapper_v1
         private void PreparedUpdate(string instruction)
         {
             _command.CommandText = instruction;
+            Console.WriteLine(instruction);
         }
 
         //Dado um T, formatamos a string de Insert
@@ -117,26 +116,42 @@ namespace SqlMapper_v1
         }
 
         //Dado um T, devolvemos um array com o nome da tabela e os dados do T
+        //"UPDATE {0} SET {2} WHERE {1}";
         public object[] FormatParameterUpdate(T val)
         {
-            int count = _columns.Length * 2 + 1;//colunas/valores + nome tabela (precisamos da chave)
-            object[] newobj = new object[count];
+            string condition = "";
+            string values = "";
+            object[] newobj = new object[3];
             newobj[0] = _table; 
             Type t = val.GetType();
 
             PropertyInfo[] props = t.GetProperties();
-
-            int i = 0;
-            for (int j = 1; j < count;)
+            int last = props.Length;
+            for (int i = 0; i < last; i++)
             {
-                newobj[j] = props[i].Name ;
-                Console.WriteLine(newobj[j]);
-                j++;
-                newobj[j] = props[i].GetValue(val);
-                Console.WriteLine(newobj[j]);
-                j++;
-                i++;
+                KeyAttribute attr = (KeyAttribute) props[i].GetCustomAttribute(typeof(KeyAttribute));
+                if (attr != null)
+                {
+                    condition = props[i].Name + " = " + props[i].GetValue(val);
+                }
+                else
+                {
+                    if (props[i].GetValue(val).GetType() == typeof(String) || props[i].GetValue(val).GetType() == typeof(Char))
+                    {
+                        values = values + props[i].Name + " = " + "\'" + props[i].GetValue(val) + "\'";
+                    }
+                    else
+                    {
+                        values = values + props[i].Name + " = " + props[i].GetValue(val);
+                    }
+                    if (i != last - 1)
+                    {
+                        values += ",";
+                    }
+                }
             }
+            newobj[1] = condition;
+            newobj[2] = values;
 
             return newobj;
         }
@@ -235,7 +250,7 @@ namespace SqlMapper_v1
         //Dado um T, devolvemos um array com o nome da tabela e os dados do T
         private object[] FormatParameterInsert(T val)
         {
-            //insert tem 3 argumentos, tabela, nome de colunas e valores de colunas
+            //insert tem 3 argumentos, {0}tabela, {1}nome de colunas e {2}valores de colunas
             object[] newobj = new object[3];
             string colunas = "";
             string valores = "";
@@ -245,9 +260,6 @@ namespace SqlMapper_v1
             int last = props.Length;
             for (int i = 1; i < last; i++)
             {
-                
-
-
                 colunas += props[i].Name;
                 Console.WriteLine(props[i].GetValue(val).GetType());
                 Console.WriteLine(typeof(String));
@@ -266,15 +278,8 @@ namespace SqlMapper_v1
                     valores += ",";
                 }
             }
-
             newobj[1] = colunas;
             newobj[2] = valores;
-
-                //for (int j = 1; j < props.Length; j++)
-                //{
-                //    //Console.WriteLine(props[j].GetValue(val));
-                //    newobj[j] = props[j].GetValue(val);
-                //}
 
             return newobj;
         }
