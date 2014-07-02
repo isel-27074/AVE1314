@@ -66,16 +66,16 @@ namespace SqlMapperBRR
             //UnitTest.TestGetAll(prodMapper);
 
             //Test Insert
-            //UnitTest.TestInsert(prodMapper);
-            //UnitTest.TestGetAll(prodMapper);
+            UnitTest.TestInsert(prodMapper);
+            UnitTest.TestGetAll(prodMapper);
 
             //Test Delete
-            UnitTest.TestDelete(prodMapper);
-            UnitTest.TestGetAll(prodMapper);
+            //UnitTest.TestDelete(prodMapper);
+            ////UnitTest.TestGetAll(prodMapper);
 
             //Test Update
-            UnitTest.TestUpdate(prodMapper);
-            UnitTest.TestGetAll(prodMapper);
+            //UnitTest.TestUpdate(prodMapper);
+            //UnitTest.TestGetAll(prodMapper);
 
             ////TESTES
             //IEnumerable<Product> prods = prodMapper.GetAll();

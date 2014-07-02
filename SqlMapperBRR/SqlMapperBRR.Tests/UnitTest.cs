@@ -25,7 +25,7 @@ namespace SqlMapperBRR.Tests
         {
             //ProductID - desnecessário
             //ProductName, QuantityPerUnit, UnitPrice, UnitsInStock, UnitsOnOrder
-            Product newprod = new Product("produto", "10", 12, 20, 0);
+            Product newprod = new Product("benfas", "10", 12, 20, 0);
 
             prodMapper.Insert(newprod);
         }
@@ -38,14 +38,14 @@ namespace SqlMapperBRR.Tests
             DataMapper<Product> prodMapper2 = (DataMapper<Product>)prodMapper;
             int lastRecord = prodMapper2.GetLastInsertedRecord();
             
-            Product newprod = new Product(lastRecord, "produto", "10", 12, 20, 0);
+            Product newprod = new Product(11, "", "", 0, 0, 0);
             prodMapper.Delete(newprod);
         }
 
         [TestMethod]
         public static void TestUpdate(IDataMapper<Product> prodMapper)
         {
-            Product newprod = new Product(4,"cenouras", "10", 12, 20, 0);
+            Product newprod = new Product(11,"cebolinho", "10", 12, 20, 0);
             prodMapper.Update(newprod);
         }
     }
