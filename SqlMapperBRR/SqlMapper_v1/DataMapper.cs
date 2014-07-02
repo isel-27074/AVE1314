@@ -23,7 +23,10 @@ namespace SqlMapper_v1
         private int lastInsertedRecordID;
 
         private string prepStateGetAll = "SELECT * from {0}";
-        private string prepStateInsert = "INSERT INTO {0} VALUES ('{1}', '{2}', {3}, {4}, {5})";
+       // private string prepStateInsert = "INSERT INTO {0} VALUES ('{1}', '{2}', {3}, {4}, {5})";
+        //INSERT INTO table_name (column1,column2,column3,...)
+        //VALUES (value1,value2,value3,...);
+        private string prepStateInsert = "INSERT INTO {0} ({1}) VALUES ({2})";
         private string prepStateUpdate = "UPDATE {0} SET {3}='{4}', {5}='{6}', {7}={8}, {9}={10}, {11}={12} WHERE {1}={2}";
         private string prepStateDelete = "DELETE FROM {0} WHERE {1} = {2}";
 
@@ -116,16 +119,16 @@ namespace SqlMapper_v1
         //Dado um T, devolvemos um array com o nome da tabela e os dados do T
         public object[] FormatParameterUpdate(T val)
         {
-            int count = _columns.Length * 2 + 1;//colunas valores + nome tabela
+            int count = _columns.Length * 2 + 1;//colunas/valores + nome tabela (precisamos da chave)
             object[] newobj = new object[count];
-            newobj[0] = _table;
+            newobj[0] = _table; 
             Type t = val.GetType();
+
             PropertyInfo[] props = t.GetProperties();
 
             int i = 0;
             for (int j = 1; j < count;)
             {
-                
                 newobj[j] = props[i].Name ;
                 Console.WriteLine(newobj[j]);
                 j++;
@@ -201,6 +204,7 @@ namespace SqlMapper_v1
             if (_connnection.State != ConnectionState.Open)
                 _connnection.Open(); //abre se não estava aberta
             PreparedInsert(FormatStringInsert(val));
+            Console.WriteLine(_command.CommandText);
             _command.ExecuteNonQuery();
 
             //Obter o ID do ultimo item inserido
@@ -231,17 +235,57 @@ namespace SqlMapper_v1
         //Dado um T, devolvemos um array com o nome da tabela e os dados do T
         private object[] FormatParameterInsert(T val)
         {
-            object[] newobj = new object[_columns.Length];
-            newobj[0] = _table;
+            //insert tem 3 argumentos, tabela, nome de colunas e valores de colunas
+            object[] newobj = new object[3];
+            string colunas = "";
+            string valores = "";
+            newobj[0] = _table; //como todos as tabelas sao identity, a 1 posição é o nome da tabela em causa
             Type t = val.GetType();
-            PropertyInfo[] props = t.GetProperties();
-
-            for (int j = 1; j < props.Length ; j++)
-            {
-                    //Console.WriteLine(props[j].GetValue(val));
-                    newobj[j] = props[j].GetValue(val);
+            PropertyInfo[] properties = t.GetProperties();
+            FieldInfo[] fields = t.GetFields();
+            int total = properties.Length + fields.Length;
+            MemberInfo[] members = t.GetMembers();
+            MemberInfo[] membersDefined = new MemberInfo[total];
+            int idx = 0;
+            //MemberInfo[] members = t.GetFields(BindingFlags.Public | BindingFlags.Instance).Cast<MemberInfo>().Concat(t.GetProperties(BindingFlags.Public | BindingFlags.Instance)).ToArray();
+            foreach (var m in members) {
+                if (m.MemberType.Equals(MemberTypes.Field))
+                {
+                    membersDefined[idx] = m;
+                    idx++;
+                }
+                if (m.MemberType.Equals(MemberTypes.Property))
+                {
+                    membersDefined[idx] = m;
+                    idx++;
+                }
             }
 
+            //foreach (var md in membersDefined) Console.WriteLine(md.Name);
+            //Console.ReadKey();
+
+            //PropertyInfo[] props = t.GetProperties();
+            //int last = props.Length;
+            for (int i = 1; i < total; i++)
+            {
+                colunas += props[i].Name;
+                if (props[i].GetValue(val).GetType() == typeof(String) || props[i].GetValue(val).GetType() == typeof(Char))
+                {
+                    valores = valores +"\'"+ props[i].GetValue(val) +"\'";
+                    Console.WriteLine(valores);
+                }
+                else
+                {
+                    valores += props[i].GetValue(val);
+                }
+                if (i != last - 1)
+                {
+                    colunas += ",";
+                    valores += ",";
+                }
+            }
+            newobj[1] = colunas;
+            newobj[2] = valores;
             return newobj;
         }
 
