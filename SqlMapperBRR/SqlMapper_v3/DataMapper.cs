@@ -47,7 +47,7 @@ namespace SqlMapper_v3
         public ISqlEnumerable<T> GetAll()
         {
             PreparedStatement(FormatStringGetAll(_table));
-            return new SQLEnumerable<T>(_connnection, _command, _columns, _persistant);
+            return new SqlEnumerable<T>(_connnection, _command, _columns, _persistant);
         }
         
         //dado um T, formatamos a string de Select
@@ -319,86 +319,32 @@ namespace SqlMapper_v3
         }
         public int GetLastInsertedRecord() { return lastInsertedRecordID; }
 
-        #region toCheck
-        /*
-         *             //int total = properties.Length + fields.Length;
-            //MemberInfo[] members = t.GetMembers();
-            //MemberInfo[] membersDefined = new MemberInfo[total];
-            //int idx = 0;
-            ////MemberInfo[] members = t.GetFields(BindingFlags.Public | BindingFlags.Instance).Cast<MemberInfo>().Concat(t.GetProperties(BindingFlags.Public | BindingFlags.Instance)).ToArray();
-            //foreach (var m in members) {
-            //    if (m.MemberType.Equals(MemberTypes.Field))
-            //    {
-            //        membersDefined[idx] = m;
-            //        idx++;
-            //    }
-            //    if (m.MemberType.Equals(MemberTypes.Property))
-            //    {
-            //        membersDefined[idx] = m;
-            //        idx++;
-            //    }
-            //}
-
-            //foreach (var md in membersDefined) Console.WriteLine(md.Name);
 
 
-         * 
-        public IEnumerable<T> GetAll()
+        SqlEnumerable<T> IDataMapper<T>.GetAll()
         {
-            int count = 0;
-            Console.WriteLine("chguei ao getall");
-            while (_dr.Read())
-            {
-                T t = new T();
-                Type tp = t.GetType();
-                FieldInfo[] fi = tp.GetFields();
-                foreach (FieldInfo fii in fi)
-                    Console.WriteLine(fii.ToString());
-                PropertyInfo[] pi = tp.GetProperties();
-                foreach (PropertyInfo pii in pi)
-                    Console.WriteLine(pii.ToString());
-
-                yield return (T)_dr[count++];
-            }
-            //return (ienumerable<t>)datareader;
-            Console.WriteLine("bo dia");
-            //throw new NotImplemente
-         * dException();
+            throw new NotImplementedException();
         }
-        public void GetAll2()
+
+        SqlEnumerable IDataMapper.GetAll()
         {
-            int count = 0;
-            Console.WriteLine("chguei ao getall");
-            while (_dr.Read())
-            {
-                T t = new T();
-
-                Type tp = t.GetType();
-                Console.WriteLine("Fields");
-                FieldInfo[] fi = tp.GetFields();
-                foreach (FieldInfo fii in fi)
-                {
-                    Console.WriteLine(fii.ToString());
-                }
-                Console.WriteLine("Properties");
-
-                PropertyInfo[] pi = tp.GetProperties();
-                foreach (PropertyInfo pii in pi)
-                {
-                    Console.WriteLine(pii.MemberType);
-                    Console.WriteLine(pii.GetType());
-                    Console.WriteLine(pii.ToString());
-                }
-                // yield return (T)_dr[count++];
-            }
-            //return (ienumerable<t>)datareader;
-            Console.WriteLine("bo dia");
-            //throw new NotImplementedException();
+            throw new NotImplementedException();
         }
-        */
-        #endregion toCheck
 
+        public void Update(object val)
+        {
+            throw new NotImplementedException();
+        }
 
+        public void Delete(object val)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Insert(object val)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

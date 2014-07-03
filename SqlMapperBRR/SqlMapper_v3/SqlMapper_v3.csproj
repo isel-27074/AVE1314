@@ -49,7 +49,7 @@
     <Compile Include="Interfaces\ISqlEnumerable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryData.cs" />
-    <Compile Include="SQLEnumerable.cs" />
+    <Compile Include="SqlEnumerable.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

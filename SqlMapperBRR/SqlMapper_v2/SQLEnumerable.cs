@@ -10,7 +10,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SqlMapper_v2
 {
-    public class SQLEnumerable<T> : ISqlEnumerable<T>
+    public class SqlEnumerable<T> : ISqlEnumerable<T>
     {
         private SqlConnection _connnection;
         private SqlCommand _command;
@@ -19,7 +19,7 @@ namespace SqlMapper_v2
         private bool _persistant;
         private string whereclauses;
 
-        public SQLEnumerable(SqlConnection con, SqlCommand cmd, string[] columns, bool persistant)
+        public SqlEnumerable(SqlConnection con, SqlCommand cmd, string[] columns, bool persistant)
         {
             _connnection = con;
             _command = cmd;

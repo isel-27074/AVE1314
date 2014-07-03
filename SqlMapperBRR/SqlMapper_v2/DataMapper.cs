@@ -47,7 +47,7 @@ namespace SqlMapper_v2
         public ISqlEnumerable<T> GetAll()
         {
             PreparedStatement(FormatStringGetAll(_table));
-            return new SQLEnumerable<T>(_connnection, _command, _columns, _persistant);
+            return new SqlEnumerable<T>(_connnection, _command, _columns, _persistant);
         }
         
         //dado um T, formatamos a string de Select
