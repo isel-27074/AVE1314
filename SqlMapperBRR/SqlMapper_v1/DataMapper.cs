@@ -23,12 +23,11 @@ namespace SqlMapper_v1
         private int lastInsertedRecordID;
 
         private string prepStateGetAll = "SELECT * from {0}";
-       // private string prepStateInsert = "INSERT INTO {0} VALUES ('{1}', '{2}', {3}, {4}, {5})";
-        //INSERT INTO table_name (column1,column2,column3,...)
-        //VALUES (value1,value2,value3,...);
         private string prepStateInsert = "INSERT INTO {0} ({1}) VALUES ({2})";
-        private string prepStateUpdate = "UPDATE {0} SET {3}='{4}', {5}='{6}', {7}={8}, {9}={10}, {11}={12} WHERE {1}={2}";
+        //private string prepStateUpdate = "UPDATE {0} SET {3}='{4}', {5}='{6}', {7}={8}, {9}={10}, {11}={12} WHERE {1}={2}";
+        private string prepStateUpdate = "UPDATE {0} SET {2} WHERE {1}";
         private string prepStateDelete = "DELETE FROM {0} WHERE {1} = {2}";
+
 
         public DataMapper(SqlConnection con, bool persistant, string table, string[] columns)
         {
@@ -106,6 +105,7 @@ namespace SqlMapper_v1
         private void PreparedUpdate(string instruction)
         {
             _command.CommandText = instruction;
+            Console.WriteLine(instruction);
         }
 
         //Dado um T, formatamos a string de Insert
@@ -117,26 +117,42 @@ namespace SqlMapper_v1
         }
 
         //Dado um T, devolvemos um array com o nome da tabela e os dados do T
+        //"UPDATE {0} SET {2} WHERE {1}";
         public object[] FormatParameterUpdate(T val)
         {
-            int count = _columns.Length * 2 + 1;//colunas/valores + nome tabela (precisamos da chave)
-            object[] newobj = new object[count];
+            string condition = "";
+            string values = "";
+            object[] newobj = new object[3];
             newobj[0] = _table; 
             Type t = val.GetType();
 
             PropertyInfo[] props = t.GetProperties();
-
-            int i = 0;
-            for (int j = 1; j < count;)
+            int last = props.Length;
+            for (int i = 0; i < last; i++)
             {
-                newobj[j] = props[i].Name ;
-                Console.WriteLine(newobj[j]);
-                j++;
-                newobj[j] = props[i].GetValue(val);
-                Console.WriteLine(newobj[j]);
-                j++;
-                i++;
+                KeyAttribute attr = (KeyAttribute) props[i].GetCustomAttribute(typeof(KeyAttribute));
+                if (attr != null)
+                {
+                    condition = props[i].Name + " = " + props[i].GetValue(val);
+                }
+                else
+                {
+                    if (props[i].GetValue(val).GetType() == typeof(String) || props[i].GetValue(val).GetType() == typeof(Char))
+                    {
+                        values = values + props[i].Name + " = " + "\'" + props[i].GetValue(val) + "\'";
+                    }
+                    else
+                    {
+                        values = values + props[i].Name + " = " + props[i].GetValue(val);
+                    }
+                    if (i != last - 1)
+                    {
+                        values += ",";
+                    }
+                }
             }
+            newobj[1] = condition;
+            newobj[2] = values;
 
             return newobj;
         }
@@ -237,55 +253,73 @@ namespace SqlMapper_v1
         {
             //insert tem 3 argumentos, tabela, nome de colunas e valores de colunas
             object[] newobj = new object[3];
-            string colunas = "";
-            string valores = "";
+            string columnProperties = "";
+            string valuesProperties = "";
+            string columnFields = "";
+            string valuesFields = "";
+
             newobj[0] = _table; //como todos as tabelas sao identity, a 1 posição é o nome da tabela em causa
             Type t = val.GetType();
             PropertyInfo[] properties = t.GetProperties();
+            int numberOfProperties = properties.Length;
             FieldInfo[] fields = t.GetFields();
-            int total = properties.Length + fields.Length;
-            MemberInfo[] members = t.GetMembers();
-            MemberInfo[] membersDefined = new MemberInfo[total];
-            int idx = 0;
-            //MemberInfo[] members = t.GetFields(BindingFlags.Public | BindingFlags.Instance).Cast<MemberInfo>().Concat(t.GetProperties(BindingFlags.Public | BindingFlags.Instance)).ToArray();
-            foreach (var m in members) {
-                if (m.MemberType.Equals(MemberTypes.Field))
-                {
-                    membersDefined[idx] = m;
-                    idx++;
-                }
-                if (m.MemberType.Equals(MemberTypes.Property))
-                {
-                    membersDefined[idx] = m;
-                    idx++;
-                }
-            }
+            int numberOfFields = fields.Length;
 
-            //foreach (var md in membersDefined) Console.WriteLine(md.Name);
-            //Console.ReadKey();
-
-            //PropertyInfo[] props = t.GetProperties();
-            //int last = props.Length;
-            for (int i = 1; i < total; i++)
+            //Percorrer a lista de propriedades
+            for (int i = 0; i < numberOfProperties; i++)
             {
-                colunas += props[i].Name;
-                if (props[i].GetValue(val).GetType() == typeof(String) || props[i].GetValue(val).GetType() == typeof(Char))
+                KeyAttribute attr = (KeyAttribute)properties[i].GetCustomAttribute(typeof(KeyAttribute));
+                if (attr == null)
                 {
-                    valores = valores +"\'"+ props[i].GetValue(val) +"\'";
-                    Console.WriteLine(valores);
-                }
-                else
-                {
-                    valores += props[i].GetValue(val);
-                }
-                if (i != last - 1)
-                {
-                    colunas += ",";
-                    valores += ",";
+                    columnProperties += properties[i].Name;
+                    if (properties[i].GetValue(val).GetType() == typeof(String) || properties[i].GetValue(val).GetType() == typeof(Char))
+                    {
+                        valuesProperties = valuesProperties + "\'" + properties[i].GetValue(val) + "\'";
+                    }
+                    else
+                    {
+                        valuesProperties += properties[i].GetValue(val);
+                    }
+                    if (i != numberOfProperties - 1)
+                    {
+                        columnProperties += ",";
+                        valuesProperties += ",";
+                    }
                 }
             }
-            newobj[1] = colunas;
-            newobj[2] = valores;
+            //Percorrer a lista de campos
+            for (int i = 0; i < numberOfFields; i++)
+            {
+                KeyAttribute attr = (KeyAttribute)fields[i].GetCustomAttribute(typeof(KeyAttribute));
+                if (attr == null)
+                {
+                    columnFields += fields[i].Name;
+                    if (fields[i].GetValue(val).GetType() == typeof(String) || fields[i].GetValue(val).GetType() == typeof(Char))
+                    {
+                        valuesFields = valuesFields + "\'" + fields[i].GetValue(val) + "\'";
+                    }
+                    else
+                    {
+                        valuesFields += fields[i].GetValue(val);
+                    }
+                    if (i != numberOfFields - 1)
+                    {
+                        columnFields += ",";
+                        valuesFields += ",";
+                    }
+                }
+            }
+
+            if (columnProperties != "" && columnFields != "")
+            {
+                columnProperties = columnProperties + "," + columnFields;
+                valuesProperties = valuesProperties + "," + valuesFields;
+            } else {
+                columnProperties = columnProperties + columnFields;
+                valuesProperties = valuesProperties + valuesFields;
+            }
+            newobj[1] = columnProperties;
+            newobj[2] = valuesProperties;
             return newobj;
         }
 
@@ -293,6 +327,28 @@ namespace SqlMapper_v1
 
         #region toCheck
         /*
+         *             //int total = properties.Length + fields.Length;
+            //MemberInfo[] members = t.GetMembers();
+            //MemberInfo[] membersDefined = new MemberInfo[total];
+            //int idx = 0;
+            ////MemberInfo[] members = t.GetFields(BindingFlags.Public | BindingFlags.Instance).Cast<MemberInfo>().Concat(t.GetProperties(BindingFlags.Public | BindingFlags.Instance)).ToArray();
+            //foreach (var m in members) {
+            //    if (m.MemberType.Equals(MemberTypes.Field))
+            //    {
+            //        membersDefined[idx] = m;
+            //        idx++;
+            //    }
+            //    if (m.MemberType.Equals(MemberTypes.Property))
+            //    {
+            //        membersDefined[idx] = m;
+            //        idx++;
+            //    }
+            //}
+
+            //foreach (var md in membersDefined) Console.WriteLine(md.Name);
+
+
+         * 
         public IEnumerable<T> GetAll()
         {
             int count = 0;
