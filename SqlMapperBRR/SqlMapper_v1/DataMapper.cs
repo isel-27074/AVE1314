@@ -24,7 +24,6 @@ namespace SqlMapper_v1
 
         private string prepStateGetAll = "SELECT * from {0}";
         private string prepStateInsert = "INSERT INTO {0} ({1}) VALUES ({2})";
-        //private string prepStateUpdate = "UPDATE {0} SET {3}='{4}', {5}='{6}', {7}={8}, {9}={10}, {11}={12} WHERE {1}={2}";
         private string prepStateUpdate = "UPDATE {0} SET {2} WHERE {1}";
         private string prepStateDelete = "DELETE FROM {0} WHERE {1} = {2}";
 
@@ -42,15 +41,8 @@ namespace SqlMapper_v1
                 Console.WriteLine("Builder - Starting connection...");
                 _connnection.Open();
             }
-
-            //SqlCommand cmd = _builderConnection.CreateCommand();
-
         }
 
-        //SELECT column_name,column_name
-        //FROM table_name;
-        // or
-        //SELECT * FROM table_name;
         public IEnumerable<T> GetAll()
         {
             if (!_persistant) _connnection.Open();
@@ -59,12 +51,9 @@ namespace SqlMapper_v1
             PreparedGetAll(FormatStringGetAll(_table));
             _dr = _command.ExecuteReader();
             
-            //int numberOfColumns = 0; //to remove
             foreach (var dr in _dr) {
-                //Console.WriteLine(_dr.GetFieldType(numberOfColumns).Name); //to remove
                 object[] o = new object[_columns.Length];
                 for (int i= 0; i<_columns.Length; i++){
-                    //Console.WriteLine(_dr[i]); //to remove
                     o[i] = _dr[i];
                 }
                 T newT = (T) Activator.CreateInstance(typeof(T), o);
@@ -78,7 +67,6 @@ namespace SqlMapper_v1
         //Preparação de Statement para o GetALL
         private void PreparedGetAll(string instruction)
         {
-            //_command.CommandText = "SELECT * from " + _table;
             _command.CommandText = instruction;
         }
 
@@ -88,9 +76,6 @@ namespace SqlMapper_v1
             return String.Format(prepStateGetAll, tableName);
         }
 
-        //UPDATE table_name
-        //SET column1=value1,column2=value2,...
-        //WHERE some_column=some_value;
         public void Update(T val)
         {
             if (!_persistant) _connnection.Open();
@@ -105,11 +90,9 @@ namespace SqlMapper_v1
         private void PreparedUpdate(string instruction)
         {
             _command.CommandText = instruction;
-            Console.WriteLine(instruction);
         }
 
         //Dado um T, formatamos a string de Insert
-        //public string FormatStringDelete(string column, string value)
         public string FormatStringUpdate(T val)
         {
             object[] args = FormatParameterUpdate(val);
@@ -157,11 +140,6 @@ namespace SqlMapper_v1
             return newobj;
         }
 
-        //_____________________________
-
-
-
-
         //DELETE FROM table_name
         //WHERE some_column = some_value;
         public void Delete(T val)
@@ -180,7 +158,6 @@ namespace SqlMapper_v1
         }
 
         //Dado um T, formatamos a string de Insert
-        //public string FormatStringDelete(string column, string value)
         public string FormatStringDelete(T val)
         {
             object[] args = FormatParameterDelete(val);
@@ -211,9 +188,6 @@ namespace SqlMapper_v1
             return newobj;
         }
 
-
-        //INSERT INTO table_name (column1,column2,column3,...)
-        //VALUES (value1,value2,value3,...);
         public void Insert(T val)
         {
             if (!_persistant) _connnection.Open();

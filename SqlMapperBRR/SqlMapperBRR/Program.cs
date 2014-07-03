@@ -17,7 +17,6 @@ namespace SqlMapperBRR
     {
         static void Main(string[] args)
         {
-            //SqlConnection con = new SqlConnection();
 
             #region menu
             string datasource = null;
@@ -52,22 +51,20 @@ namespace SqlMapperBRR
             Console.WriteLine(datasource);
             #endregion menu
 
-
-
+            
             string icat = "ave", isec = "True", ctime = "15", pooling = "True";
             ConnectionPolicy cp = new ConnectionPolicy(datasource, icat, isec, ctime, pooling);
 
             Builder b = new Builder(cp);
 
-            //Builder b = new Builder(con.ConnectionString, "Products");
             IDataMapper<Product> prodMapper = b.Build<Product>();
 
             ////Test GetAll
             //UnitTest.TestGetAll(prodMapper);
 
             //Test Insert
-            UnitTest.TestInsert(prodMapper);
-            UnitTest.TestGetAll(prodMapper);
+            //UnitTest.TestInsert(prodMapper);
+            //UnitTest.TestGetAll(prodMapper);
 
             //Test Delete
             //UnitTest.TestDelete(prodMapper);

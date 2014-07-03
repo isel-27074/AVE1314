@@ -24,7 +24,6 @@ namespace SqlMapper_v1
     //    public Builder(ConnectionPolicy cp, QueryData qd)
         public Builder(ConnectionPolicy cp)
         {
-            //_builderConnection = new SqlConnection();
             string connectionString = "";
             connectionString = @"Data Source=" + cp.dataSource + "; ";
             connectionString = connectionString + "Initial Catalog=" + cp.initialCatalog + "; ";
@@ -33,7 +32,6 @@ namespace SqlMapper_v1
             connectionString = connectionString + "Pooling=" + cp.pooling + ";";
             _builderConnection = new SqlConnection(connectionString);
             
-            //_builderConnection.ConnectionString = connectionString;
             //columnlist = qd.columns;
             //List<string> lista = qd.GetTables().ToList();
             //_table = lista.First();
@@ -45,18 +43,10 @@ namespace SqlMapper_v1
 
         public IDataMapper<T> Build<T>() where T : class, new()
         {
-            /* ver p nome da tabela:
-             * ir buscar o nome anotado como atributo "table"
-             * nomes das colunas da classe:
-             *  getfiels ou getproperties
-             *  criar instancia de datamaper correspondente à tabela em causa:
-             *  
-             * 
-             */
 
             Type t = typeof(T);
-            Console.WriteLine("Class name: " + t.Name.ToString());
-            Console.ReadKey();
+            //Console.WriteLine("Class name: " + t.Name.ToString());
+            //Console.ReadKey();
 
             Attribute[] attribs = Attribute.GetCustomAttributes(t);
             foreach (Attribute a in attribs)
