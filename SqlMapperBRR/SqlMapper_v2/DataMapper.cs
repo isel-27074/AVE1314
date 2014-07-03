@@ -41,15 +41,13 @@ namespace SqlMapper_v2
                 Console.WriteLine("Builder - Starting connection...");
                 _connnection.Open();
             }
-        }
-
-        
+        }        
 
         #region GetAll
         public ISqlEnumerable<T> GetAll()
         {
             PreparedStatement(FormatStringGetAll(_table));
-            return new SQLEnumerable<T>(_command.CommandText);
+            return new SQLEnumerable<T>(_connnection, _command, _columns, _persistant);
         }
         
         //dado um T, formatamos a string de Select

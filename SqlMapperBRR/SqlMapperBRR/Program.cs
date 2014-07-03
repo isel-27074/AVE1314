@@ -59,8 +59,17 @@ namespace SqlMapperBRR
 
             IDataMapper<Product> prodMapper = b.Build<Product>();
 
+            ISqlEnumerable<Product> prods = prodMapper.GetAll().Where("UnitPrice = 12").Where("ProductName = 'benfas'");
+            //ISqlEnumerable<Product> prods = prodMapper.GetAll().Where("UnitPrice = 12");
+            //ISqlEnumerable<Product> prods = prodMapper.GetAll();
+
+            foreach (Product p in prods)
+                Console.WriteLine(p.ToString());
+
+            Console.ReadKey();
+
             //Test GetAll
-            UnitTest.TestGetAll(prodMapper);
+            //UnitTest.TestGetAll(prodMapper);
 
             ////Test Insert
             //UnitTest.TestInsert(prodMapper);

@@ -5,37 +5,47 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Data;
+using System.ComponentModel.DataAnnotations;
 
 namespace SqlMapper_v2
 {
-    class SQLEnumerable<T> : ISqlEnumerable<T>
+    public class SQLEnumerable<T> : ISqlEnumerable<T>
     {
+        private SqlConnection _connnection;
         private SqlCommand _command;
-        private String whereclauses;
+        private SqlDataReader _dr;
+        private string[] _columns;
+        private bool _persistant;
+        private string whereclauses;
 
-        public SQLEnumerable(String cmd)
+        public SQLEnumerable(SqlConnection con, SqlCommand cmd, string[] columns, bool persistant)
         {
-            _command.CommandText = cmd;
-           
+            _connnection = con;
+            _command = cmd;
+            _columns = columns;
+            _persistant = persistant;           
         }
 
-        public ISqlEnumerable<T> where(string clause)
+        public ISqlEnumerable<T> Where(string clause)
         {
-            _command.CommandText = (!_command.CommandText.Contains("where") ? "+ where" : "");
-            _command.CommandText += "and" + clause.ToString();
-            return new SQLEnumerable<T>(_command.CommandText);
-            //return this;
+            bool wh = false;
+            if (_command.CommandText.Contains("where"))
+                wh  = true;
+             if (wh)   
+                 _command.CommandText  = _command.CommandText + " and " + clause;
+             else
+                _command.CommandText += " where " + clause;
+            //return new SQLEnumerable<T>(_command.CommandText);
+            return this;
         }
 
-
-        /*
-         
-         public IEnumerable<T> GetAll()
+        public IEnumerator<T> GetEnumerator()
         {
             if (!_persistant) _connnection.Open();
             if (_connnection.State != ConnectionState.Open)
                 _connnection.Open(); //abre se não estava aberta
-            PreparedStatement(FormatStringGetAll(_table));
+            //PreparedStatement(FormatStringGetAll(_table));
             _dr = _command.ExecuteReader();
 
             foreach (var dr in _dr)
@@ -51,13 +61,6 @@ namespace SqlMapper_v2
 
             if (!_persistant) _connnection.Close();
             _dr.Close();
-        }
-         
-         */
-
-        public IEnumerator<T> GetEnumerator()
-        {
-            throw new NotImplementedException();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
