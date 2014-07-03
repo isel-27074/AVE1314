@@ -62,15 +62,15 @@ namespace SqlMapperBRR
             ////Test GetAll
             //UnitTest.TestGetAll(prodMapper);
 
-            //Test Insert
+            ////Test Insert
             //UnitTest.TestInsert(prodMapper);
             //UnitTest.TestGetAll(prodMapper);
 
-            //Test Delete
+            ////Test Delete
             //UnitTest.TestDelete(prodMapper);
-            ////UnitTest.TestGetAll(prodMapper);
+            //UnitTest.TestGetAll(prodMapper);
 
-            //Test Update
+            ////Test Update
             //UnitTest.TestUpdate(prodMapper);
             //UnitTest.TestGetAll(prodMapper);
 
