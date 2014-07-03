@@ -264,7 +264,70 @@ namespace SqlMapper_v1
             int numberOfProperties = properties.Length;
             FieldInfo[] fields = t.GetFields();
             int numberOfFields = fields.Length;
-            //int total = properties.Length + fields.Length;
+
+            //Percorrer a lista de propriedades
+            for (int i = 0; i < numberOfProperties; i++)
+            {
+                KeyAttribute attr = (KeyAttribute)properties[i].GetCustomAttribute(typeof(KeyAttribute));
+                if (attr == null)
+                {
+                    columnProperties += properties[i].Name;
+                    if (properties[i].GetValue(val).GetType() == typeof(String) || properties[i].GetValue(val).GetType() == typeof(Char))
+                    {
+                        valuesProperties = valuesProperties + "\'" + properties[i].GetValue(val) + "\'";
+                    }
+                    else
+                    {
+                        valuesProperties += properties[i].GetValue(val);
+                    }
+                    if (i != numberOfProperties - 1)
+                    {
+                        columnProperties += ",";
+                        valuesProperties += ",";
+                    }
+                }
+            }
+            //Percorrer a lista de campos
+            for (int i = 0; i < numberOfFields; i++)
+            {
+                KeyAttribute attr = (KeyAttribute)fields[i].GetCustomAttribute(typeof(KeyAttribute));
+                if (attr == null)
+                {
+                    columnFields += fields[i].Name;
+                    if (fields[i].GetValue(val).GetType() == typeof(String) || fields[i].GetValue(val).GetType() == typeof(Char))
+                    {
+                        valuesFields = valuesFields + "\'" + fields[i].GetValue(val) + "\'";
+                    }
+                    else
+                    {
+                        valuesFields += fields[i].GetValue(val);
+                    }
+                    if (i != numberOfFields - 1)
+                    {
+                        columnFields += ",";
+                        valuesFields += ",";
+                    }
+                }
+            }
+
+            if (columnProperties != "" && columnFields != "")
+            {
+                columnProperties = columnProperties + "," + columnFields;
+                valuesProperties = valuesProperties + "," + valuesFields;
+            } else {
+                columnProperties = columnProperties + columnFields;
+                valuesProperties = valuesProperties + valuesFields;
+            }
+            newobj[1] = columnProperties;
+            newobj[2] = valuesProperties;
+            return newobj;
+        }
+
+        public int GetLastInsertedRecord() { return lastInsertedRecordID; }
+
+        #region toCheck
+        /*
+         *             //int total = properties.Length + fields.Length;
             //MemberInfo[] members = t.GetMembers();
             //MemberInfo[] membersDefined = new MemberInfo[total];
             //int idx = 0;
@@ -283,38 +346,9 @@ namespace SqlMapper_v1
             //}
 
             //foreach (var md in membersDefined) Console.WriteLine(md.Name);
-            //Console.ReadKey();
 
-            for (int i = 0; i < numberOfProperties; i++)
-            {
-                KeyAttribute attr = (KeyAttribute)props[i].GetCustomAttribute(typeof(KeyAttribute));
-                if (attr == null)
-                {
-                    colunas += props[i].Name;
-                    if (props[i].GetValue(val).GetType() == typeof(String) || props[i].GetValue(val).GetType() == typeof(Char))
-                    {
-                        valores = valores + "\'" + props[i].GetValue(val) + "\'";
-                    }
-                    else
-                    {
-                        valores += props[i].GetValue(val);
-                    }
-                    if (i != last - 1)
-                    {
-                        colunas += ",";
-                        valores += ",";
-                    }
-                }
-            }
-            newobj[1] = colunas;
-            newobj[2] = valores;
-            return newobj;
-        }
 
-        public int GetLastInsertedRecord() { return lastInsertedRecordID; }
-
-        #region toCheck
-        /*
+         * 
         public IEnumerable<T> GetAll()
         {
             int count = 0;

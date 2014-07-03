@@ -69,20 +69,23 @@ namespace SqlMapper_v1
             }
 
             //Gets all properties in class T
-            PropertyInfo[] props = t.GetProperties();
-            _columnlist = new String[props.Length];
-            int i = 0;
-            foreach (PropertyInfo prop in props)
+            PropertyInfo[] properties = t.GetProperties();
+            //Gets all fields in class T
+            FieldInfo[] fields = t.GetFields();
+
+            _columnlist = new String[properties.Length + fields.Length];
+            int idx = 0;
+            foreach (PropertyInfo property in properties)
             {
-                //Console.WriteLine(prop.Name); //to remove
-                _columnlist[i] = prop.Name;
+                _columnlist[idx] = property.Name;
+                idx++;
             }
 
             //Gets all fields in class T
-            FieldInfo[] fields = t.GetFields();
             foreach (FieldInfo field in fields)
             {
-                //Console.WriteLine(field.Name); //to remove
+                _columnlist[idx] = field.Name;
+                idx++;
             }
 
             if (_builderConnection.State == ConnectionState.Open) 

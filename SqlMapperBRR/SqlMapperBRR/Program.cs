@@ -74,8 +74,8 @@ namespace SqlMapperBRR
             ////UnitTest.TestGetAll(prodMapper);
 
             //Test Update
-            UnitTest.TestUpdate(prodMapper);
-            UnitTest.TestGetAll(prodMapper);
+            //UnitTest.TestUpdate(prodMapper);
+            //UnitTest.TestGetAll(prodMapper);
 
             ////TESTES
             //IEnumerable<Product> prods = prodMapper.GetAll();
