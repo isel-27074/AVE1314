@@ -59,20 +59,20 @@ namespace SqlMapperBRR
 
             IDataMapper<Product> prodMapper = b.Build<Product>();
 
-            ////Test GetAll
-            //UnitTest.TestGetAll(prodMapper);
+            //Test GetAll
+            UnitTest.TestGetAll(prodMapper);
 
-            ////Test Insert
-            //UnitTest.TestInsert(prodMapper);
-            //UnitTest.TestGetAll(prodMapper);
+            //Test Insert
+            UnitTest.TestInsert(prodMapper);
+            UnitTest.TestGetAll(prodMapper);
 
-            ////Test Delete
-            //UnitTest.TestDelete(prodMapper);
-            //UnitTest.TestGetAll(prodMapper);
+            //Test Delete
+            UnitTest.TestDelete(prodMapper);
+            UnitTest.TestGetAll(prodMapper);
 
-            ////Test Update
-            //UnitTest.TestUpdate(prodMapper);
-            //UnitTest.TestGetAll(prodMapper);
+            //Test Update
+            UnitTest.TestUpdate(prodMapper);
+            UnitTest.TestGetAll(prodMapper);
 
             ////TESTES
             //IEnumerable<Product> prods = prodMapper.GetAll();

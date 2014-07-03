@@ -95,40 +95,87 @@ namespace SqlMapper_v1
         //"UPDATE {0} SET {2} WHERE {1}";
         public object[] FormatParameterUpdate(T val)
         {
-            string condition = "";
-            string values = "";
+            string conditionProperties = "";
+            string conditionFields = "";
+            string valuesProperties = "";
+            string valuesFields = "";
             object[] newobj = new object[3];
             newobj[0] = _table; 
             Type t = val.GetType();
+            PropertyInfo[] properties = t.GetProperties();
+            int numberOfProperties = properties.Length;
+            FieldInfo[] fields = t.GetFields();
+            int numberOfFields = fields.Length;
 
-            PropertyInfo[] props = t.GetProperties();
-            int last = props.Length;
-            for (int i = 0; i < last; i++)
+            //Percorrer a lista de propriedades
+            for (int i = 0; i < numberOfProperties; i++)
             {
-                KeyAttribute attr = (KeyAttribute) props[i].GetCustomAttribute(typeof(KeyAttribute));
+                KeyAttribute attr = (KeyAttribute)properties[i].GetCustomAttribute(typeof(KeyAttribute));
                 if (attr != null)
                 {
-                    condition = props[i].Name + " = " + props[i].GetValue(val);
+                    conditionProperties = properties[i].Name + " = " + properties[i].GetValue(val);
                 }
                 else
                 {
-                    if (props[i].GetValue(val).GetType() == typeof(String) || props[i].GetValue(val).GetType() == typeof(Char))
+                    if (properties[i].GetValue(val).GetType() == typeof(String) || properties[i].GetValue(val).GetType() == typeof(Char))
                     {
-                        values = values + props[i].Name + " = " + "\'" + props[i].GetValue(val) + "\'";
+                        valuesProperties = valuesProperties + properties[i].Name + " = " + "\'" + properties[i].GetValue(val) + "\'";
                     }
                     else
                     {
-                        values = values + props[i].Name + " = " + props[i].GetValue(val);
+                        valuesProperties = valuesProperties + properties[i].Name + " = " + properties[i].GetValue(val);
                     }
-                    if (i != last - 1)
+                    if (i != numberOfProperties - 1)
                     {
-                        values += ",";
+                        valuesProperties += ",";
                     }
                 }
             }
-            newobj[1] = condition;
-            newobj[2] = values;
+            //Percorrer a lista de campos
+            for (int i = 0; i < numberOfFields; i++)
+            {
+                KeyAttribute attr = (KeyAttribute)fields[i].GetCustomAttribute(typeof(KeyAttribute));
+                if (attr != null)
+                {
+                    conditionFields = fields[i].Name + " = " + fields[i].GetValue(val);
+                }
+                else
+                {
+                    if (fields[i].GetValue(val).GetType() == typeof(String) || fields[i].GetValue(val).GetType() == typeof(Char))
+                    {
+                        valuesFields = valuesFields + fields[i].Name + " = " + "\'" + fields[i].GetValue(val) + "\'";
+                    }
+                    else
+                    {
+                        valuesFields = valuesFields + fields[i].Name + " = " + fields[i].GetValue(val);
+                    }
+                    if (i != numberOfFields - 1)
+                    {
+                        valuesFields += ",";
+                    }
+                }
+            }
+            //Valida se existe propriedades e campos anotados com Key e junta-os na condição
+            if (conditionProperties != "" && conditionFields != "")
+            {
+                conditionProperties = conditionProperties + "," + conditionFields;
+            }
+            else
+            {
+                conditionProperties = conditionProperties + conditionFields;
+            }
+            //Junta os values de ambas as listas a fazer update
+            if (valuesProperties != "" && valuesFields != "")
+            {
+                valuesProperties = valuesProperties + "," + valuesFields;
+            }
+            else
+            {
+                valuesProperties = valuesProperties + valuesFields;
+            }
 
+            newobj[1] = conditionProperties;
+            newobj[2] = valuesProperties;
             return newobj;
         }
         #endregion
