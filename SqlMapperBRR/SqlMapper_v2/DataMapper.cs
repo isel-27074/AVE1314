@@ -45,12 +45,12 @@ namespace SqlMapper_v2
 
         }
 
-        /* Alterar o método getALL já para poder suportar where
+        /* Alterar o método getALL já para poder suportar where*/
         public IEnumerable<T> GetAll()
         {
             PreparedGetAll(FormatStringGetAll(_table));
-            //return new SQLEnumerable<T>(_command.CommandText);
-        }*/
+            return new SQLEnumerable<T>(_command.CommandText);
+        }
 
         //Preparação de Statement para o GetALL
         private void PreparedGetAll(string instruction)
