@@ -43,38 +43,32 @@ namespace SqlMapper_v2
             }
         }
 
+        
+
+        #region GetAll
         public ISqlEnumerable<T> GetAll()
         {
-            PreparedGetAll(FormatStringGetAll(_table));
+            PreparedStatement(FormatStringGetAll(_table));
             return new SQLEnumerable<T>(_command.CommandText);
         }
-
-        //Preparação de Statement para o GetALL
-        private void PreparedGetAll(string instruction)
-        {
-            _command.CommandText = instruction;
-        }
-
+        
         //dado um T, formatamos a string de Select
         public string FormatStringGetAll(string tableName)
         {
             return String.Format(prepStateGetAll, tableName);
         }
+        #endregion
 
+        #region Update
         public void Update(T val)
         {
             if (!_persistant) _connnection.Open();
             if (_connnection.State != ConnectionState.Open)
                 _connnection.Open(); //abre se não estava aberta
 
-            PreparedUpdate(FormatStringUpdate(val));
+            PreparedStatement(FormatStringUpdate(val));
             _dr = _command.ExecuteReader();
             _dr.Close();
-        }
-
-        private void PreparedUpdate(string instruction)
-        {
-            _command.CommandText = instruction;
         }
 
         //Dado um T, formatamos a string de Insert
@@ -88,58 +82,99 @@ namespace SqlMapper_v2
         //"UPDATE {0} SET {2} WHERE {1}";
         public object[] FormatParameterUpdate(T val)
         {
-            string condition = "";
-            string values = "";
+            string conditionProperties = "";
+            string conditionFields = "";
+            string valuesProperties = "";
+            string valuesFields = "";
             object[] newobj = new object[3];
             newobj[0] = _table;
             Type t = val.GetType();
+            PropertyInfo[] properties = t.GetProperties();
+            int numberOfProperties = properties.Length;
+            FieldInfo[] fields = t.GetFields();
+            int numberOfFields = fields.Length;
 
-            PropertyInfo[] props = t.GetProperties();
-            int last = props.Length;
-            for (int i = 0; i < last; i++)
+            //Percorrer a lista de propriedades
+            for (int i = 0; i < numberOfProperties; i++)
             {
-                KeyAttribute attr = (KeyAttribute)props[i].GetCustomAttribute(typeof(KeyAttribute));
+                KeyAttribute attr = (KeyAttribute)properties[i].GetCustomAttribute(typeof(KeyAttribute));
                 if (attr != null)
                 {
-                    condition = props[i].Name + " = " + props[i].GetValue(val);
+                    conditionProperties = properties[i].Name + " = " + properties[i].GetValue(val);
                 }
                 else
                 {
-                    if (props[i].GetValue(val).GetType() == typeof(String) || props[i].GetValue(val).GetType() == typeof(Char))
+                    if (properties[i].GetValue(val).GetType() == typeof(String) || properties[i].GetValue(val).GetType() == typeof(Char))
                     {
-                        values = values + props[i].Name + " = " + "\'" + props[i].GetValue(val) + "\'";
+                        valuesProperties = valuesProperties + properties[i].Name + " = " + "\'" + properties[i].GetValue(val) + "\'";
                     }
                     else
                     {
-                        values = values + props[i].Name + " = " + props[i].GetValue(val);
+                        valuesProperties = valuesProperties + properties[i].Name + " = " + properties[i].GetValue(val);
                     }
-                    if (i != last - 1)
+                    if (i != numberOfProperties - 1)
                     {
-                        values += ",";
+                        valuesProperties += ",";
                     }
                 }
             }
-            newobj[1] = condition;
-            newobj[2] = values;
+            //Percorrer a lista de campos
+            for (int i = 0; i < numberOfFields; i++)
+            {
+                KeyAttribute attr = (KeyAttribute)fields[i].GetCustomAttribute(typeof(KeyAttribute));
+                if (attr != null)
+                {
+                    conditionFields = fields[i].Name + " = " + fields[i].GetValue(val);
+                }
+                else
+                {
+                    if (fields[i].GetValue(val).GetType() == typeof(String) || fields[i].GetValue(val).GetType() == typeof(Char))
+                    {
+                        valuesFields = valuesFields + fields[i].Name + " = " + "\'" + fields[i].GetValue(val) + "\'";
+                    }
+                    else
+                    {
+                        valuesFields = valuesFields + fields[i].Name + " = " + fields[i].GetValue(val);
+                    }
+                    if (i != numberOfFields - 1)
+                    {
+                        valuesFields += ",";
+                    }
+                }
+            }
+            //Valida se existe propriedades e campos anotados com Key e junta-os na condição
+            if (conditionProperties != "" && conditionFields != "")
+            {
+                conditionProperties = conditionProperties + "," + conditionFields;
+            }
+            else
+            {
+                conditionProperties = conditionProperties + conditionFields;
+            }
+            //Junta os values de ambas as listas a fazer update
+            if (valuesProperties != "" && valuesFields != "")
+            {
+                valuesProperties = valuesProperties + "," + valuesFields;
+            }
+            else
+            {
+                valuesProperties = valuesProperties + valuesFields;
+            }
 
+            newobj[1] = conditionProperties;
+            newobj[2] = valuesProperties;
             return newobj;
         }
+        #endregion
 
-        //DELETE FROM table_name
-        //WHERE some_column = some_value;
+        #region Delete
         public void Delete(T val)
         {
             if (!_persistant) _connnection.Open();
             if (_connnection.State != ConnectionState.Open)
                 _connnection.Open(); //abre se não estava aberta
-            PreparedDelete(FormatStringDelete(val));
+            PreparedStatement(FormatStringDelete(val));
             _command.ExecuteNonQuery();
-        }
-
-        //Preparação de Statement para o Insert
-        private void PreparedDelete(string instruction)
-        {
-            _command.CommandText = instruction;
         }
 
         //Dado um T, formatamos a string de Insert
@@ -172,14 +207,15 @@ namespace SqlMapper_v2
             newobj[2] = (int)value;
             return newobj;
         }
+        #endregion
 
+        #region Insert
         public void Insert(T val)
         {
             if (!_persistant) _connnection.Open();
             if (_connnection.State != ConnectionState.Open)
                 _connnection.Open(); //abre se não estava aberta
-            PreparedInsert(FormatStringInsert(val));
-            Console.WriteLine(_command.CommandText);
+            PreparedStatement(FormatStringInsert(val));
             _command.ExecuteNonQuery();
 
             //Obter o ID do ultimo item inserido
@@ -192,12 +228,6 @@ namespace SqlMapper_v2
             ////SqlTransaction
             ////http://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqltransaction.aspx
             //throw new NotImplementedException();
-        }
-
-        //Preparação de Statement para o Insert
-        private void PreparedInsert(string instruction)
-        {
-            _command.CommandText = instruction;
         }
 
         //Dado um T, formatamos a string de Insert
@@ -283,8 +313,92 @@ namespace SqlMapper_v2
             newobj[2] = valuesProperties;
             return newobj;
         }
+        #endregion
 
+        private void PreparedStatement(string instruction)
+        {
+            _command.CommandText = instruction;
+        }
         public int GetLastInsertedRecord() { return lastInsertedRecordID; }
+
+        #region toCheck
+        /*
+         *             //int total = properties.Length + fields.Length;
+            //MemberInfo[] members = t.GetMembers();
+            //MemberInfo[] membersDefined = new MemberInfo[total];
+            //int idx = 0;
+            ////MemberInfo[] members = t.GetFields(BindingFlags.Public | BindingFlags.Instance).Cast<MemberInfo>().Concat(t.GetProperties(BindingFlags.Public | BindingFlags.Instance)).ToArray();
+            //foreach (var m in members) {
+            //    if (m.MemberType.Equals(MemberTypes.Field))
+            //    {
+            //        membersDefined[idx] = m;
+            //        idx++;
+            //    }
+            //    if (m.MemberType.Equals(MemberTypes.Property))
+            //    {
+            //        membersDefined[idx] = m;
+            //        idx++;
+            //    }
+            //}
+
+            //foreach (var md in membersDefined) Console.WriteLine(md.Name);
+
+
+         * 
+        public IEnumerable<T> GetAll()
+        {
+            int count = 0;
+            Console.WriteLine("chguei ao getall");
+            while (_dr.Read())
+            {
+                T t = new T();
+                Type tp = t.GetType();
+                FieldInfo[] fi = tp.GetFields();
+                foreach (FieldInfo fii in fi)
+                    Console.WriteLine(fii.ToString());
+                PropertyInfo[] pi = tp.GetProperties();
+                foreach (PropertyInfo pii in pi)
+                    Console.WriteLine(pii.ToString());
+
+                yield return (T)_dr[count++];
+            }
+            //return (ienumerable<t>)datareader;
+            Console.WriteLine("bo dia");
+            //throw new NotImplemente
+         * dException();
+        }
+        public void GetAll2()
+        {
+            int count = 0;
+            Console.WriteLine("chguei ao getall");
+            while (_dr.Read())
+            {
+                T t = new T();
+
+                Type tp = t.GetType();
+                Console.WriteLine("Fields");
+                FieldInfo[] fi = tp.GetFields();
+                foreach (FieldInfo fii in fi)
+                {
+                    Console.WriteLine(fii.ToString());
+                }
+                Console.WriteLine("Properties");
+
+                PropertyInfo[] pi = tp.GetProperties();
+                foreach (PropertyInfo pii in pi)
+                {
+                    Console.WriteLine(pii.MemberType);
+                    Console.WriteLine(pii.GetType());
+                    Console.WriteLine(pii.ToString());
+                }
+                // yield return (T)_dr[count++];
+            }
+            //return (ienumerable<t>)datareader;
+            Console.WriteLine("bo dia");
+            //throw new NotImplementedException();
+        }
+        */
+        #endregion toCheck
 
 
     }

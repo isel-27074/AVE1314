@@ -28,6 +28,33 @@ namespace SqlMapper_v2
         }
 
 
+        /*
+         
+         public IEnumerable<T> GetAll()
+        {
+            if (!_persistant) _connnection.Open();
+            if (_connnection.State != ConnectionState.Open)
+                _connnection.Open(); //abre se não estava aberta
+            PreparedStatement(FormatStringGetAll(_table));
+            _dr = _command.ExecuteReader();
+
+            foreach (var dr in _dr)
+            {
+                object[] o = new object[_columns.Length];
+                for (int i = 0; i < _columns.Length; i++)
+                {
+                    o[i] = _dr[i];
+                }
+                T newT = (T)Activator.CreateInstance(typeof(T), o);
+                yield return newT;
+            }
+
+            if (!_persistant) _connnection.Close();
+            _dr.Close();
+        }
+         
+         */
+
         public IEnumerator<T> GetEnumerator()
         {
             throw new NotImplementedException();

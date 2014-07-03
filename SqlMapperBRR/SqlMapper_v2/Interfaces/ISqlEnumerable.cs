@@ -9,6 +9,5 @@ namespace SqlMapper_v2
     public interface ISqlEnumerable<T> : IEnumerable<T>
     {
         ISqlEnumerable<T> where(string clause);
-
     }
 }

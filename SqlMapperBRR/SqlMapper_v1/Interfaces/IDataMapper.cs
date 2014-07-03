@@ -11,9 +11,6 @@ namespace SqlMapper_v1
         IEnumerable<T> GetAll();
         void Update(T val);
         void Delete(T val);
-        void Insert(T val);
-
-        // void GetAll2();
-        
+        void Insert(T val);        
     }
 }

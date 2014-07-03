@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SqlMapper_v1;
+//using SqlMapper_v1;
+using SqlMapper_v2;
+//using SqlMapper_v3;
 using DataModel;
 using System.Collections.Generic;
 

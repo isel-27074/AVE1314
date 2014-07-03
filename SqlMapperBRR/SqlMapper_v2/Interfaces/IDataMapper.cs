@@ -12,6 +12,5 @@ namespace SqlMapper_v2
         void Update(T val);
         void Delete(T val);
         void Insert(T val);
-
     }
 }

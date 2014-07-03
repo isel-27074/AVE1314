@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
 using DataModel;
-using SqlMapper_v1;
-//using SqlMapper_v2;
+//using SqlMapper_v1;
+using SqlMapper_v2;
 //using SqlMapper_v3;
 using SqlMapperBRR.Tests;
 
@@ -62,17 +62,17 @@ namespace SqlMapperBRR
             //Test GetAll
             UnitTest.TestGetAll(prodMapper);
 
-            //Test Insert
-            UnitTest.TestInsert(prodMapper);
-            UnitTest.TestGetAll(prodMapper);
+            ////Test Insert
+            //UnitTest.TestInsert(prodMapper);
+            //UnitTest.TestGetAll(prodMapper);
 
-            //Test Delete
-            UnitTest.TestDelete(prodMapper);
-            UnitTest.TestGetAll(prodMapper);
+            ////Test Delete
+            //UnitTest.TestDelete(prodMapper);
+            //UnitTest.TestGetAll(prodMapper);
 
-            //Test Update
-            UnitTest.TestUpdate(prodMapper);
-            UnitTest.TestGetAll(prodMapper);
+            ////Test Update
+            //UnitTest.TestUpdate(prodMapper);
+            //UnitTest.TestGetAll(prodMapper);
 
             ////TESTES
             //IEnumerable<Product> prods = prodMapper.GetAll();
