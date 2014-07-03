@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.ComponentModel.DataAnnotations;
 
-namespace SqlMapper_v2
+namespace SqlMapper_v3
 {
     public class SQLEnumerable<T> : ISqlEnumerable<T>
     {

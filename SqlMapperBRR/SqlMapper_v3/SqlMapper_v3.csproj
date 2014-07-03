@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -39,11 +40,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Builder.cs" />
+    <Compile Include="ConnectionPolicy.cs" />
+    <Compile Include="DataMapper.cs" />
+    <Compile Include="Interfaces\IConnectionPolicy.cs" />
+    <Compile Include="Interfaces\IDataMapper.cs" />
+    <Compile Include="Interfaces\IQueryData.cs" />
+    <Compile Include="Interfaces\ISqlEnumerable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryData.cs" />
+    <Compile Include="SQLEnumerable.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

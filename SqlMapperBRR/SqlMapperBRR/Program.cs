@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
 using DataModel;
-//using SqlMapper_v1;
+using SqlMapper_v1;
 using SqlMapper_v2;
-//using SqlMapper_v3;
+using SqlMapper_v3;
 using SqlMapperBRR.Tests;
 
 namespace SqlMapperBRR
@@ -51,37 +51,51 @@ namespace SqlMapperBRR
             Console.WriteLine(datasource);
             #endregion menu
 
-            
             string icat = "ave", isec = "True", ctime = "15", pooling = "True";
-            ConnectionPolicy cp = new ConnectionPolicy(datasource, icat, isec, ctime, pooling);
-
-            Builder b = new Builder(cp);
-
-            IDataMapper<Product> prodMapper = b.Build<Product>();
-
-            ISqlEnumerable<Product> prods = prodMapper.GetAll().Where("UnitPrice = 12").Where("ProductName = 'benfas'");
-            //ISqlEnumerable<Product> prods = prodMapper.GetAll().Where("UnitPrice = 12");
-            //ISqlEnumerable<Product> prods = prodMapper.GetAll();
-
-            foreach (Product p in prods)
-                Console.WriteLine(p.ToString());
-
-            Console.ReadKey();
+            
+            #region SqlMapper_v1
+            SqlMapper_v1.ConnectionPolicy cpv1 = new SqlMapper_v1.ConnectionPolicy(datasource, icat, isec, ctime, pooling);
+            SqlMapper_v1.Builder bv1 = new SqlMapper_v1.Builder(cpv1);
+            SqlMapper_v1.IDataMapper<Product> prodMapperv1 = bv1.Build<Product>();
 
             //Test GetAll
-            //UnitTest.TestGetAll(prodMapper);
+            //UnitTest.TestGetAll(prodMapperv1);
 
             ////Test Insert
-            //UnitTest.TestInsert(prodMapper);
-            //UnitTest.TestGetAll(prodMapper);
+            //UnitTest.TestInsert(prodMapperv1);
+            //UnitTest.TestGetAll(prodMapperv1);
 
             ////Test Delete
-            //UnitTest.TestDelete(prodMapper);
-            //UnitTest.TestGetAll(prodMapper);
+            //UnitTest.TestDelete(prodMapperv1);
+            //UnitTest.TestGetAll(prodMapperv1);
 
             ////Test Update
-            //UnitTest.TestUpdate(prodMapper);
-            //UnitTest.TestGetAll(prodMapper);
+            //UnitTest.TestUpdate(prodMapperv1);
+            //UnitTest.TestGetAll(prodMapperv1);
+
+            #endregion
+
+
+            #region SqlMapper_v2
+            SqlMapper_v2.ConnectionPolicy cpv2 = new SqlMapper_v2.ConnectionPolicy(datasource, icat, isec, ctime, pooling);
+            SqlMapper_v2.Builder bv2 = new SqlMapper_v2.Builder(cpv2);
+            SqlMapper_v2.IDataMapper<Product> prodMapperv2 = bv2.Build<Product>();
+
+            //Test GetAll
+            //UnitTest.TestGetAllv2(prodMapperv2);
+
+            #endregion
+
+
+            #region SqlMapper_v3
+            SqlMapper_v3.ConnectionPolicy cpv3 = new SqlMapper_v3.ConnectionPolicy(datasource, icat, isec, ctime, pooling);
+            SqlMapper_v3.Builder bv3 = new SqlMapper_v3.Builder(cpv3);
+            SqlMapper_v3.IDataMapper<Product> prodMapperv3 = bv3.Build<Product>();
+
+            //Test GetAll
+            //UnitTest.TestGetAllv2(prodMapperv2);
+
+            #endregion
 
             ////TESTES
             //IEnumerable<Product> prods = prodMapper.GetAll();
