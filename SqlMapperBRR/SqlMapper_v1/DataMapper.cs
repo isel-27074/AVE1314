@@ -43,12 +43,13 @@ namespace SqlMapper_v1
             }
         }
 
+        #region GetAll
         public IEnumerable<T> GetAll()
         {
             if (!_persistant) _connnection.Open();
             if (_connnection.State != ConnectionState.Open)
                 _connnection.Open(); //abre se não estava aberta
-            PreparedGetAll(FormatStringGetAll(_table));
+            PreparedStatement(FormatStringGetAll(_table));
             _dr = _command.ExecuteReader();
             
             foreach (var dr in _dr) {
@@ -64,32 +65,23 @@ namespace SqlMapper_v1
             _dr.Close();
         }
 
-        //Preparação de Statement para o GetALL
-        private void PreparedGetAll(string instruction)
-        {
-            _command.CommandText = instruction;
-        }
-
         //dado um T, formatamos a string de Select
         public string FormatStringGetAll(string tableName)
         {
             return String.Format(prepStateGetAll, tableName);
         }
+        #endregion
 
+        #region Update
         public void Update(T val)
         {
             if (!_persistant) _connnection.Open();
             if (_connnection.State != ConnectionState.Open)
                 _connnection.Open(); //abre se não estava aberta
 
-            PreparedUpdate(FormatStringUpdate(val));
+            PreparedStatement(FormatStringUpdate(val));
             _dr = _command.ExecuteReader();
             _dr.Close();
-        }
-
-        private void PreparedUpdate(string instruction)
-        {
-            _command.CommandText = instruction;
         }
 
         //Dado um T, formatamos a string de Insert
@@ -139,22 +131,16 @@ namespace SqlMapper_v1
 
             return newobj;
         }
+        #endregion
 
-        //DELETE FROM table_name
-        //WHERE some_column = some_value;
+        #region Delete
         public void Delete(T val)
         {
             if (!_persistant) _connnection.Open();
             if (_connnection.State != ConnectionState.Open)
                 _connnection.Open(); //abre se não estava aberta
-            PreparedDelete(FormatStringDelete(val));
+            PreparedStatement(FormatStringDelete(val));
             _command.ExecuteNonQuery();
-        }
-
-        //Preparação de Statement para o Insert
-        private void PreparedDelete(string instruction)
-        {
-            _command.CommandText = instruction;
         }
 
         //Dado um T, formatamos a string de Insert
@@ -187,14 +173,15 @@ namespace SqlMapper_v1
             newobj[2] = (int)value;
             return newobj;
         }
+        #endregion
 
+        #region Insert
         public void Insert(T val)
         {
             if (!_persistant) _connnection.Open();
             if (_connnection.State != ConnectionState.Open)
                 _connnection.Open(); //abre se não estava aberta
-            PreparedInsert(FormatStringInsert(val));
-            Console.WriteLine(_command.CommandText);
+            PreparedStatement(FormatStringInsert(val));
             _command.ExecuteNonQuery();
 
             //Obter o ID do ultimo item inserido
@@ -207,12 +194,6 @@ namespace SqlMapper_v1
             ////SqlTransaction
             ////http://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqltransaction.aspx
             //throw new NotImplementedException();
-        }
-
-        //Preparação de Statement para o Insert
-        private void PreparedInsert(string instruction)
-        {
-            _command.CommandText = instruction;
         }
 
         //Dado um T, formatamos a string de Insert
@@ -296,7 +277,12 @@ namespace SqlMapper_v1
             newobj[2] = valuesProperties;
             return newobj;
         }
+        #endregion
 
+        private void PreparedStatement(string instruction)
+        {
+            _command.CommandText = instruction;
+        }
         public int GetLastInsertedRecord() { return lastInsertedRecordID; }
 
         #region toCheck
