@@ -8,12 +8,10 @@ namespace SqlMapper_v2
 {
     public interface IDataMapper<T>
     {
-        //ISqlEnumerable<T> GetAll();
+        ISqlEnumerable<T> GetAll();
         void Update(T val);
         void Delete(T val);
         void Insert(T val);
 
-        // void GetAll2();
-        
     }
 }
