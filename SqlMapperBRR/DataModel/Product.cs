@@ -16,6 +16,7 @@ namespace DataModel
         public int ProductID { set; get; } 
         public string ProductName { set; get; } 
         public string QuantityPerUnit { set; get; }
+
         public decimal UnitPrice;
         public short UnitsInStock { set; get; } 
         public short UnitsOnOrder { set; get; }

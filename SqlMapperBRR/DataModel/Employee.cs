@@ -11,8 +11,9 @@ namespace DataModel
     [Table("Employees")]
     public class Employee
     {
+
         [Key]
-        public int EmplyeeID { set; get; }
+        public int EmployeeID { set; get; }
         public string LastName { set; get; }
         public string FirstName { set; get; }
         public string Title { set; get; }
@@ -33,15 +34,15 @@ namespace DataModel
         public string PhotoPath { set; get; }
 
         public Employee() { }
-/*
-        public Employee(string LastName, string FirstName, string Title, string TitleOfCourtesy, string BirthDate, string HireDate, string Address, string City, string Region, string PostalCode)
-            : this(0, LastName, FirstName, Title, TitleOfCourtesy, BirthDate, HireDate, Address, City, Region, PostalCode)
+
+        public Employee(string LastName, string FirstName, string Title, string TitleOfCourtesy, DateTime BirthDate, DateTime HireDate, string Address, string City, string Region, string PostalCode, string Country, string HomePhone, string Extension, byte[] Photo, string Notes, int ReportsTo, string PhotoPath)
+            : this(0, LastName, FirstName, Title, TitleOfCourtesy, BirthDate, HireDate, Address, City, Region, PostalCode, Country, HomePhone, Extension, Photo,Notes, ReportsTo, PhotoPath)
         {
         }
 
-        public Employee(int EmplyeeID, string LastName, string FirstName, string Title, string TitleOfCourtesy, string BirthDate, string HireDate, string Address, string City, string Region, string PostalCode)
+        public Employee(int EmplyeeID, string LastName, string FirstName, string Title, string TitleOfCourtesy, DateTime BirthDate, DateTime HireDate, string Address, string City, string Region, string PostalCode, string Country, string HomePhone, string Extension, byte[] Photo, string Notes, int ReportsTo, string PhotoPath)
         {
-            this.EmplyeeID = EmplyeeID;
+            this.EmployeeID = EmplyeeID;
             this.LastName = LastName;
             this.FirstName = FirstName;
             this.Title = Title;
@@ -52,12 +53,19 @@ namespace DataModel
             this.City = City;
             this.Region = Region;
             this.PostalCode = PostalCode;
+            this.Country = Country;
+            this.HomePhone = HomePhone;
+            this.Extension = Extension;
+            this.Photo = Photo;
+            this.Notes = Notes;
+            this.ReportsTo = ReportsTo;
+            this.PhotoPath = PhotoPath;   
         }
 
         public override string ToString()
         {
-            return EmplyeeID + " - " + LastName + " - " + FirstName + " - " + Title + " - " + TitleOfCourtesy + " - " + BirthDate + "-" + HireDate + "-" + Address + "-" + City + "-" + Region + "-" + PostalCode;
+            return EmployeeID + " - " + LastName + " - " + FirstName + " - " + Title + " - " + TitleOfCourtesy + " - " + BirthDate + "-" + HireDate + "-" + Address + "-" + City + "-" + Region + "-" + PostalCode + "-" + Country + "-" + HomePhone + "-" + Extension + "-" + Photo+ "-" + Notes+ "-" +ReportsTo+ "-" +PhotoPath ;
         }
-*/
+
     }
 }

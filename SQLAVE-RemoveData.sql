@@ -1,3 +1,6 @@
 USE AVE;
 
 DELETE FROM Products;
+DELETE FROM Orders;
+DELETE FROM Customers;
+DELETE FROM Employees;

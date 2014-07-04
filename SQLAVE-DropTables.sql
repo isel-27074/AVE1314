@@ -27,3 +27,4 @@ GO
 IF OBJECT_ID('Products') IS NOT NULL
 	DROP TABLE [dbo].[Products];
 GO
+

@@ -80,7 +80,6 @@ namespace SqlMapperBRR
             SqlMapper_v2.ConnectionPolicy cpv2 = new SqlMapper_v2.ConnectionPolicy(datasource, icat, isec, ctime, pooling);
             SqlMapper_v2.Builder bv2 = new SqlMapper_v2.Builder(cpv2);
             SqlMapper_v2.IDataMapper<Product> prodMapperv2 = bv2.Build<Product>();
-
             //Test GetAll
             //UnitTest.TestGetAllv2(prodMapperv2);
 
