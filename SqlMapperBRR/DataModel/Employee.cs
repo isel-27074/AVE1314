@@ -11,7 +11,6 @@ namespace DataModel
     [Table("Employees")]
     public class Employee
     {
-
         [Key]
         public int EmployeeID { set; get; }
         public string LastName { set; get; }
@@ -35,12 +34,17 @@ namespace DataModel
 
         public Employee() { }
 
-        public Employee(string LastName, string FirstName, string Title, string TitleOfCourtesy, DateTime BirthDate, DateTime HireDate, string Address, string City, string Region, string PostalCode, string Country, string HomePhone, string Extension, byte[] Photo, string Notes, int ReportsTo, string PhotoPath)
-            : this(0, LastName, FirstName, Title, TitleOfCourtesy, BirthDate, HireDate, Address, City, Region, PostalCode, Country, HomePhone, Extension, Photo,Notes, ReportsTo, PhotoPath)
+        public Employee(string LastName, string FirstName, string Title, string TitleOfCourtesy, DateTime BirthDate,
+            DateTime HireDate, string Address, string City, string Region, string PostalCode, string Country,
+            string HomePhone, string Extension, byte[] Photo, string Notes, int ReportsTo, string PhotoPath)
+            : this(0, LastName, FirstName, Title, TitleOfCourtesy, BirthDate, HireDate, Address, City, Region,
+            PostalCode, Country, HomePhone, Extension, Photo,Notes, ReportsTo, PhotoPath)
         {
         }
 
-        public Employee(int EmplyeeID, string LastName, string FirstName, string Title, string TitleOfCourtesy, DateTime BirthDate, DateTime HireDate, string Address, string City, string Region, string PostalCode, string Country, string HomePhone, string Extension, byte[] Photo, string Notes, int ReportsTo, string PhotoPath)
+        public Employee(int EmplyeeID, string LastName, string FirstName, string Title, string TitleOfCourtesy,
+            DateTime BirthDate, DateTime HireDate, string Address, string City, string Region, string PostalCode,
+            string Country, string HomePhone, string Extension, byte[] Photo, string Notes, int ReportsTo, string PhotoPath)
         {
             this.EmployeeID = EmplyeeID;
             this.LastName = LastName;
@@ -64,8 +68,7 @@ namespace DataModel
 
         public override string ToString()
         {
-            return EmployeeID + " - " + LastName + " - " + FirstName + " - " + Title + " - " + TitleOfCourtesy + " - " + BirthDate + "-" + HireDate + "-" + Address + "-" + City + "-" + Region + "-" + PostalCode + "-" + Country + "-" + HomePhone + "-" + Extension + "-" + Photo+ "-" + Notes+ "-" +ReportsTo+ "-" +PhotoPath ;
+            return EmployeeID + " - " + LastName + " - " + FirstName + " - " + Title + " - " + TitleOfCourtesy + " - " + BirthDate + " - " + HireDate + " - " + Address + " - " + City + " - " + Region + " - " + PostalCode + " - " + Country + " - " + HomePhone + " - " + Extension + " - " + Photo + " - " + Notes + " - " + ReportsTo + " - " + PhotoPath;
         }
-
     }
 }

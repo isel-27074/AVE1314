@@ -34,12 +34,17 @@ namespace DataModel
 
         public Order() { }
 
-        public Order(string CustomerID, int EmployeeID, DateTime OrderDate, DateTime RequiredDate, DateTime ShippedDate, int ShipVia, decimal Freight, string ShipName, string ShipAddress, string ShipCity, string ShipRegion, string ShipPostalCode, string ShipCountry)
-            : this(0,CustomerID, EmployeeID, OrderDate, RequiredDate, ShippedDate, ShipVia,Freight,ShipName,ShipAddress,ShipCity,ShipRegion,ShipPostalCode,ShipCountry)
+        public Order(string CustomerID, int EmployeeID, DateTime OrderDate, DateTime RequiredDate, DateTime ShippedDate,
+            int ShipVia, decimal Freight, string ShipName, string ShipAddress, string ShipCity, string ShipRegion,
+            string ShipPostalCode, string ShipCountry)
+            : this(0, CustomerID, EmployeeID, OrderDate, RequiredDate, ShippedDate, ShipVia, Freight, ShipName, ShipAddress,
+            ShipCity, ShipRegion, ShipPostalCode, ShipCountry)
         {
         }
 
-        public Order(int OrderID, string CustomerID, int EmployeeID, DateTime OrderDate, DateTime RequiredDate, DateTime ShippedDate, int ShipVia, decimal Freight, string ShipName, string ShipAddress, string ShipCity, string ShipRegion, string ShipPostalCode, string ShipCountry)
+        public Order(int OrderID, string CustomerID, int EmployeeID, DateTime OrderDate, DateTime RequiredDate,
+            DateTime ShippedDate, int ShipVia, decimal Freight, string ShipName, string ShipAddress, string ShipCity,
+            string ShipRegion, string ShipPostalCode, string ShipCountry)
         {
 			this.OrderID = OrderID;
 			this.CustomerID = CustomerID;
@@ -59,9 +64,9 @@ namespace DataModel
 
         public override string ToString()
         {
-            return OrderID + " - " + CustomerID + " - " + EmployeeID + " - " + OrderDate + " - " + RequiredDate + " - " + ShippedDate + " - " + ShipVia + " - "+ Freight + " - " + ShipName + " - " + ShipAddress + " - " + ShippedDate + " - " + ShipCity + " - " + ShipRegion + "-" + ShipPostalCode + "-" + ShipCountry;
+            return OrderID + " - " + CustomerID + " - " + EmployeeID + " - " + OrderDate + " - " + RequiredDate + " - " +
+                ShippedDate + " - " + ShipVia + " - "+ Freight + " - " + ShipName + " - " + ShipAddress + " - " +
+                ShipCity + " - " + ShipRegion + " - " + ShipPostalCode + " - " + ShipCountry;
         }
-
-
     }
 }

@@ -11,7 +11,6 @@ namespace DataModel
     [Table("Products")]
     public class Product
     {
-
         [Key]
         public int ProductID { set; get; } 
         public string ProductName { set; get; } 
@@ -28,7 +27,8 @@ namespace DataModel
         {
         }
 
-        public Product(int ProductID, string ProductName, string QuantityPerUnit, decimal UnitPrice, short UnitsInStock, short UnitsOnOrder) {
+        public Product(int ProductID, string ProductName, string QuantityPerUnit, decimal UnitPrice, short UnitsInStock,
+            short UnitsOnOrder) {
             this.ProductID = ProductID;
             this.ProductName = ProductName;
             this.QuantityPerUnit = QuantityPerUnit;
@@ -39,7 +39,8 @@ namespace DataModel
 
         public override string ToString()
         {
-            return ProductID + " - " + ProductName + " - " + QuantityPerUnit + " - " + UnitPrice + " - " + UnitsInStock + " - " + UnitsOnOrder;
+            return ProductID + " - " + ProductName + " - " + QuantityPerUnit + " - " + UnitPrice + " - " + UnitsInStock +
+                " - " + UnitsOnOrder;
         }
 
     }

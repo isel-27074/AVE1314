@@ -26,12 +26,14 @@ namespace DataModel
 
         public Customer() { }
 
-        public Customer(string CompanyName, string ContactName, string ContactTitle, string Address, string City, string Region, string PostalCode, string Country, string Phone, string Fax)
+        public Customer(string CompanyName, string ContactName, string ContactTitle, string Address, string City,
+            string Region, string PostalCode, string Country, string Phone, string Fax)
             : this("C0000", CompanyName, ContactName, ContactTitle, Address, City, Region, PostalCode, Country, Phone, Fax)
         {
         }
 
-        public Customer(string CustomerID, string CompanyName, string ContactName, string ContactTitle, string Address, string City, string Region, string PostalCode, string Country, string Phone, string Fax)
+        public Customer(string CustomerID, string CompanyName, string ContactName, string ContactTitle, string Address,
+            string City, string Region, string PostalCode, string Country, string Phone, string Fax)
         {
             this.CustomerID = CustomerID;
             this.CompanyName = CompanyName;
@@ -48,7 +50,8 @@ namespace DataModel
 
         public override string ToString()
         {
-            return CustomerID + " - " + CompanyName + " - " + ContactName + " - " + ContactTitle + " - " + Address + " - " + City + " - " + Region + " - " + PostalCode + " - " + Country + " - " + Phone + " - " + Fax;
+            return CustomerID + " - " + CompanyName + " - " + ContactName + " - " + ContactTitle + " - " + Address + " - " +
+                City + " - " + Region + " - " + PostalCode + " - " + Country + " - " + Phone + " - " + Fax;
         }
     }
 }
