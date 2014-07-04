@@ -320,6 +320,7 @@ namespace SqlMapper_v3
         public int GetLastInsertedRecord() { return lastInsertedRecordID; }
 
 
+        #region Fase 2
 
         SqlEnumerable<T> IDataMapper<T>.GetAll()
         {
@@ -345,6 +346,9 @@ namespace SqlMapper_v3
         {
             throw new NotImplementedException();
         }
+
+        #endregion
+
     }
 }
 

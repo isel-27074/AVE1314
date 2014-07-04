@@ -9,10 +9,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace DataModel
 {
     [Table("Customers")]
-    class Customers
+    public class Customer
     {
         [Key]
-        public int CustomerID { set; get; }
+        public string CustomerID { set; get; }
         public string CompanyName { set; get; }
         public string ContactName { set; get; }
         public string ContactTitle { set; get; }
@@ -21,31 +21,34 @@ namespace DataModel
         public string Region { set; get; }
         public string PostalCode { set; get; }
         public string Country { set; get; }
-        public int Phone { set; get; }
+        public string Phone { set; get; }
+        public string Fax { set; get; }
 
-        public Customers() { }
+        public Customer() { }
 
-        public Customers(string CompanyName, string ContactName, string ContactTitle, string Address, string City, string Region, string PostalCode, string Country, int Phone)
-            : this(0, CompanyName, ContactName, ContactTitle, Address, City, Region, PostalCode, Country, Phone)
+        public Customer(string CompanyName, string ContactName, string ContactTitle, string Address, string City, string Region, string PostalCode, string Country, string Phone, string Fax)
+            : this("C0000", CompanyName, ContactName, ContactTitle, Address, City, Region, PostalCode, Country, Phone, Fax)
         {
         }
 
-        public Customers(int CustomerID, string CompanyName, string ContactName, string ContactTitle, string Address, string City, string Region, string PostalCode, string Country, int Phone)
+        public Customer(string CustomerID, string CompanyName, string ContactName, string ContactTitle, string Address, string City, string Region, string PostalCode, string Country, string Phone, string Fax)
         {
             this.CustomerID = CustomerID;
             this.CompanyName = CompanyName;
-            this.ContactName = ContactTitle;
+            this.ContactName = ContactName;
+            this.ContactTitle = ContactTitle;
             this.Address = Address;
             this.City = City;
             this.Region = Region;
             this.PostalCode = PostalCode;
             this.Country = Country;
             this.Phone = Phone;
+            this.Fax = Fax;
         }
 
         public override string ToString()
         {
-            return CustomerID + " - " + CompanyName + " - " + ContactName + " - " + Address + " - " + City + " - " + Region + "-" + PostalCode + "-" + Country + "-" + Phone;
+            return CustomerID + " - " + CompanyName + " - " + ContactName + " - " + ContactTitle + " - " + Address + " - " + City + " - " + Region + " - " + PostalCode + " - " + Country + " - " + Phone + " - " + Fax;
         }
     }
 }
