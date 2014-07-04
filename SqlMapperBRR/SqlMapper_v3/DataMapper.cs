@@ -98,7 +98,10 @@ namespace SqlMapper_v3
                 KeyAttribute attr = (KeyAttribute)properties[i].GetCustomAttribute(typeof(KeyAttribute));
                 if (attr != null)
                 {
-                    conditionProperties = properties[i].Name + " = " + properties[i].GetValue(val);
+                    if (properties[i].Name.GetType().Name.Equals("String") || properties[i].Name.GetType().Name.Equals("string"))
+                        conditionProperties = properties[i].Name + " = " + "\'" + properties[i].GetValue(val) + "\'";
+                    else
+                        conditionProperties = properties[i].Name + " = " + properties[i].GetValue(val);
                 }
                 else
                 {
@@ -122,7 +125,10 @@ namespace SqlMapper_v3
                 KeyAttribute attr = (KeyAttribute)fields[i].GetCustomAttribute(typeof(KeyAttribute));
                 if (attr != null)
                 {
-                    conditionFields = fields[i].Name + " = " + fields[i].GetValue(val);
+                    if (properties[i].Name.GetType().Name.Equals("String") || properties[i].Name.GetType().Name.Equals("string"))
+                        conditionFields = fields[i].Name + " = " + "\'" + fields[i].GetValue(val) + "\'";
+                    else
+                        conditionFields = fields[i].Name + " = " + fields[i].GetValue(val);
                 }
                 else
                 {
@@ -198,11 +204,12 @@ namespace SqlMapper_v3
                 if (attr != null)
                 {
                     columnKey = m.Name;
+                    break;// assumimos que cada tabela tem apenas um Key
                 }
             }
             newobj[1] = columnKey;
             object value = val.GetType().GetProperty(columnKey).GetValue(val);
-            newobj[2] = (int)value;
+            newobj[2] = value.ToString();
             return newobj;
         }
         #endregion
@@ -245,17 +252,25 @@ namespace SqlMapper_v3
             string columnFields = "";
             string valuesFields = "";
 
-            newobj[0] = _table; //como todos as tabelas sao identity, a 1 posição é o nome da tabela em causa
+            newobj[0] = _table;
             Type t = val.GetType();
             PropertyInfo[] properties = t.GetProperties();
             int numberOfProperties = properties.Length;
             FieldInfo[] fields = t.GetFields();
             int numberOfFields = fields.Length;
 
+            string columnKey = "";
+            string valueKey = "";
+
             //Percorrer a lista de propriedades
             for (int i = 0; i < numberOfProperties; i++)
             {
                 KeyAttribute attr = (KeyAttribute)properties[i].GetCustomAttribute(typeof(KeyAttribute));
+                if ((attr != null) && (properties[i].Name.GetType().Name.Equals("String") || properties[i].Name.GetType().Name.Equals("string")))
+                {
+                    columnKey = columnKey + properties[i].Name + ",";
+                    valueKey = valueKey + "\'" + val.GetType().GetProperty(columnKey).GetValue(val).ToString() + "\'" + ",";
+                }
                 if (attr == null)
                 {
                     columnProperties += properties[i].Name;
@@ -278,6 +293,11 @@ namespace SqlMapper_v3
             for (int i = 0; i < numberOfFields; i++)
             {
                 KeyAttribute attr = (KeyAttribute)fields[i].GetCustomAttribute(typeof(KeyAttribute));
+                if ((attr != null) && fields[i].Name.GetType().Name.Equals("String"))
+                {
+                    columnKey = columnKey + fields[i].Name + ",";
+                    valueKey = valueKey + "\'" + val.GetType().GetProperty(columnKey).GetValue(val).ToString() + "\'" + ",";
+                }
                 if (attr == null)
                 {
                     columnFields += fields[i].Name;

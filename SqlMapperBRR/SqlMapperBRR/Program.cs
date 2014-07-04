@@ -10,6 +10,7 @@ using SqlMapper_v1;
 using SqlMapper_v2;
 using SqlMapper_v3;
 using SqlMapperBRR.Tests;
+using System.Reflection;
 
 namespace SqlMapperBRR
 {
@@ -114,6 +115,7 @@ namespace SqlMapperBRR
 
             //foreach (Product p in prods)
             //    Console.WriteLine(p.ToString());
+
 
             //Console.ReadKey();
         }
