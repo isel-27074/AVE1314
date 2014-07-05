@@ -113,7 +113,7 @@ namespace SqlMapper_v1
                 KeyAttribute attr = (KeyAttribute)properties[i].GetCustomAttribute(typeof(KeyAttribute));
                 if (attr != null)
                 {
-                    if (properties[i].Name.GetType().Name.Equals("String") || properties[i].Name.GetType().Name.Equals("string"))
+                    if (properties[i].PropertyType.Name.Equals("String"))
                         conditionProperties = properties[i].Name + " = " + "\'" + properties[i].GetValue(val) + "\'";
                     else
                         conditionProperties = properties[i].Name + " = " + properties[i].GetValue(val);
@@ -140,7 +140,7 @@ namespace SqlMapper_v1
                 KeyAttribute attr = (KeyAttribute)fields[i].GetCustomAttribute(typeof(KeyAttribute));
                 if (attr != null)
                 {
-                    if (properties[i].Name.GetType().Name.Equals("String") || properties[i].Name.GetType().Name.Equals("string"))
+                    if (fields[i].FieldType.Name.Equals("String"))
                         conditionFields = fields[i].Name + " = " + "\'" + fields[i].GetValue(val) + "\'";
                     else
                         conditionFields = fields[i].Name + " = " + fields[i].GetValue(val);                    
@@ -281,7 +281,7 @@ namespace SqlMapper_v1
             for (int i = 0; i < numberOfProperties; i++)
             {
                 KeyAttribute attr = (KeyAttribute)properties[i].GetCustomAttribute(typeof(KeyAttribute));
-                if ((attr != null) && (properties[i].Name.GetType().Name.Equals("String") || properties[i].Name.GetType().Name.Equals("string")))
+                if ((attr != null) && (properties[i].PropertyType.Name.Equals("String")))
                 {
                     columnKey = columnKey + properties[i].Name + ",";
                     valueKey = valueKey + "\'" + val.GetType().GetProperty(columnKey).GetValue(val).ToString() + "\'" + ",";
@@ -308,7 +308,7 @@ namespace SqlMapper_v1
             for (int i = 0; i < numberOfFields; i++)
             {
                 KeyAttribute attr = (KeyAttribute)fields[i].GetCustomAttribute(typeof(KeyAttribute));
-                if ((attr != null) && fields[i].Name.GetType().Name.Equals("String"))
+                if ((attr != null) && fields[i].FieldType.Name.Equals("String"))
                 {
                     columnKey = columnKey + fields[i].Name + ",";
                     valueKey = valueKey + "\'" + val.GetType().GetProperty(columnKey).GetValue(val).ToString() + "\'" + ",";
@@ -340,8 +340,8 @@ namespace SqlMapper_v1
                 columnProperties = columnProperties + columnFields;
                 valuesProperties = valuesProperties + valuesFields;
             }
-            newobj[1] = columnProperties;
-            newobj[2] = valuesProperties;
+            newobj[1] = columnKey + columnProperties;
+            newobj[2] = valueKey + valuesProperties;
             return newobj;
         }
         #endregion

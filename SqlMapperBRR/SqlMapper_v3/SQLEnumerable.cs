@@ -65,8 +65,11 @@ namespace SqlMapper_v3
         {
             return GetEnumerator();
         }
+
+        ISqlEnumerable ISqlEnumerable.Where(string clause)
+        {
+            return Where(clause);
+        }
     }
 
-    public class SqlEnumerable
-    { }
 }

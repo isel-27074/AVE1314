@@ -342,33 +342,30 @@ namespace SqlMapper_v3
 
         #region Fase 2
 
-        SqlEnumerable<T> IDataMapper<T>.GetAll()
-        {
-            throw new NotImplementedException();
-        }
 
-        SqlEnumerable IDataMapper.GetAll()
+
+        #endregion
+
+        ISqlEnumerable IDataMapper.GetAll()
         {
-            throw new NotImplementedException();
+            return GetAll();
         }
 
         public void Update(object val)
         {
-            throw new NotImplementedException();
+
+            Update((T)val);
         }
 
         public void Delete(object val)
         {
-            throw new NotImplementedException();
+            Delete((T)val);
         }
 
         public void Insert(object val)
         {
-            throw new NotImplementedException();
+            Insert((T)val);
         }
-
-        #endregion
-
     }
 }
 
