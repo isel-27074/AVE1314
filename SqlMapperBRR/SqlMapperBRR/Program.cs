@@ -58,26 +58,26 @@ namespace SqlMapperBRR
             string icat = "ave", isec = "True", ctime = "15", pooling = "True";
             
             #region SqlMapper_v1
-            //dic.Add("Product", new string[] { "ProductID", "ProductName", "QuantityPerUnit", "UnitPrice", "UnitsInStock", "UnitsOnOrder" });
-            //SqlMapper_v1.ConnectionPolicy cpv1 = new SqlMapper_v1.ConnectionPolicy(datasource, icat, isec, ctime, pooling);
-            //SqlMapper_v1.QueryData qdv1 = new SqlMapper_v1.QueryData(dic);
-            //SqlMapper_v1.Builder bv1 = new SqlMapper_v1.Builder(cpv1, qdv1);
-            //SqlMapper_v1.IDataMapper<Product> prodMapperv1 = bv1.Build<Product>();
+            dic.Add("Product", new string[] { "ProductID", "ProductName", "QuantityPerUnit", "UnitPrice", "UnitsInStock", "UnitsOnOrder" });
+            SqlMapper_v1.ConnectionPolicy cpv1 = new SqlMapper_v1.ConnectionPolicy(datasource, icat, isec, ctime, pooling);
+            SqlMapper_v1.QueryData qdv1 = new SqlMapper_v1.QueryData(dic);
+            SqlMapper_v1.Builder bv1 = new SqlMapper_v1.Builder(cpv1, qdv1);
+            SqlMapper_v1.IDataMapper<Product> prodMapperv1 = bv1.Build<Product>();
 
             //Test GetAll
-            //UnitTest.TestGetAll(prodMapperv1);
+            UnitTest.TestGetAll(prodMapperv1);
 
-            ////Test Insert
-            //UnitTest.TestInsert(prodMapperv1);
-            //UnitTest.TestGetAll(prodMapperv1);
+            //Test Insert
+            UnitTest.TestInsert(prodMapperv1);
+            UnitTest.TestGetAll(prodMapperv1);
 
-            ////Test Delete
-            //UnitTest.TestDelete(prodMapperv1);
-            //UnitTest.TestGetAll(prodMapperv1);
+            //Test Delete
+            UnitTest.TestDelete(prodMapperv1);
+            UnitTest.TestGetAll(prodMapperv1);
 
-            ////Test Update
-            //UnitTest.TestUpdate(prodMapperv1);
-            //UnitTest.TestGetAll(prodMapperv1);
+            //Test Update
+            UnitTest.TestUpdate(prodMapperv1);
+            UnitTest.TestGetAll(prodMapperv1);
 
             #endregion
 
