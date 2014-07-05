@@ -67,9 +67,9 @@ namespace SqlMapperBRR
             //Test GetAll
             //UnitTest.TestGetAll(prodMapperv1);
 
-            ////Test Insert
-            UnitTest.TestInsert(prodMapperv1);
-            UnitTest.TestGetAll(prodMapperv1);
+            //Test Insert
+            //UnitTest.TestInsert(prodMapperv1);
+            //UnitTest.TestGetAll(prodMapperv1);
 
             ////Test Delete
             //UnitTest.TestDelete(prodMapperv1);
@@ -95,11 +95,17 @@ namespace SqlMapperBRR
             #region SqlMapper_v3
             SqlMapper_v3.ConnectionPolicy cpv3 = new SqlMapper_v3.ConnectionPolicy(datasource, icat, isec, ctime, pooling);
             SqlMapper_v3.Builder bv3 = new SqlMapper_v3.Builder(cpv3);
-            SqlMapper_v3.IDataMapper prodMapperv3 = bv3.Build<Product>();
-            ISqlEnumerable a = prodMapperv3.GetAll();
+            //SqlMapper_v3.IDataMapper prodMapperv3 = bv3.Build<Product>();
+            //ISqlEnumerable prod = prodMapperv3.GetAll();
+            SqlMapper_v3.IDataMapper orderMapperv3 = bv3.Build<Order>();
+            ISqlEnumerable order = orderMapperv3.GetAll();
+            //SqlMapper_v3.IDataMapper custMapperv3 = bv3.Build<Customer>();
+            //ISqlEnumerable cust = custMapperv3.GetAll();
+            //SqlMapper_v3.IDataMapper emplMapperv3 = bv3.Build<Employee>();
+            //ISqlEnumerable empl = emplMapperv3.GetAll();
 
             //Test GetAll
-            //UnitTest.TestGetAllv2(prodMapperv2);
+            UnitTest.TestGetAllv3(orderMapperv3);
 
             #endregion
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,7 @@ namespace SqlMapper_v3
         ISqlEnumerable<T> Where(string clause);
     }
 
-    public interface ISqlEnumerable
+    public interface ISqlEnumerable : IEnumerable
     {
         ISqlEnumerable Where(string clause);
     }

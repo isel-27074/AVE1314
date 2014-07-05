@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Reflection;
 using System.Data;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SqlMapper_v3
 {
@@ -274,13 +275,30 @@ namespace SqlMapper_v3
                 if (attr == null)
                 {
                     columnProperties += properties[i].Name;
-                    if (properties[i].GetValue(val).GetType() == typeof(String) || properties[i].GetValue(val).GetType() == typeof(Char))
+                    ForeignKeyAttribute fkattr = (ForeignKeyAttribute)properties[i].GetCustomAttribute(typeof(ForeignKeyAttribute));
+                    if (fkattr == null)
                     {
-                        valuesProperties = valuesProperties + "\'" + properties[i].GetValue(val) + "\'";
+                        if (properties[i].GetValue(val).GetType() == typeof(String) || properties[i].GetValue(val).GetType() == typeof(Char))
+                        {
+                            valuesProperties = valuesProperties + "\'" + properties[i].GetValue(val) + "\'";
+                        }
+                        else
+                        {
+                            valuesProperties += properties[i].GetValue(val);
+                        }
                     }
                     else
                     {
-                        valuesProperties += properties[i].GetValue(val);
+                        //descascar o objcto, para obter o chave que está anotada como key neste objecto
+                        //se o tipo da chave é string
+                        if (properties[i].GetValue(val).GetType() == typeof(String) || properties[i].GetValue(val).GetType() == typeof(Char))
+                        {
+                            valuesProperties = valuesProperties + "\'" + properties[i].GetValue(val) + "\'";
+                        }
+                        else
+                        {
+                            valuesProperties += properties[i].GetValue(val);
+                        }
                     }
                     if (i != numberOfProperties - 1)
                     {

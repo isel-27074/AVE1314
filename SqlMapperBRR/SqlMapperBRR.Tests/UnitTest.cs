@@ -51,7 +51,7 @@ namespace SqlMapperBRR.Tests
         [TestMethod]
         public static void TestGetAllv2(SqlMapper_v2.IDataMapper<Product> prodMapper)
         {
-            IEnumerable<Product> prods = prodMapper.GetAll();
+            SqlMapper_v2.ISqlEnumerable<Product> prods = prodMapper.GetAll();
             Console.WriteLine("Get all elements in Products:");
             foreach (Product p in prods)
                 Console.WriteLine(p.ToString());
@@ -66,5 +66,22 @@ namespace SqlMapperBRR.Tests
             Console.ReadKey();
         }
 
+        [TestMethod]
+        public static void TestGetAllv3(SqlMapper_v3.IDataMapper orderMapper)
+        {
+            SqlMapper_v3.ISqlEnumerable orders = orderMapper.GetAll();
+            Console.WriteLine("Get all elements in Orders:");
+            foreach (var o in orders)
+                Console.WriteLine(o.ToString());
+            //orders = prodMapper.GetAll().Where("");
+            //Console.WriteLine("Get all elements in Products where «UnitPrice = 12»:");
+            //foreach (var p in orders)
+            //    Console.WriteLine(p.ToString());
+            //orders = prodMapper.GetAll().Where("").Where("");
+            //Console.WriteLine("Get all elements in Products where «UnitPrice = 12» and «ProductName = 'benfas'»:");
+            //foreach (var p in orders)
+            //    Console.WriteLine(p.ToString());
+            Console.ReadKey();
+        }
     }
 }
