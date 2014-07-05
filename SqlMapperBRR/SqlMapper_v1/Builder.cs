@@ -15,14 +15,15 @@ namespace SqlMapper_v1
 {
     public class Builder
     {
-
         //uma connection string por instância
         private readonly SqlConnection _builderConnection;
+        private Dictionary<string, string[]> _tableColumnPair;
+        //private 
         private string _table; //nome da tabela obtido no Build 
         private string[] _columnlist; //nomes das colunas obtido no Build
 
-    //    public Builder(ConnectionPolicy cp, QueryData qd)
-        public Builder(ConnectionPolicy cp)
+        public Builder(ConnectionPolicy cp, QueryData qd)
+        //public Builder(ConnectionPolicy cp)
         {
             string connectionString = "";
             connectionString = @"Data Source=" + cp.dataSource + "; ";
@@ -31,10 +32,24 @@ namespace SqlMapper_v1
             connectionString = connectionString + "Connection Timeout=" + cp.connectionTimeout + "; ";
             connectionString = connectionString + "Pooling=" + cp.pooling + ";";
             _builderConnection = new SqlConnection(connectionString);
-            
+
+            _tableColumnPair = qd.GetQueryData();
+
+
+
             //columnlist = qd.columns;
             //List<string> lista = qd.GetTables().ToList();
             //_table = lista.First();
+        }
+
+        private void CreateBuild() {
+            foreach (var tcp in _tableColumnPair) {
+                string table = tcp.Key;
+                //Type tabletype = Type.GetType("System.String");
+                //this.Build<tabletype>();
+                //object instance = Activator.CreateInstance(tabletype);
+            }
+                
         }
 
         public SqlConnection GetBuilderConnection() {

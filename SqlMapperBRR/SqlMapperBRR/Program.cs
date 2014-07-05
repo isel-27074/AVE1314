@@ -52,12 +52,17 @@ namespace SqlMapperBRR
             Console.WriteLine(datasource);
             #endregion menu
 
+
+            Dictionary<string, string[]> dic = new Dictionary<string, string[]>();
+
             string icat = "ave", isec = "True", ctime = "15", pooling = "True";
             
             #region SqlMapper_v1
-            SqlMapper_v1.ConnectionPolicy cpv1 = new SqlMapper_v1.ConnectionPolicy(datasource, icat, isec, ctime, pooling);
-            SqlMapper_v1.Builder bv1 = new SqlMapper_v1.Builder(cpv1);
-            SqlMapper_v1.IDataMapper<Product> prodMapperv1 = bv1.Build<Product>();
+            //dic.Add("Product", new string[] { "ProductID", "ProductName", "QuantityPerUnit", "UnitPrice", "UnitsInStock", "UnitsOnOrder" });
+            //SqlMapper_v1.ConnectionPolicy cpv1 = new SqlMapper_v1.ConnectionPolicy(datasource, icat, isec, ctime, pooling);
+            //SqlMapper_v1.QueryData qdv1 = new SqlMapper_v1.QueryData(dic);
+            //SqlMapper_v1.Builder bv1 = new SqlMapper_v1.Builder(cpv1, qdv1);
+            //SqlMapper_v1.IDataMapper<Product> prodMapperv1 = bv1.Build<Product>();
 
             //Test GetAll
             //UnitTest.TestGetAll(prodMapperv1);
@@ -116,8 +121,37 @@ namespace SqlMapperBRR
             //foreach (Product p in prods)
             //    Console.WriteLine(p.ToString());
 
+            /*
+            foreach (var a in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                //Console.WriteLine(a.FullName);
+            }
 
-            //Console.ReadKey();
+            var canja = AppDomain.CurrentDomain.GetAssemblies()
+                                 .Where(a=>a.FullName.StartsWith("DataModel"));
+            foreach (var c in canja)
+            {
+                Console.WriteLine(c);
+                Assembly SampleAssembly = Assembly.Load(c.FullName);
+            }
+
+            //var types = from assembly in System.AppDomain.CurrentDomain.GetAssemblies()
+            //            from assemblyType in assembly.GetTypes()
+            //            where assemblyType.FullName == "Product"
+            //            select assemblyType;
+
+            //Type type = types.FirstOrDefault();
+            //Console.WriteLine("type " + type);
+
+            //System.Runtime.Remoting.ObjectHandle handle = Activator.CreateInstance(Type.GetType("Product"));
+            string tipo = "Product";
+            Type tipotype = Type.GetType("DataModel.Product, DataModel");
+
+            Console.WriteLine("type " + tipotype.Name);
+            var handle = Activator.CreateInstance(tipotype);
+            Console.WriteLine("type " + handle);
+            */
+            Console.ReadKey();
         }
     }
 }

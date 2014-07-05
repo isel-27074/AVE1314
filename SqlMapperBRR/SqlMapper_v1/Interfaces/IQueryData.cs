@@ -8,7 +8,8 @@ namespace SqlMapper_v1
 {
     public interface IQueryData
     {
-        string[] columns { get; set; } //column names
-        Dictionary<string, string[]> parTabelaColunas { get; set; } //par tabela coluna
+        Dictionary<string, string[]> _tableColumnPair { get; set; } //par tabela coluna
+
+        Dictionary<string, string[]> GetQueryData();
     }
 }
