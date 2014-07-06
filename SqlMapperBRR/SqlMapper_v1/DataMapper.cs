@@ -64,7 +64,7 @@ namespace SqlMapper_v1
             if (!_persistant) _connnection.Open();
             if (_connnection.State != ConnectionState.Open)
                 _connnection.Open(); //abre se não estava aberta
-            SqlTransaction trans = _connnection.BeginTransaction("Delete Transaction");
+            SqlTransaction trans = _connnection.BeginTransaction("Update Transaction");
             PreparedStatement(FormatStringUpdate(val));
             _command.Transaction = trans;
             _command.ExecuteNonQuery();

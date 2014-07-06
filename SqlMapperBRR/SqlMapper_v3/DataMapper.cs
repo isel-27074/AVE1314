@@ -19,7 +19,7 @@ namespace SqlMapper_v3
         private string[] _columns;
         private string _table;
         private bool _persistant;
-
+        private bool _commitable;
         private string prepStateLastInsertedRecord = "Select @@Identity";
         private int lastInsertedRecordID;
 
@@ -28,33 +28,21 @@ namespace SqlMapper_v3
         private string prepStateUpdate = "UPDATE {0} SET {2} WHERE {1}";
         private string prepStateDelete = "DELETE FROM {0} WHERE {1} = {2}";
 
-
-        public DataMapper(SqlConnection con, bool persistant, string table, string[] columns)
+        public DataMapper(SqlConnection con, bool persistant, string table, string[] columns, bool commitable)
         {
             _connnection = con;
             _command = new SqlCommand(null, con);
             _table = table;
             _columns = columns;
             _persistant = persistant;
-
-            if (_persistant && (_connnection.State != ConnectionState.Open))
-            {
-                Console.WriteLine("Builder - Starting connection...");
-                _connnection.Open();
-            }
+            _commitable = commitable;
         }        
 
         #region GetAll
         public ISqlEnumerable<T> GetAll()
         {
-            PreparedStatement(FormatStringGetAll(_table));
+            PreparedStatement(String.Format(prepStateGetAll, _table));
             return new SqlEnumerable<T>(_connnection, _command, _columns, _persistant);
-        }
-        
-        //dado um T, formatamos a string de Select
-        public string FormatStringGetAll(string tableName)
-        {
-            return String.Format(prepStateGetAll, tableName);
         }
         #endregion
 
@@ -64,10 +52,15 @@ namespace SqlMapper_v3
             if (!_persistant) _connnection.Open();
             if (_connnection.State != ConnectionState.Open)
                 _connnection.Open(); //abre se não estava aberta
-
+            SqlTransaction trans = _connnection.BeginTransaction("Update Transaction");
             PreparedStatement(FormatStringUpdate(val));
-            _dr = _command.ExecuteReader();
-            _dr.Close();
+            _command.Transaction = trans;
+            _command.ExecuteNonQuery();
+            if (_commitable)
+                trans.Commit();
+            else
+                trans.Rollback();
+            if (!_persistant) _connnection.Close();
         }
 
         //Dado um T, formatamos a string de Insert
@@ -178,8 +171,15 @@ namespace SqlMapper_v3
             if (!_persistant) _connnection.Open();
             if (_connnection.State != ConnectionState.Open)
                 _connnection.Open(); //abre se não estava aberta
+            SqlTransaction trans = _connnection.BeginTransaction("Delete Transaction");
             PreparedStatement(FormatStringDelete(val));
+            _command.Transaction = trans;
             _command.ExecuteNonQuery();
+            if (_commitable)
+                trans.Commit();
+            else
+                trans.Rollback();
+            if (!_persistant) _connnection.Close();
         }
 
         //Dado um T, formatamos a string de Insert
@@ -194,11 +194,9 @@ namespace SqlMapper_v3
         {
             object[] newobj = new object[3];
             newobj[0] = _table;
-
             Type t = val.GetType();
             MemberInfo[] mi = t.GetMembers();
             string columnKey = null;
-
             foreach (MemberInfo m in mi)
             {
                 KeyAttribute attr = (KeyAttribute)m.GetCustomAttribute(typeof(KeyAttribute));
@@ -221,19 +219,26 @@ namespace SqlMapper_v3
             if (!_persistant) _connnection.Open();
             if (_connnection.State != ConnectionState.Open)
                 _connnection.Open(); //abre se não estava aberta
+            SqlTransaction trans = _connnection.BeginTransaction("Insert Transaction");
             PreparedStatement(FormatStringInsert(val));
+            _command.Transaction = trans;
             _command.ExecuteNonQuery();
-
-            //Obter o ID do ultimo item inserido
-            _command.CommandText = prepStateLastInsertedRecord;
-            var lastInsertedID = (decimal)_command.ExecuteScalar();
-            lastInsertedRecordID = Decimal.ToInt32(lastInsertedID);
-
+            if (_commitable)
+            {
+                trans.Commit();
+                //Obter o ID do ultimo item inserido
+                _command.CommandText = prepStateLastInsertedRecord;
+                var lastInsertedID = (decimal)_command.ExecuteScalar();
+                lastInsertedRecordID = Decimal.ToInt32(lastInsertedID);
+            }
+            else
+                trans.Rollback();
             //mFmt.format(pattern, values)
             //MessageFormat mFmt = new MessageFormat(pattern);
             ////SqlTransaction
             ////http://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqltransaction.aspx
             //throw new NotImplementedException();
+            if (!_persistant) _connnection.Close();
         }
 
         //Dado um T, formatamos a string de Insert
@@ -252,17 +257,14 @@ namespace SqlMapper_v3
             string valuesProperties = "";
             string columnFields = "";
             string valuesFields = "";
-
             newobj[0] = _table;
             Type t = val.GetType();
             PropertyInfo[] properties = t.GetProperties();
             int numberOfProperties = properties.Length;
             FieldInfo[] fields = t.GetFields();
             int numberOfFields = fields.Length;
-
             string columnKey = "";
             string valueKey = "";
-
             //Percorrer a lista de propriedades
             for (int i = 0; i < numberOfProperties; i++)
             {

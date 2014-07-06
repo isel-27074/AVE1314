@@ -86,7 +86,7 @@ namespace SqlMapperBRR.Tests
 
 
         [TestMethod]
-        public static void TestInsert3(SqlMapper_v3.IDataMapper orderMapper)
+        public static void TestInsertv3(SqlMapper_v3.IDataMapper orderMapper)
         {
             //Product newprod = new Product("benfas", "10", 12, 20, 0);
             Customer newcust = new Customer("C0002", "Company2", "Contact2", "Mrs", "Rua yy", "Porto", " North", "4950 ", " Portugal", " 91123456", "2151421 ");
