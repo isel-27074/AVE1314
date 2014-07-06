@@ -6,25 +6,23 @@ using System.Threading.Tasks;
 
 namespace SqlMapper_v3
 {
-    public class ConnectionPolicy: IConnectionPolicy
+    public class ConnectionPolicy : IConnectionPolicy
     {
         public string dataSource { get; set; }
-
         public string initialCatalog { get; set; }
-
         public string integratedSecurity { get; set; }
-
         public string connectionTimeout { get; set; }
-
         public string pooling { get; set; }
+        public bool commitable { get; set; }
 
-        public ConnectionPolicy(string ds, string icat, string isec, string ctime, string pooling) {
+        public ConnectionPolicy(string ds, string icat, string isec, string ctime, string pooling, bool commitable)
+        {
             dataSource = ds;
             initialCatalog = icat;
             integratedSecurity = isec;
             connectionTimeout = ctime;
-            this.pooling = pooling;            
+            this.pooling = pooling;
+            this.commitable = commitable;
         }
-
     }
 }

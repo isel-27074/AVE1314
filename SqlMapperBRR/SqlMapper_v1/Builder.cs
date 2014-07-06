@@ -9,8 +9,6 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection;
 
-
-
 namespace SqlMapper_v1
 {
     public class Builder
@@ -18,9 +16,9 @@ namespace SqlMapper_v1
         //uma connection string por instância
         private readonly SqlConnection _builderConnection;
         private Dictionary<string, string[]> _tableColumnPair;
-        //private 
         private string _table; //nome da tabela obtido no Build 
         private string[] _columnlist; //nomes das colunas obtido no Build
+        private bool _commitable;
 
         public Builder(ConnectionPolicy cp, QueryData qd)
         //public Builder(ConnectionPolicy cp)
@@ -32,24 +30,13 @@ namespace SqlMapper_v1
             connectionString = connectionString + "Connection Timeout=" + cp.connectionTimeout + "; ";
             connectionString = connectionString + "Pooling=" + cp.pooling + ";";
             _builderConnection = new SqlConnection(connectionString);
-
             _tableColumnPair = qd.GetQueryData();
-
-            //columnlist = qd.columns;
-            //List<string> lista = qd.GetTables().ToList();
-            //_table = lista.First();
-        }
-
-        public SqlConnection GetBuilderConnection() {
-            return _builderConnection;
+            _commitable = cp.commitable;
         }
 
         public IDataMapper<T> Build<T>() where T : class, new()
         {
-
             Type t = typeof(T);
-            //Console.WriteLine("Class name: " + t.Name.ToString());
-            //Console.ReadKey();
 
             Attribute[] attribs = Attribute.GetCustomAttributes(t);
             foreach (Attribute attr in attribs)
@@ -57,7 +44,6 @@ namespace SqlMapper_v1
                 if (attr is TableAttribute)
                 {
                     TableAttribute act = (TableAttribute)attr;
-                    //Console.WriteLine(act.Name);
                     _table = act.Name;
                 }
             }
@@ -74,26 +60,23 @@ namespace SqlMapper_v1
                 _columnlist[idx] = property.Name;
                 idx++;
             }
-
-            //Gets all fields in class T
             foreach (FieldInfo field in fields)
             {
                 _columnlist[idx] = field.Name;
                 idx++;
             }
 
-            if (_builderConnection.State == ConnectionState.Open) 
-                Console.WriteLine("CON - Já estava aberta!");
-            else 
-                Console.WriteLine("CON - Está fechada!");
+            //if (_builderConnection.State == ConnectionState.Open) 
+            //    Console.WriteLine("CON - Já estava aberta!");
+            //else 
+            //    Console.WriteLine("CON - Está fechada!");
 
-            DataMapper<T> dm = new DataMapper<T>(_builderConnection, true, _table, _columnlist);
+            DataMapper<T> dm = new DataMapper<T>(_builderConnection, true, _table, _columnlist, _commitable);
             //Console.WriteLine("Builder - Ending connection...");
             //if (_builderConnection.State != ConnectionState.Closed)
             //    _builderConnection.Dispose();
 
             return dm;
         }
-
     }
 }
