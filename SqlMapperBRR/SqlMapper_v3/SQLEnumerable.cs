@@ -17,7 +17,6 @@ namespace SqlMapper_v3
         private SqlDataReader _dr;
         private string[] _columns;
         private bool _persistant;
-        private string whereclauses;
 
         public SqlEnumerable(SqlConnection con, SqlCommand cmd, string[] columns, bool persistant)
         {

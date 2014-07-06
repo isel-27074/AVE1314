@@ -94,6 +94,7 @@ namespace SqlMapperBRR
 
 
             #region SqlMapper_v3
+            commitable = true;
             SqlMapper_v3.ConnectionPolicy cpv3 = new SqlMapper_v3.ConnectionPolicy(datasource, icat, isec, ctime, pooling, commitable);
             SqlMapper_v3.Builder bv3 = new SqlMapper_v3.Builder(cpv3);
             //SqlMapper_v3.IDataMapper prodMapperv3 = bv3.Build<Product>();

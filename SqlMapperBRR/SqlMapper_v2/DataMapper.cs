@@ -298,7 +298,7 @@ namespace SqlMapper_v2
                 if ((attr != null) && fields[i].FieldType.Name.Equals("String"))
                 {
                     columnKey = columnKey + fields[i].Name + ",";
-                    valueKey = valueKey + "\'" + val.GetType().GetProperty(columnKey).GetValue(val).ToString() + "\'" + ",";
+                    valueKey = valueKey + "\'" + val.GetType().GetField(columnKey).GetValue(val).ToString() + "\'" + ",";
                 }
                 if (attr == null)
                 {
