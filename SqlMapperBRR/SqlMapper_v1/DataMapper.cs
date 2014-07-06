@@ -118,11 +118,11 @@ namespace SqlMapper_v1
                         if ((properties[i].GetValue(val).GetType() == typeof(String))
                             || (properties[i].GetValue(val).GetType() == typeof(DateTime)))
                         {
-                            valuesProperties = valuesProperties + "\'" + properties[i].GetValue(val) + "\'";
+                            valuesProperties = valuesProperties + properties[i].Name + " = " + "\'" + properties[i].GetValue(val) + "\'";
                         }
                         else
                         {
-                            valuesProperties += properties[i].GetValue(val);
+                            valuesProperties = valuesProperties + properties[i].Name + " = " + properties[i].GetValue(val);
                         }
                     }
                     else
@@ -140,7 +140,7 @@ namespace SqlMapper_v1
                             if (attrFK != null)
                                 if (fkproperties[j].PropertyType.Name.Equals("String"))
                                 {
-                                    valuesProperties = valuesProperties + "\'" +
+                                    valuesProperties = valuesProperties + properties[i].Name + " = " + "\'" +
                                                        typeFK.GetProperty(aux)
                                                        .GetValue(properties[i].GetValue(val))
                                                        .ToString() + "\'";
@@ -148,7 +148,7 @@ namespace SqlMapper_v1
                                 }
                                 else
                                 {
-                                    valuesProperties +=
+                                    valuesProperties = valuesProperties + properties[i].Name + " = " +
                                         typeFK.GetProperty(aux).GetValue(properties[i].GetValue(val)).ToString();
                                     break;
                                 }
@@ -161,7 +161,7 @@ namespace SqlMapper_v1
                             if (attrFK != null)
                                 if (fkfields[j].FieldType.Name.Equals("String"))
                                 {
-                                    valuesProperties = valuesProperties + "\'" +
+                                    valuesProperties = valuesProperties + properties[i].Name + " = " + "\'" +
                                                     typeFK.GetField(aux)
                                                     .GetValue(properties[i].GetValue(val))
                                                     .ToString() + "\'";
@@ -169,7 +169,7 @@ namespace SqlMapper_v1
                                 }
                                 else
                                 {
-                                    valuesProperties +=
+                                    valuesProperties = valuesProperties + properties[i].Name + " = " +
                                         typeFK.GetField(aux).GetValue(properties[i].GetValue(val)).ToString();
                                     break;
                                 }
@@ -200,11 +200,11 @@ namespace SqlMapper_v1
                         if ((fields[i].GetValue(val).GetType() == typeof(String))
                             || (fields[i].GetValue(val).GetType() == typeof(DateTime)))
                         {
-                            valuesFields = valuesFields + "\'" + fields[i].GetValue(val) + "\'";
+                            valuesFields = valuesFields + fields[i].Name + " = " + "\'" + fields[i].GetValue(val) + "\'";
                         }
                         else
                         {
-                            valuesFields += fields[i].GetValue(val);
+                            valuesFields = valuesFields + fields[i].Name + " = " + fields[i].GetValue(val);
                         }
                     }
                     else
@@ -222,7 +222,7 @@ namespace SqlMapper_v1
                             if (attrFK != null)
                                 if (fkproperties[j].PropertyType.Name.Equals("String"))
                                 {
-                                    valuesFields = valuesFields + "\'" +
+                                    valuesFields = valuesFields + fields[i].Name + " = " + "\'" +
                                                     typeFK.GetProperty(aux)
                                                     .GetValue(fields[i].GetValue(val))
                                                     .ToString() + "\'";
@@ -230,7 +230,7 @@ namespace SqlMapper_v1
                                 }
                                 else
                                 {
-                                    valuesFields +=
+                                    valuesFields = valuesFields + fields[i].Name + " = " +
                                         typeFK.GetProperty(aux).GetValue(fields[i].GetValue(val)).ToString();
                                     break;
                                 }
@@ -243,7 +243,7 @@ namespace SqlMapper_v1
                             if (attrFK != null)
                                 if (fkfields[j].FieldType.Name.Equals("String"))
                                 {
-                                    valuesFields = valuesFields + "\'" +
+                                    valuesFields = valuesFields + fields[i].Name + " = " + "\'" +
                                                     typeFK.GetField(aux)
                                                     .GetValue(fields[i].GetValue(val))
                                                     .ToString() + "\'";
@@ -251,7 +251,8 @@ namespace SqlMapper_v1
                                 }
                                 else
                                 {
-                                    valuesFields += typeFK.GetField(aux).GetValue(fields[i].GetValue(val)).ToString();
+                                    valuesFields = valuesFields + fields[i].Name + " = " +
+                                        typeFK.GetField(aux).GetValue(fields[i].GetValue(val)).ToString();
                                     break;
                                 }
                         }
