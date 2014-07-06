@@ -42,7 +42,7 @@ namespace SqlMapper_v2
         public ISqlEnumerable<T> GetAll()
         {
             PreparedStatement(String.Format(prepStateGetAll, _table));
-            return new SqlEnumerable<T>(_connnection, _command, _columns, _persistant);
+            return new SqlEnumerable<T>(_connnection, _persistant, _table, _columns, _commitable, _command);
         }
         #endregion
 

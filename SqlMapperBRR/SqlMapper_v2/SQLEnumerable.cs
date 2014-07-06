@@ -17,13 +17,15 @@ namespace SqlMapper_v2
         private SqlDataReader _dr;
         private string[] _columns;
         private bool _persistant;
+        private bool _commitable;
 
-        public SqlEnumerable(SqlConnection con, SqlCommand cmd, string[] columns, bool persistant)
+        public SqlEnumerable(SqlConnection con, bool persistant, string table, string[] columns, bool commitable, SqlCommand cmd)
         {
             _connnection = con;
             _command = cmd;
             _columns = columns;
-            _persistant = persistant;           
+            _persistant = persistant;
+            _commitable = commitable;
         }
 
         public ISqlEnumerable<T> Where(string clause)

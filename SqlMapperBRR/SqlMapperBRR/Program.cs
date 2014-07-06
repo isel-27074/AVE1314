@@ -107,13 +107,13 @@ namespace SqlMapperBRR
             //ISqlEnumerable empl = emplMapperv3.GetAll();
 
             //Test GetAll
-            //UnitTest.TestGetAllv3(orderMapperv3);
+            UnitTest.TestGetAllv3(orderMapperv3);
 
             //Test Insert
             //UnitTest.TestInsertv3(orderMapperv3);
 
             //Test Insert
-            UnitTest.TestUpdatev3(orderMapperv3);
+            //UnitTest.TestUpdatev3(orderMapperv3);
 
             #endregion
 
