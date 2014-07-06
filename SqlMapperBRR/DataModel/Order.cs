@@ -16,7 +16,7 @@ namespace DataModel
         [ForeignKey("Customers")]
         //public string CustomerID { set; get; }
         public Customer CustomerID { set; get; }
-        [ForeignKey("Employees")]
+      ///  [ForeignKey("Employees")]
         public int EmployeeID { set; get; }
         //public Employee EmployeeID { set; get; }
         public DateTime OrderDate { set; get; }
