@@ -15,10 +15,10 @@ namespace DataModel
         public int OrderID { set; get; }
         [ForeignKey("Customers")]
         //public string CustomerID { set; get; }
-        public Customer CustomerID { set; get; }
-      ///  [ForeignKey("Employees")]
-        public int EmployeeID { set; get; }
-        //public Employee EmployeeID { set; get; }
+        public Customer CustomerID;// { set; get; }
+        [ForeignKey("Employees")]
+        //public int EmployeeID { set; get; }
+        public Employee EmployeeID { set; get; }
         public DateTime OrderDate { set; get; }
         public DateTime RequiredDate { set; get; }
         public DateTime ShippedDate { set; get; }
@@ -36,7 +36,7 @@ namespace DataModel
 
         public Order() { }
 
-        public Order(Customer CustomerID, int EmployeeID, DateTime OrderDate, DateTime RequiredDate, DateTime ShippedDate,
+        public Order(Customer CustomerID, Employee EmployeeID, DateTime OrderDate, DateTime RequiredDate, DateTime ShippedDate,
             int ShipVia, decimal Freight, string ShipName, string ShipAddress, string ShipCity, string ShipRegion,
             string ShipPostalCode, string ShipCountry)
             : this(0, CustomerID, EmployeeID, OrderDate, RequiredDate, ShippedDate, ShipVia, Freight, ShipName, ShipAddress,
@@ -44,7 +44,7 @@ namespace DataModel
         {
         }
 
-        public Order(int OrderID, Customer CustomerID, int EmployeeID, DateTime OrderDate, DateTime RequiredDate,
+        public Order(int OrderID, Customer CustomerID, Employee EmployeeID, DateTime OrderDate, DateTime RequiredDate,
             DateTime ShippedDate, int ShipVia, decimal Freight, string ShipName, string ShipAddress, string ShipCity,
             string ShipRegion, string ShipPostalCode, string ShipCountry)
         {

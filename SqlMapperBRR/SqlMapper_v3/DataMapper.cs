@@ -99,13 +99,68 @@ namespace SqlMapper_v3
                 }
                 else
                 {
-                    if (properties[i].GetValue(val).GetType() == typeof(String) || properties[i].GetValue(val).GetType() == typeof(Char))
+                    ForeignKeyAttribute fkattr = (ForeignKeyAttribute)properties[i].GetCustomAttribute(typeof(ForeignKeyAttribute));
+                    if (fkattr == null)
                     {
-                        valuesProperties = valuesProperties + properties[i].Name + " = " + "\'" + properties[i].GetValue(val) + "\'";
+                        if ((properties[i].GetValue(val).GetType() == typeof(String))
+                            || (properties[i].GetValue(val).GetType() == typeof(DateTime)))
+                        {
+                            valuesProperties = valuesProperties + "\'" + properties[i].GetValue(val) + "\'";
+                        }
+                        else
+                        {
+                            valuesProperties += properties[i].GetValue(val);
+                        }
                     }
                     else
                     {
-                        valuesProperties = valuesProperties + properties[i].Name + " = " + properties[i].GetValue(val);
+                        Type typeFK = (properties[i].GetValue(val)).GetType();
+                        PropertyInfo[] fkproperties = typeFK.GetProperties();
+                        int fknumberOfProperties = fkproperties.Length;
+                        FieldInfo[] fkfields = typeFK.GetFields();
+                        int fknumberOfFields = fkfields.Length;
+                        //Percorrer a lista de propriedades da FK para propriedade em T
+                        for (int j = 0; j < fknumberOfProperties; j++)
+                        {
+                            KeyAttribute attrFK = (KeyAttribute)fkproperties[j].GetCustomAttribute(typeof(KeyAttribute));
+                            string aux = fkproperties[j].Name;
+                            if (attrFK != null)
+                                if (fkproperties[j].PropertyType.Name.Equals("String"))
+                                {
+                                    valuesProperties = valuesProperties + "\'" +
+                                                       typeFK.GetProperty(aux)
+                                                       .GetValue(properties[i].GetValue(val))
+                                                       .ToString() + "\'";
+                                    break;
+                                }
+                                else
+                                {
+                                    valuesProperties +=
+                                        typeFK.GetProperty(aux).GetValue(properties[i].GetValue(val)).ToString();
+                                    break;
+                                }
+                        }
+                        //Percorrer a lista de campos da FK para propriedade em T
+                        for (int j = 0; j < fknumberOfFields; j++)
+                        {
+                            KeyAttribute attrFK = (KeyAttribute)fkfields[j].GetCustomAttribute(typeof(KeyAttribute));
+                            string aux = fkfields[j].Name;
+                            if (attrFK != null)
+                                if (fkfields[j].FieldType.Name.Equals("String"))
+                                {
+                                    valuesProperties = valuesProperties + "\'" +
+                                                    typeFK.GetField(aux)
+                                                    .GetValue(properties[i].GetValue(val))
+                                                    .ToString() + "\'";
+                                    break;
+                                }
+                                else
+                                {
+                                    valuesProperties +=
+                                        typeFK.GetField(aux).GetValue(properties[i].GetValue(val)).ToString();
+                                    break;
+                                }
+                        }
                     }
                     if (i != numberOfProperties - 1)
                     {
@@ -126,13 +181,67 @@ namespace SqlMapper_v3
                 }
                 else
                 {
-                    if (fields[i].GetValue(val).GetType() == typeof(String) || fields[i].GetValue(val).GetType() == typeof(Char))
+                    ForeignKeyAttribute fkattr = (ForeignKeyAttribute)fields[i].GetCustomAttribute(typeof(ForeignKeyAttribute));
+                    if (fkattr == null)
                     {
-                        valuesFields = valuesFields + fields[i].Name + " = " + "\'" + fields[i].GetValue(val) + "\'";
+                        if ((fields[i].GetValue(val).GetType() == typeof(String))
+                            || (fields[i].GetValue(val).GetType() == typeof(DateTime)))
+                        {
+                            valuesFields = valuesFields + "\'" + fields[i].GetValue(val) + "\'";
+                        }
+                        else
+                        {
+                            valuesFields += fields[i].GetValue(val);
+                        }
                     }
                     else
                     {
-                        valuesFields = valuesFields + fields[i].Name + " = " + fields[i].GetValue(val);
+                        Type typeFK = (fields[i].GetValue(val)).GetType();
+                        PropertyInfo[] fkproperties = typeFK.GetProperties();
+                        int fknumberOfProperties = fkproperties.Length;
+                        FieldInfo[] fkfields = typeFK.GetFields();
+                        int fknumberOfFields = fkfields.Length;
+                        //Percorrer a lista de propriedades da FK para campo em T
+                        for (int j = 0; j < fknumberOfProperties; j++)
+                        {
+                            KeyAttribute attrFK = (KeyAttribute)fkproperties[j].GetCustomAttribute(typeof(KeyAttribute));
+                            string aux = fkproperties[j].Name;
+                            if (attrFK != null)
+                                if (fkproperties[j].PropertyType.Name.Equals("String"))
+                                {
+                                    valuesFields = valuesFields + "\'" +
+                                                    typeFK.GetProperty(aux)
+                                                    .GetValue(fields[i].GetValue(val))
+                                                    .ToString() + "\'";
+                                    break;
+                                }
+                                else
+                                {
+                                    valuesFields +=
+                                        typeFK.GetProperty(aux).GetValue(fields[i].GetValue(val)).ToString();
+                                    break;
+                                }
+                        }
+                        //Percorrer a lista de campos da FK para campo em T
+                        for (int j = 0; j < fknumberOfFields; j++)
+                        {
+                            KeyAttribute attrFK = (KeyAttribute)fkfields[j].GetCustomAttribute(typeof(KeyAttribute));
+                            string aux = fkfields[j].Name;
+                            if (attrFK != null)
+                                if (fkfields[j].FieldType.Name.Equals("String"))
+                                {
+                                    valuesFields = valuesFields + "\'" +
+                                                    typeFK.GetField(aux)
+                                                    .GetValue(fields[i].GetValue(val))
+                                                    .ToString() + "\'";
+                                    break;
+                                }
+                                else
+                                {
+                                    valuesFields += typeFK.GetField(aux).GetValue(fields[i].GetValue(val)).ToString();
+                                    break;
+                                }
+                        }
                     }
                     if (i != numberOfFields - 1)
                     {
@@ -207,7 +316,11 @@ namespace SqlMapper_v3
                 }
             }
             newobj[1] = columnKey;
-            object value = val.GetType().GetProperty(columnKey).GetValue(val);
+            object value = null;
+            if (val.GetType().GetProperty(columnKey) != null)
+                value = val.GetType().GetProperty(columnKey).GetValue(val);
+            else
+                value = val.GetType().GetField(columnKey).GetValue(val);
             newobj[2] = value.ToString();
             return newobj;
         }
