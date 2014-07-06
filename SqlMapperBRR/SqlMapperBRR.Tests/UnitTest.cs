@@ -83,17 +83,35 @@ namespace SqlMapperBRR.Tests
             //    Console.WriteLine(p.ToString());
             Console.ReadKey();
         }
-
-
+        
         [TestMethod]
         public static void TestInsertv3(SqlMapper_v3.IDataMapper orderMapper)
         {
-            //Product newprod = new Product("benfas", "10", 12, 20, 0);
+            //insert 1
+            //Customer newcust = new Customer("C0001", "Company1", "Contact1", "Mr", "Rua xxx", "Porto", " North", "4950 ", " Portugal", " 91123456", "2151421 ");
+            //Employee newempl = new Employee(1, "Rodrigues", "Tatiana", "Ms", "Ms", DateTime.Now, DateTime.Now, "Rua xxx", "Porto", "North", "3521", "Portugal", "12387643", "521", null, " ", 1, " ");
+            
+            //insert 2
             Customer newcust = new Customer("C0002", "Company2", "Contact2", "Mrs", "Rua yy", "Porto", " North", "4950 ", " Portugal", " 91123456", "2151421 ");
             Employee newempl = new Employee(5, "Domingos", "Diana", "Ms", "Ms", DateTime.Now, DateTime.Now, "Rua eee", "Porto", "North", "3521", "Portugal", "12387643", "521", null, " ", 1, " ");
             Order neworder = new Order(newcust, newempl, DateTime.Now, DateTime.Now, DateTime.Now,
             4, 4, "Barco do amor", "miami", "miami", "miami","333222", "miami");
             orderMapper.Insert(neworder);
+        }
+
+        [TestMethod]
+        public static void TestUpdatev3(SqlMapper_v3.IDataMapper orderMapper)
+        {
+            //update 1
+            //Customer newcust = new Customer("C0002", "Company2", "Contact2", "Mrs", "Rua yy", "Porto", " North", "4950 ", " Portugal", " 91123456", "2151421 ");
+            //Employee newempl = new Employee(5, "Domingos", "Diana", "Ms", "Ms", DateTime.Now, DateTime.Now, "Rua eee", "Porto", "North", "3521", "Portugal", "12387643", "521", null, " ", 1, " ");
+            
+            //update 2
+            Customer newcust = new Customer("C0001", "Company1", "Contact1", "Mr", "Rua xxx", "Porto", " North", "4950 ", " Portugal", " 91123456", "2151421 ");
+            Employee newempl = new Employee(1, "Rodrigues", "Tatiana", "Ms", "Ms", DateTime.Now, DateTime.Now, "Rua xxx", "Porto", "North", "3521", "Portugal", "12387643", "521", null, " ", 1, " ");
+            Order neworder = new Order(10, newcust, newempl, DateTime.Now, DateTime.Now, DateTime.Now,
+            4, 4, "Barco do amor", "miami", "miami", "miami", "333222", "miami");
+            orderMapper.Update(neworder);
         }
 
     }

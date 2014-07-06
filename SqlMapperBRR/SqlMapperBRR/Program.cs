@@ -110,7 +110,10 @@ namespace SqlMapperBRR
             //UnitTest.TestGetAllv3(orderMapperv3);
 
             //Test Insert
-            UnitTest.TestInsertv3(orderMapperv3);
+            //UnitTest.TestInsertv3(orderMapperv3);
+
+            //Test Insert
+            UnitTest.TestUpdatev3(orderMapperv3);
 
             #endregion
 
