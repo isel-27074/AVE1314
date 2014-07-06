@@ -58,11 +58,11 @@ namespace SqlMapperBRR
             string icat = "ave", isec = "True", ctime = "15", pooling = "True";
             bool commitable = false;
             #region SqlMapper_v1
-            dic.Add("Products", new string[] { "ProductID", "ProductName", "QuantityPerUnit", "UnitPrice", "UnitsInStock", "UnitsOnOrder" });
-            SqlMapper_v1.ConnectionPolicy cpv1 = new SqlMapper_v1.ConnectionPolicy(datasource, icat, isec, ctime, pooling, commitable);
-            SqlMapper_v1.QueryData qdv1 = new SqlMapper_v1.QueryData(dic);
-            SqlMapper_v1.Builder bv1 = new SqlMapper_v1.Builder(cpv1, qdv1);
-            SqlMapper_v1.IDataMapper<Product> prodMapperv1 = bv1.Build<Product>();
+            //dic.Add("Products", new string[] { "ProductID", "ProductName", "QuantityPerUnit", "UnitPrice", "UnitsInStock", "UnitsOnOrder" });
+            //SqlMapper_v1.ConnectionPolicy cpv1 = new SqlMapper_v1.ConnectionPolicy(datasource, icat, isec, ctime, pooling);
+            //SqlMapper_v1.QueryData qdv1 = new SqlMapper_v1.QueryData(dic);
+            //SqlMapper_v1.Builder bv1 = new SqlMapper_v1.Builder(cpv1, qdv1);
+            //SqlMapper_v1.IDataMapper<Product> prodMapperv1 = bv1.Build<Product>();
 
             //Test GetAll
             //UnitTest.TestGetAll(prodMapperv1);
@@ -83,9 +83,9 @@ namespace SqlMapperBRR
 
 
             #region SqlMapper_v2
-            SqlMapper_v2.ConnectionPolicy cpv2 = new SqlMapper_v2.ConnectionPolicy(datasource, icat, isec, ctime, pooling);
-            SqlMapper_v2.Builder bv2 = new SqlMapper_v2.Builder(cpv2);
-            SqlMapper_v2.IDataMapper<Product> prodMapperv2 = bv2.Build<Product>();
+            //SqlMapper_v2.ConnectionPolicy cpv2 = new SqlMapper_v2.ConnectionPolicy(datasource, icat, isec, ctime, pooling);
+            //SqlMapper_v2.Builder bv2 = new SqlMapper_v2.Builder(cpv2);
+            //SqlMapper_v2.IDataMapper<Product> prodMapperv2 = bv2.Build<Product>();
             //Test GetAll
             //UnitTest.TestGetAllv2(prodMapperv2);
 
@@ -98,14 +98,17 @@ namespace SqlMapperBRR
             //SqlMapper_v3.IDataMapper prodMapperv3 = bv3.Build<Product>();
             //ISqlEnumerable prod = prodMapperv3.GetAll();
             SqlMapper_v3.IDataMapper orderMapperv3 = bv3.Build<Order>();
-            ISqlEnumerable order = orderMapperv3.GetAll();
+            //ISqlEnumerable order = orderMapperv3.GetAll();
             //SqlMapper_v3.IDataMapper custMapperv3 = bv3.Build<Customer>();
             //ISqlEnumerable cust = custMapperv3.GetAll();
             //SqlMapper_v3.IDataMapper emplMapperv3 = bv3.Build<Employee>();
             //ISqlEnumerable empl = emplMapperv3.GetAll();
 
             //Test GetAll
-            UnitTest.TestGetAllv3(orderMapperv3);
+          //  UnitTest.TestGetAllv3(orderMapperv3);
+
+            //Test Insert
+            UnitTest.TestInsert3(orderMapperv3);
 
             #endregion
 

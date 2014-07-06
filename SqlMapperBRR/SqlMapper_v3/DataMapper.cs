@@ -278,7 +278,7 @@ namespace SqlMapper_v3
                     ForeignKeyAttribute fkattr = (ForeignKeyAttribute)properties[i].GetCustomAttribute(typeof(ForeignKeyAttribute));
                     if (fkattr == null)
                     {
-                        if (properties[i].GetValue(val).GetType() == typeof(String) || properties[i].GetValue(val).GetType() == typeof(Char))
+                        if (properties[i].GetValue(val).GetType() == typeof(String))
                         {
                             valuesProperties = valuesProperties + "\'" + properties[i].GetValue(val) + "\'";
                         }
@@ -291,14 +291,46 @@ namespace SqlMapper_v3
                     {
                         //descascar o objcto, para obter o chave que está anotada como key neste objecto
                         //se o tipo da chave é string
-                        if (properties[i].GetValue(val).GetType() == typeof(String) || properties[i].GetValue(val).GetType() == typeof(Char))
+                        
+                        /*******************************************/
+                        Type typeFK = (properties[i].GetValue(val)).GetType();
+                        PropertyInfo[] auxproperties = typeFK.GetProperties();
+                        int auxnumberOfProperties = auxproperties.Length;
+                        FieldInfo[] auxfields = typeFK.GetFields();
+                        int auxnumberOfFields = auxfields.Length;
+
+                        //Percorrer a lista de propriedades
+                        for (int j = 0; j < auxnumberOfProperties; j++)
                         {
-                            valuesProperties = valuesProperties + "\'" + properties[i].GetValue(val) + "\'";
+                            KeyAttribute attraux = (KeyAttribute)auxproperties[j].GetCustomAttribute(typeof(KeyAttribute));
+                            String aux = auxproperties[j].Name;
+                            if ((attraux != null) && (auxproperties[j].PropertyType.Name.Equals("String")))
+                            {
+
+                                valuesProperties = valuesProperties + "\'" +
+                                                   typeFK.GetProperty(aux)
+                                                       .GetValue(properties[i].GetValue(val))
+                                                       .ToString() + "\'" + ",";
+                            }
+                            else
+                            {
+                                valuesProperties +=
+                                    typeFK.GetProperty(aux).GetValue(properties[i].GetValue(val)).ToString() + ",";
+                            }
                         }
-                        else
-                        {
-                            valuesProperties += properties[i].GetValue(val);
-                        }
+
+
+                        /*******************************************/
+                        //Console.WriteLine(o.GetType());
+
+                        //if (properties[i].GetValue(val).GetType() == typeof(String) || properties[i].GetValue(val).GetType() == typeof(Char))
+                        //{
+                        //    valuesProperties = valuesProperties + "\'" + properties[i].GetValue(val) + "\'";
+                        //}
+                        //else
+                        //{
+                        //    valuesProperties += properties[i].GetValue(val);
+                        //}
                     }
                     if (i != numberOfProperties - 1)
                     {
@@ -377,7 +409,8 @@ namespace SqlMapper_v3
 
         public void Insert(object val)
         {
-            Insert((T)val);
+           // Insert(val as T);
+            Insert((T) val);
         }
         #endregion
     }

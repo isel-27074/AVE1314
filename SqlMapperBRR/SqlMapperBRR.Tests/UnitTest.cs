@@ -83,5 +83,17 @@ namespace SqlMapperBRR.Tests
             //    Console.WriteLine(p.ToString());
             Console.ReadKey();
         }
+
+
+        [TestMethod]
+        public static void TestInsert3(SqlMapper_v3.IDataMapper orderMapper)
+        {
+            //Product newprod = new Product("benfas", "10", 12, 20, 0);
+            Customer newcust = new Customer("C0002", "Company2", "Contact2", "Mrs", "Rua yy", "Porto", " North", "4950 ", " Portugal", " 91123456", "2151421 ");
+            Order neworder = new Order(newcust, 1, System.DateTime.Now, System.DateTime.Now, System.DateTime.Now,
+            4, 4, "Barco do amor", "miami", "miami", "miami","333222", "miami");
+            orderMapper.Insert(neworder);
+        }
+
     }
 }
