@@ -56,7 +56,7 @@ namespace SqlMapperBRR
             Dictionary<string, string[]> dic = new Dictionary<string, string[]>();
 
             string icat = "ave", isec = "True", ctime = "15", pooling = "True";
-            
+            bool commitable = false;
             #region SqlMapper_v1
             //dic.Add("Products", new string[] { "ProductID", "ProductName", "QuantityPerUnit", "UnitPrice", "UnitsInStock", "UnitsOnOrder" });
             //SqlMapper_v1.ConnectionPolicy cpv1 = new SqlMapper_v1.ConnectionPolicy(datasource, icat, isec, ctime, pooling);

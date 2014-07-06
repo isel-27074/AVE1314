@@ -46,7 +46,6 @@ namespace SqlMapper_v3
             if (_connnection.State != ConnectionState.Open)
                 _connnection.Open(); //abre se não estava aberta
             _dr = _command.ExecuteReader();
-
             foreach (var dr in _dr)
             {
                 object[] o = new object[_columns.Length];
@@ -59,9 +58,8 @@ namespace SqlMapper_v3
                 T newT = (T)Activator.CreateInstance(typeof(T), o);
                 yield return newT;
             }
-
-            if (!_persistant) _connnection.Close();
             _dr.Close();
+            if (!_persistant) _connnection.Close();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
