@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SqlMapper_v3
 {
@@ -51,6 +52,8 @@ namespace SqlMapper_v3
                 object[] o = new object[_columns.Length];
                 for (int i = 0; i < _columns.Length; i++)
                 {
+              //      ForeignKeyAttribute fkattr = (ForeignKeyAttribute)_dr[i].GetCustomAttribute(typeof(ForeignKeyAttribute));
+                    
                     o[i] = _dr[i];
                 }
                 T newT = (T)Activator.CreateInstance(typeof(T), o);
@@ -65,8 +68,11 @@ namespace SqlMapper_v3
         {
             return GetEnumerator();
         }
+
+        ISqlEnumerable ISqlEnumerable.Where(string clause)
+        {
+            return Where(clause);
+        }
     }
 
-    public class SqlEnumerable
-    { }
 }

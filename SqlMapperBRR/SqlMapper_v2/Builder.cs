@@ -50,11 +50,11 @@ namespace SqlMapper_v2
             //Console.ReadKey();
 
             Attribute[] attribs = Attribute.GetCustomAttributes(t);
-            foreach (Attribute a in attribs)
+            foreach (Attribute attr in attribs)
             {
-                if (a is TableAttribute)
+                if (attr is TableAttribute)
                 {
-                    TableAttribute act = (TableAttribute)a;
+                    TableAttribute act = (TableAttribute)attr;
                     //Console.WriteLine(act.Name);
                     _table = act.Name;
                 }

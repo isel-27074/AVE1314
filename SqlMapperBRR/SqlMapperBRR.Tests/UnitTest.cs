@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SqlMapper_v1;
 using SqlMapper_v2;
-//using SqlMapper_v3;
+using SqlMapper_v3;
 using DataModel;
 using System.Collections.Generic;
 
@@ -51,7 +51,7 @@ namespace SqlMapperBRR.Tests
         [TestMethod]
         public static void TestGetAllv2(SqlMapper_v2.IDataMapper<Product> prodMapper)
         {
-            IEnumerable<Product> prods = prodMapper.GetAll();
+            SqlMapper_v2.ISqlEnumerable<Product> prods = prodMapper.GetAll();
             Console.WriteLine("Get all elements in Products:");
             foreach (Product p in prods)
                 Console.WriteLine(p.ToString());
@@ -64,6 +64,35 @@ namespace SqlMapperBRR.Tests
             foreach (Product p in prods)
                 Console.WriteLine(p.ToString());
             Console.ReadKey();
+        }
+
+        [TestMethod]
+        public static void TestGetAllv3(SqlMapper_v3.IDataMapper orderMapper)
+        {
+            SqlMapper_v3.ISqlEnumerable orders = orderMapper.GetAll();
+            Console.WriteLine("Get all elements in Orders:");
+            foreach (var o in orders)
+                Console.WriteLine(o.ToString());
+            //orders = prodMapper.GetAll().Where("");
+            //Console.WriteLine("Get all elements in Products where «UnitPrice = 12»:");
+            //foreach (var p in orders)
+            //    Console.WriteLine(p.ToString());
+            //orders = prodMapper.GetAll().Where("").Where("");
+            //Console.WriteLine("Get all elements in Products where «UnitPrice = 12» and «ProductName = 'benfas'»:");
+            //foreach (var p in orders)
+            //    Console.WriteLine(p.ToString());
+            Console.ReadKey();
+        }
+
+
+        [TestMethod]
+        public static void TestInsert3(SqlMapper_v3.IDataMapper orderMapper)
+        {
+            //Product newprod = new Product("benfas", "10", 12, 20, 0);
+            Customer newcust = new Customer("C0002", "Company2", "Contact2", "Mrs", "Rua yy", "Porto", " North", "4950 ", " Portugal", " 91123456", "2151421 ");
+            Order neworder = new Order(newcust, 1, System.DateTime.Now, System.DateTime.Now, System.DateTime.Now,
+            4, 4, "Barco do amor", "miami", "miami", "miami","333222", "miami");
+            orderMapper.Insert(neworder);
         }
 
     }

@@ -35,21 +35,9 @@ namespace SqlMapper_v1
 
             _tableColumnPair = qd.GetQueryData();
 
-
-
             //columnlist = qd.columns;
             //List<string> lista = qd.GetTables().ToList();
             //_table = lista.First();
-        }
-
-        private void CreateBuild() {
-            foreach (var tcp in _tableColumnPair) {
-                string table = tcp.Key;
-                //Type tabletype = Type.GetType("System.String");
-                //this.Build<tabletype>();
-                //object instance = Activator.CreateInstance(tabletype);
-            }
-                
         }
 
         public SqlConnection GetBuilderConnection() {
@@ -64,10 +52,11 @@ namespace SqlMapper_v1
             //Console.ReadKey();
 
             Attribute[] attribs = Attribute.GetCustomAttributes(t);
-            foreach (Attribute a in attribs)
+            foreach (Attribute attr in attribs)
             {
-                if (a is TableAttribute) {
-                    TableAttribute act = (TableAttribute) a;
+                if (attr is TableAttribute)
+                {
+                    TableAttribute act = (TableAttribute)attr;
                     //Console.WriteLine(act.Name);
                     _table = act.Name;
                 }

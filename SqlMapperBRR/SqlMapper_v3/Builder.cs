@@ -20,6 +20,7 @@ namespace SqlMapper_v3
         private readonly SqlConnection _builderConnection;
         private string _table; //nome da tabela obtido no Build 
         private string[] _columnlist; //nomes das colunas obtido no Build
+        private List<string> _foreignKeys;
 
         //    public Builder(ConnectionPolicy cp, QueryData qd)
         public Builder(ConnectionPolicy cp)
@@ -31,6 +32,8 @@ namespace SqlMapper_v3
             connectionString = connectionString + "Connection Timeout=" + cp.connectionTimeout + "; ";
             connectionString = connectionString + "Pooling=" + cp.pooling + ";";
             _builderConnection = new SqlConnection(connectionString);
+
+            _foreignKeys = new List<string>();
 
             //columnlist = qd.columns;
             //List<string> lista = qd.GetTables().ToList();
@@ -50,13 +53,18 @@ namespace SqlMapper_v3
             //Console.ReadKey();
 
             Attribute[] attribs = Attribute.GetCustomAttributes(t);
-            foreach (Attribute a in attribs)
+            foreach (Attribute attr in attribs)
             {
-                if (a is TableAttribute)
+                if (attr is TableAttribute)
                 {
-                    TableAttribute act = (TableAttribute)a;
+                    TableAttribute act = (TableAttribute)attr;
                     //Console.WriteLine(act.Name);
                     _table = act.Name;
+                }
+                if (attr is ForeignKeyAttribute)
+                {
+                    ForeignKeyAttribute fkatt = (ForeignKeyAttribute)attr;
+                    _foreignKeys.Add(fkatt.Name);
                 }
             }
 
