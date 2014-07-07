@@ -68,17 +68,17 @@ namespace SqlMapperBRR
 
             Console.WriteLine("********** 1ª Parte (1) **********");
             //Test GetAll
-            Console.WriteLine("Teste GetALL");
-            UnitTest.TestGetAll(prodMapperv1);
+            //Console.WriteLine("Teste GetALL");
+            //UnitTest.TestGetAll(prodMapperv1);
             //Test Insert
             //Console.WriteLine("Teste Insert");
             //UnitTest.TestInsert(prodMapperv1);
             //Test Delete
-            Console.WriteLine("Teste Delete com Insert");
-            UnitTest.TestDelete(prodMapperv1);
+            //Console.WriteLine("Teste Delete com Insert");
+            //UnitTest.TestDelete(prodMapperv1);
             //Test Update
-            Console.WriteLine("Teste Update");
-            UnitTest.TestUpdate(prodMapperv1);
+            //Console.WriteLine("Teste Update");
+            //UnitTest.TestUpdate(prodMapperv1);
             #endregion
             */
             /*
@@ -122,12 +122,17 @@ namespace SqlMapperBRR
             //Console.WriteLine("------------------> Order get all");
             //UnitTest.TestGetAllv3(orderMapperv3);
 
-            //Test Insert
+            //Test Insert Order
             //UnitTest.TestInsertv3order(orderMapperv3);
-            //Test Delete
+            //Test Delete Order
             //UnitTest.TestDeletev3order(orderMapperv3);
             //Test Update Order
             //UnitTest.TestUpdatev3order(orderMapperv3);
+
+            //Test Insert Employee
+            //UnitTest.TestInsertv3employee(emplMapperv3);
+            //Test Delete Order
+            //UnitTest.TestDeletev3employee(emplMapperv3);
             //Test Update Employee
             //UnitTest.TestUpdatev3employee(emplMapperv3);
             #endregion

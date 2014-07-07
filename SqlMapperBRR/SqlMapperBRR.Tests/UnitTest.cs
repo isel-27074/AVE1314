@@ -148,21 +148,51 @@ namespace SqlMapperBRR.Tests
         }
 
         [TestMethod]
-        public static void TestUpdatev3employee(SqlMapper_v3.IDataMapper mapper)
+        public static void TestInsertv3employee(SqlMapper_v3.IDataMapper mapper)
         {
-            Console.WriteLine("------------------> Alterei um registo num Employee");
-            Employee newempl = new Employee(3, 
-                //"Domingos", "Diana", "Ms", "Ms", DateTime.Now, DateTime.Now, "Rua eee", "Porto", "North", "3521", "Portugal", "12387643", "521", null, " ", 1, " ");
-            "Rodrigues", "Tatiana", "Ms", "Ms", DateTime.Now, DateTime.Now, "Rua xxx", "Porto", "North", "3521", "Portugal", "12387643", "521", null, " ", 1, " ");
-            mapper.Update(newempl);
+            Console.WriteLine("------------------> Inseri um registo");
+            Employee newempl = new Employee("Ermenegilda", "Escarlate", "Ms", "Ms", DateTime.Now, DateTime.Now, "Rua xxx", "Porto", "North", "3521", "Portugal", "12387643", "521", null, " ", 1, " ");
+            mapper.Insert(newempl);
             UnitTest.TestGetAllv3(mapper);//vejo estado actual
-            Console.WriteLine("------------------> Repus o estado do registo de um Employee");
-            newempl = new Employee(3,
-                //"Rodrigues", "Tatiana", "Ms", "Ms", DateTime.Now, DateTime.Now, "Rua xxx", "Porto", "North", "3521", "Portugal", "12387643", "521", null, " ", 1, " ");
-            "Geraldes","Guida","Ms","Ms",Convert.ToDateTime("1900/01/01 12:10:05.123"),Convert.ToDateTime("1900/01/01 12:10:05.123"),"Rua qqq","Lisbon","Center","3521","Portugal","12387643","521",null," ",1," ");
-            mapper.Update(newempl);
+            Console.WriteLine("------------------> Inseri um registo");
+            newempl = new Employee("Ermenegilda", "Escarlate", "Ms", "Ms", DateTime.Now, DateTime.Now, "Rua xxx", "Porto", "North", "3521", "Portugal", "12387643", "521", null, " ", 1, " ");
+            mapper.Insert(newempl);
             UnitTest.TestGetAllv3(mapper);//vejo estado actual           
         }
 
+        [TestMethod]
+        public static void TestDeletev3employee(SqlMapper_v3.IDataMapper mapper)
+        {
+            Console.WriteLine("------------------> Inseri um registo");
+            Employee newempl = new Employee("Ermenegilda", "Escarlate", "Ms", "Ms", DateTime.Now, DateTime.Now, "Rua xxx", "Porto", "North", "3521", "Portugal", "12387643", "521", null, " ", 1, " ");
+            mapper.Insert(newempl);
+            SqlMapper_v3.DataMapper<Employee> newempl2 = (SqlMapper_v3.DataMapper<Employee>)mapper;
+            int lastRecord = newempl2.GetLastInsertedRecord();
+            UnitTest.TestGetAllv3(mapper);//vejo estado actual
+            Console.WriteLine("------------------> Inseri um registo");
+            newempl = new Employee("Ermenegilda", "Escarlate", "Ms", "Ms", DateTime.Now, DateTime.Now, "Rua xxx", "Porto", "North", "3521", "Portugal", "12387643", "521", null, " ", 1, " ");
+            mapper.Insert(newempl);
+            UnitTest.TestGetAllv3(mapper);//vejo estado actual
+            newempl = new Employee(lastRecord, "Ermenegilda", "Escarlate", "Ms", "Ms", DateTime.Now, DateTime.Now, "Rua xxx", "Porto", "North", "3521", "Portugal", "12387643", "521", null, " ", 1, " ");
+            mapper.Delete(newempl);
+            Console.WriteLine("------------------> Removi um registo");
+            newempl = new Employee(lastRecord + 1, "Ermenegilda", "Escarlate", "Ms", "Ms", DateTime.Now, DateTime.Now, "Rua xxx", "Porto", "North", "3521", "Portugal", "12387643", "521", null, " ", 1, " ");
+            mapper.Delete(newempl);
+            Console.WriteLine("------------------> Removi um registo");
+            UnitTest.TestGetAllv3(mapper);//vejo estado actual
+        }
+
+        [TestMethod]
+        public static void TestUpdatev3employee(SqlMapper_v3.IDataMapper mapper)
+        {
+            Console.WriteLine("------------------> Alterei um registo num Employee");
+            Employee newempl = new Employee(3, "Rodrigues", "Tatiana", "Ms", "Ms", DateTime.Now, DateTime.Now, "Rua xxx", "Porto", "North", "3521", "Portugal", "12387643", "521", null, " ", 1, " ");
+            mapper.Update(newempl);
+            UnitTest.TestGetAllv3(mapper);//vejo estado actual
+            Console.WriteLine("------------------> Repus o estado do registo de um Employee");
+            newempl = new Employee(3, "Geraldes", "Guida", "Ms", "Ms", Convert.ToDateTime("1900/01/01 12:10:05.123"), Convert.ToDateTime("1900/01/01 12:10:05.123"), "Rua qqq", "Lisbon", "Center", "3521", "Portugal", "12387643", "521", null, " ", 1, " ");
+            mapper.Update(newempl);
+            UnitTest.TestGetAllv3(mapper);//vejo estado actual           
+        }
     }
 }
