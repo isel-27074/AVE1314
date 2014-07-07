@@ -21,7 +21,6 @@ namespace SqlMapperBRR
 
             #region menu
             string datasource = null;
-
             while (datasource == null || datasource.Equals(""))
             {
                 Console.WriteLine("Escolha Data Source:");
@@ -45,18 +44,15 @@ namespace SqlMapperBRR
                         Console.WriteLine("Inserir Data Source:");
                         datasource = Console.ReadLine();
                         break;
-
                 }
             }
-
             Console.WriteLine(datasource);
             #endregion menu
-
-
+            
             //Dictionary<string, string[]> dic = new Dictionary<string, string[]>();
             //dic.Add("Products", new string[] { "ProductID", "ProductName", "QuantityPerUnit", "UnitPrice", "UnitsInStock", "UnitsOnOrder" });
             
-            string icat = "ave", isec = "True", ctime = "15", pooling = "True";
+            string icat = "ave", isec = "True", ctime = "15", pooling = "false";
             bool commitable = true;
             /*
             #region SqlMapper_v1
@@ -68,17 +64,17 @@ namespace SqlMapperBRR
 
             Console.WriteLine("********** 1ª Parte (1) **********");
             //Test GetAll
-            //Console.WriteLine("Teste GetALL");
-            //UnitTest.TestGetAll(prodMapperv1);
+            Console.WriteLine("Teste GetALL");
+            UnitTest.TestGetAll(prodMapperv1);
             //Test Insert
             //Console.WriteLine("Teste Insert");
             //UnitTest.TestInsert(prodMapperv1);
             //Test Delete
-            //Console.WriteLine("Teste Delete com Insert");
-            //UnitTest.TestDelete(prodMapperv1);
+            Console.WriteLine("Teste Delete com Insert");
+            UnitTest.TestDelete(prodMapperv1);
             //Test Update
-            //Console.WriteLine("Teste Update");
-            //UnitTest.TestUpdate(prodMapperv1);
+            Console.WriteLine("Teste Update");
+            UnitTest.TestUpdate(prodMapperv1);
             #endregion
             */
             /*
@@ -93,7 +89,7 @@ namespace SqlMapperBRR
             UnitTest.TestGetAllv2(prodMapperv2);
             #endregion
             */
-            
+            /*
             #region SqlMapper_v3
             commitable = true;
             SqlMapper_v3.ConnectionPolicy cpv3 = new SqlMapper_v3.ConnectionPolicy(datasource, icat, isec, ctime, pooling, commitable);
@@ -113,30 +109,30 @@ namespace SqlMapperBRR
 
             Console.WriteLine("********** 2ª Parte **********");
             //Test GetAll
-            //Console.WriteLine("------------------> Product get all");
-            //UnitTest.TestGetAllv3(prodMapperv3);
-            //Console.WriteLine("------------------> Customer get all");
-            //UnitTest.TestGetAllv3(custMapperv3);
-            //Console.WriteLine("------------------> Employee get all");
-            //UnitTest.TestGetAllv3(emplMapperv3);
+            Console.WriteLine("------------------> Product get all");
+            UnitTest.TestGetAllv3(prodMapperv3);
+            Console.WriteLine("------------------> Customer get all");
+            UnitTest.TestGetAllv3(custMapperv3);
+            Console.WriteLine("------------------> Employee get all");
+            UnitTest.TestGetAllv3(emplMapperv3);
             //Console.WriteLine("------------------> Order get all");
             //UnitTest.TestGetAllv3(orderMapperv3);
 
             //Test Insert Order
             //UnitTest.TestInsertv3order(orderMapperv3);
             //Test Delete Order
-            //UnitTest.TestDeletev3order(orderMapperv3);
+            UnitTest.TestDeletev3order(orderMapperv3);
             //Test Update Order
-            //UnitTest.TestUpdatev3order(orderMapperv3);
+            UnitTest.TestUpdatev3order(orderMapperv3);
 
             //Test Insert Employee
             //UnitTest.TestInsertv3employee(emplMapperv3);
             //Test Delete Order
-            //UnitTest.TestDeletev3employee(emplMapperv3);
+            UnitTest.TestDeletev3employee(emplMapperv3);
             //Test Update Employee
-            //UnitTest.TestUpdatev3employee(emplMapperv3);
+            UnitTest.TestUpdatev3employee(emplMapperv3);
             #endregion
-
+            */
 
         }
     }

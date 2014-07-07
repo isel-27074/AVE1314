@@ -19,6 +19,7 @@ namespace SqlMapper_v1
         private string _table; //nome da tabela obtido no Build 
         private string[] _columnlist; //nomes das colunas obtido no Build
         private bool _commitable;
+        private bool _connectionState = false;
 
         //public Builder(ConnectionPolicy cp, QueryData qd)
         public Builder(ConnectionPolicy cp)
@@ -30,6 +31,8 @@ namespace SqlMapper_v1
             connectionString = connectionString + "Connection Timeout=" + cp.connectionTimeout + "; ";
             connectionString = connectionString + "Pooling=" + cp.pooling + ";";
             _builderConnection = new SqlConnection(connectionString);
+            if (cp.pooling.ToLower().Equals("true"))
+                _connectionState = true;
             //_tableColumnPair = qd.GetQueryData();
             _commitable = cp.commitable;
         }
@@ -66,15 +69,12 @@ namespace SqlMapper_v1
                 idx++;
             }
 
-            //if (_builderConnection.State == ConnectionState.Open) 
-            //    Console.WriteLine("CON - Já estava aberta!");
-            //else 
-            //    Console.WriteLine("CON - Está fechada!");
-
             DataMapper<T> dm = new DataMapper<T>(_builderConnection, true, _table, _columnlist, _commitable);
-            //Console.WriteLine("Builder - Ending connection...");
-            //if (_builderConnection.State != ConnectionState.Closed)
-            //    _builderConnection.Dispose();
+
+            if (!_connectionState)
+                _builderConnection.Close();
+            if (_builderConnection.State != ConnectionState.Closed)
+                _builderConnection.Dispose();
 
             return dm;
         }
