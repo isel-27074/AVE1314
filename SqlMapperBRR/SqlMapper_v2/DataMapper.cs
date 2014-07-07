@@ -13,7 +13,7 @@ namespace SqlMapper_v2
 {
     public class DataMapper<T> : IDataMapper<T> where T : class, new()
     {
-        private SqlConnection _connnection;
+        private SqlConnection _connection;
         private SqlCommand _command;
         private SqlDataReader _dr;
         private string[] _columns;
@@ -30,7 +30,7 @@ namespace SqlMapper_v2
         
         public DataMapper(SqlConnection con, bool persistant, string table, string[] columns, bool commitable)
         {
-            _connnection = con;
+            _connection = con;
             _command = new SqlCommand(null, con);
             _table = table;
             _columns = columns;
@@ -42,17 +42,17 @@ namespace SqlMapper_v2
         public ISqlEnumerable<T> GetAll()
         {
             PreparedStatement(String.Format(prepStateGetAll, _table));
-            return new SqlEnumerable<T>(_connnection, _persistant, _table, _columns, _commitable, _command);
+            return new SqlEnumerable<T>(_connection, _persistant, _table, _columns, _commitable, _command);
         }
         #endregion
 
         #region Update
         public void Update(T val)
         {
-            if (!_persistant) _connnection.Open();
-            if (_connnection.State != ConnectionState.Open)
-                _connnection.Open(); //abre se não estava aberta
-            SqlTransaction trans = _connnection.BeginTransaction("Update Transaction");
+            if (!_persistant) _connection.Open();
+            if (_connection.State != ConnectionState.Open)
+                _connection.Open(); //abre se não estava aberta
+            SqlTransaction trans = _connection.BeginTransaction("Update Transaction");
             PreparedStatement(FormatStringUpdate(val));
             _command.Transaction = trans;
             _command.ExecuteNonQuery();
@@ -60,7 +60,7 @@ namespace SqlMapper_v2
                 trans.Commit();
             else
                 trans.Rollback();
-            if (!_persistant) _connnection.Close();
+            if (!_persistant) _connection.Close();
         }
 
         //Dado um T, formatamos a string de Insert
@@ -278,10 +278,10 @@ namespace SqlMapper_v2
         #region Delete
         public void Delete(T val)
         {
-            if (!_persistant) _connnection.Open();
-            if (_connnection.State != ConnectionState.Open)
-                _connnection.Open(); //abre se não estava aberta
-            SqlTransaction trans = _connnection.BeginTransaction("Delete Transaction");
+            if (!_persistant) _connection.Open();
+            if (_connection.State != ConnectionState.Open)
+                _connection.Open(); //abre se não estava aberta
+            SqlTransaction trans = _connection.BeginTransaction("Delete Transaction");
             PreparedStatement(FormatStringDelete(val));
             _command.Transaction = trans;
             _command.ExecuteNonQuery();
@@ -289,7 +289,7 @@ namespace SqlMapper_v2
                 trans.Commit();
             else
                 trans.Rollback();
-            if (!_persistant) _connnection.Close();
+            if (!_persistant) _connection.Close();
         }
 
         //Dado um T, formatamos a string de Insert
@@ -330,10 +330,10 @@ namespace SqlMapper_v2
         #region Insert
         public void Insert(T val)
         {
-            if (!_persistant) _connnection.Open();
-            if (_connnection.State != ConnectionState.Open)
-                _connnection.Open(); //abre se não estava aberta
-            SqlTransaction trans = _connnection.BeginTransaction("Insert Transaction");
+            if (!_persistant) _connection.Open();
+            if (_connection.State != ConnectionState.Open)
+                _connection.Open(); //abre se não estava aberta
+            SqlTransaction trans = _connection.BeginTransaction("Insert Transaction");
             PreparedStatement(FormatStringInsert(val));
             _command.Transaction = trans;
             _command.ExecuteNonQuery();
@@ -352,7 +352,7 @@ namespace SqlMapper_v2
             ////SqlTransaction
             ////http://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqltransaction.aspx
             //throw new NotImplementedException();
-            if (!_persistant) _connnection.Close();
+            if (!_persistant) _connection.Close();
         }
 
         //Dado um T, formatamos a string de Insert

@@ -50,8 +50,8 @@ namespace DataModel
 
         public override string ToString()
         {
-            return CustomerID + " - " + CompanyName + " - " + ContactName + " - " + ContactTitle + " - " + Address + " - " +
-                City + " - " + Region + " - " + PostalCode + " - " + Country + " - " + Phone + " - " + Fax;
+            return CustomerID + "-" + CompanyName + "-" + ContactName + "-" + ContactTitle + "-" + Address + "-" +
+                City + "-" + Region + "-" + PostalCode + "-" + Country + "-" + Phone + "-" + Fax;
         }
     }
 }

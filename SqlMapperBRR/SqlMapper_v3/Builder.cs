@@ -19,6 +19,7 @@ namespace SqlMapper_v3
         private string _table; //nome da tabela obtido no Build 
         private string[] _columnlist; //nomes das colunas obtido no Build
         private bool _commitable;
+        public Dictionary<Type, IDataMapper> listOfMappers;
 
         //public Builder(ConnectionPolicy cp, QueryData qd)
         public Builder(ConnectionPolicy cp)
@@ -32,6 +33,7 @@ namespace SqlMapper_v3
             _builderConnection = new SqlConnection(connectionString);
             //_tableColumnPair = qd.GetQueryData();
             _commitable = cp.commitable;
+            listOfMappers = new Dictionary<Type, IDataMapper>();
         }
 
         public IDataMapper<T> Build<T>() where T : class, new()
@@ -66,12 +68,14 @@ namespace SqlMapper_v3
                 idx++;
             }
 
+
+
             //if (_builderConnection.State == ConnectionState.Open) 
             //    Console.WriteLine("CON - Já estava aberta!");
             //else 
             //    Console.WriteLine("CON - Está fechada!");
 
-            DataMapper<T> dm = new DataMapper<T>(_builderConnection, true, _table, _columnlist, _commitable);
+            DataMapper<T> dm = new DataMapper<T>(_builderConnection, true, _table, _columnlist, listOfMappers, _commitable);
             //Console.WriteLine("Builder - Ending connection...");
             //if (_builderConnection.State != ConnectionState.Closed)
             //    _builderConnection.Dispose();

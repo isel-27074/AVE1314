@@ -53,90 +53,84 @@ namespace SqlMapperBRR
             #endregion menu
 
 
-            Dictionary<string, string[]> dic = new Dictionary<string, string[]>();
-
-            string icat = "ave", isec = "True", ctime = "15", pooling = "True";
-            bool commitable = false;
-
-            #region SqlMapper_v1
+            //Dictionary<string, string[]> dic = new Dictionary<string, string[]>();
             //dic.Add("Products", new string[] { "ProductID", "ProductName", "QuantityPerUnit", "UnitPrice", "UnitsInStock", "UnitsOnOrder" });
-            //SqlMapper_v1.ConnectionPolicy cpv1 = new SqlMapper_v1.ConnectionPolicy(datasource, icat, isec, ctime, pooling, commitable);
+            
+            string icat = "ave", isec = "True", ctime = "15", pooling = "True";
+            bool commitable = true;
+            /*
+            #region SqlMapper_v1
+            SqlMapper_v1.ConnectionPolicy cpv1 = new SqlMapper_v1.ConnectionPolicy(datasource, icat, isec, ctime, pooling, commitable);
+            SqlMapper_v1.Builder bv1 = new SqlMapper_v1.Builder(cpv1);
             //SqlMapper_v1.QueryData qdv1 = new SqlMapper_v1.QueryData(dic);
             //SqlMapper_v1.Builder bv1 = new SqlMapper_v1.Builder(cpv1, qdv1);
-            //SqlMapper_v1.IDataMapper<Product> prodMapperv1 = bv1.Build<Product>();
+            SqlMapper_v1.IDataMapper<Product> prodMapperv1 = bv1.Build<Product>();
 
+            Console.WriteLine("********** 1ª Parte (1) **********");
             //Test GetAll
-            //UnitTest.TestGetAll(prodMapperv1);
-
+            Console.WriteLine("Teste GetALL");
+            UnitTest.TestGetAll(prodMapperv1);
             //Test Insert
-            //UnitTest.TestInsert(prodMapperv1);
-            //UnitTest.TestGetAll(prodMapperv1);
-
-            ////Test Delete
-            //UnitTest.TestDelete(prodMapperv1);
-            //UnitTest.TestGetAll(prodMapperv1);
-
-            ////Test Update
-            //UnitTest.TestUpdate(prodMapperv1);
-            //UnitTest.TestGetAll(prodMapperv1);
-
+            Console.WriteLine("Teste Insert");
+            UnitTest.TestInsert(prodMapperv1);
+            //Test Delete
+            Console.WriteLine("Teste Delete com Insert");
+            UnitTest.TestDelete(prodMapperv1);
+            //Test Update
+            Console.WriteLine("Teste Update");
+            UnitTest.TestUpdate(prodMapperv1);
             #endregion
-
-
+            */
+            /*
             #region SqlMapper_v2
-            //SqlMapper_v2.ConnectionPolicy cpv2 = new SqlMapper_v2.ConnectionPolicy(datasource, icat, isec, ctime, pooling, commitable);
-            //SqlMapper_v2.Builder bv2 = new SqlMapper_v2.Builder(cpv2);
-            //SqlMapper_v2.IDataMapper<Product> prodMapperv2 = bv2.Build<Product>();
+            SqlMapper_v2.ConnectionPolicy cpv2 = new SqlMapper_v2.ConnectionPolicy(datasource, icat, isec, ctime, pooling, commitable);
+            SqlMapper_v2.Builder bv2 = new SqlMapper_v2.Builder(cpv2);
+            SqlMapper_v2.IDataMapper<Product> prodMapperv2 = bv2.Build<Product>();
+
+            Console.WriteLine("********** 1ª Parte (2) **********");
             //Test GetAll
-            //UnitTest.TestGetAllv2(prodMapperv2);
-
+            Console.WriteLine("Teste GetALL");
+            UnitTest.TestGetAllv2(prodMapperv2);
             #endregion
-
-
+            */
+            
             #region SqlMapper_v3
             commitable = true;
             SqlMapper_v3.ConnectionPolicy cpv3 = new SqlMapper_v3.ConnectionPolicy(datasource, icat, isec, ctime, pooling, commitable);
             SqlMapper_v3.Builder bv3 = new SqlMapper_v3.Builder(cpv3);
-            //SqlMapper_v3.IDataMapper prodMapperv3 = bv3.Build<Product>();
+            SqlMapper_v3.IDataMapper prodMapperv3 = bv3.Build<Product>();
+            bv3.listOfMappers.Add(typeof(Product), prodMapperv3);
             //ISqlEnumerable prod = prodMapperv3.GetAll();
             SqlMapper_v3.IDataMapper orderMapperv3 = bv3.Build<Order>();
+            bv3.listOfMappers.Add(typeof(Order), orderMapperv3);
             //ISqlEnumerable order = orderMapperv3.GetAll();
-            //SqlMapper_v3.IDataMapper custMapperv3 = bv3.Build<Customer>();
+            SqlMapper_v3.IDataMapper custMapperv3 = bv3.Build<Customer>();
+            bv3.listOfMappers.Add(typeof(Customer), custMapperv3);
             //ISqlEnumerable cust = custMapperv3.GetAll();
-            //SqlMapper_v3.IDataMapper emplMapperv3 = bv3.Build<Employee>();
+            SqlMapper_v3.IDataMapper emplMapperv3 = bv3.Build<Employee>();
+            bv3.listOfMappers.Add(typeof(Employee), emplMapperv3);
             //ISqlEnumerable empl = emplMapperv3.GetAll();
 
+            Console.WriteLine("********** 2ª Parte **********");
             //Test GetAll
-            UnitTest.TestGetAllv3(orderMapperv3);
+            Console.WriteLine("------------------> Product get all");
+            UnitTest.TestGetAllv3(prodMapperv3);
+            Console.WriteLine("------------------> Customer get all");
+            UnitTest.TestGetAllv3(custMapperv3);
+            Console.WriteLine("------------------> Employee get all");
+            UnitTest.TestGetAllv3(emplMapperv3);
+            //Console.WriteLine("------------------> Order get all");
+            //UnitTest.TestGetAllv3(orderMapperv3);
 
             //Test Insert
             //UnitTest.TestInsertv3(orderMapperv3);
-
-            //Test Insert
-            //UnitTest.TestUpdatev3(orderMapperv3);
-
+            //Test Delete
+            UnitTest.TestDeletev3(orderMapperv3);
+            //Test Update
+            UnitTest.TestUpdatev3(orderMapperv3);
             #endregion
 
-            ////TESTES
-            //IEnumerable<Product> prods = prodMapper.GetAll();
 
-            //foreach (Product p in prods)
-            //    Console.WriteLine(p.ToString());
-
-            //Console.ReadKey();
-
-            //Product newprod = new Product("produto", "10", 12, 20, 0);
-
-            //prodMapper.Insert(newprod);
-
-            //Console.ReadKey();
-
-            //prods = prodMapper.GetAll();
-
-            //foreach (Product p in prods)
-            //    Console.WriteLine(p.ToString());
-
-            //Console.ReadKey();
         }
     }
 }

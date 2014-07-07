@@ -29,6 +29,7 @@ namespace DataModel
         public byte[] Photo { set; get; }
         public string Notes { set; get; }
         [ForeignKey("Employees")]
+        //public Employee ReportsTo { set; get; }
         public int ReportsTo { set; get; }
         public string PhotoPath { set; get; }
 
@@ -68,7 +69,9 @@ namespace DataModel
 
         public override string ToString()
         {
-            return EmployeeID + " - " + LastName + " - " + FirstName + " - " + Title + " - " + TitleOfCourtesy + " - " + BirthDate + " - " + HireDate + " - " + Address + " - " + City + " - " + Region + " - " + PostalCode + " - " + Country + " - " + HomePhone + " - " + Extension + " - " + Photo + " - " + Notes + " - " + ReportsTo + " - " + PhotoPath;
+            return EmployeeID + "-" + LastName + "-" + FirstName + "-" + Title + "-" + TitleOfCourtesy + "-" + BirthDate +
+                "-" + HireDate + "-" + Address + "-" + City + "-" + Region + "-" + PostalCode + "-" + Country + "-" +
+                HomePhone + "-" + Extension + "-" + Photo + "-" + Notes + "-" + ReportsTo + "-" + PhotoPath;
         }
     }
 }

@@ -39,8 +39,7 @@ namespace DataModel
 
         public override string ToString()
         {
-            return ProductID + " - " + ProductName + " - " + QuantityPerUnit + " - " + UnitPrice + " - " + UnitsInStock +
-                " - " + UnitsOnOrder;
+            return ProductID + "-" + ProductName + "-" + QuantityPerUnit + "-" + UnitPrice + "-" + UnitsInStock + "-" + UnitsOnOrder;
         }
 
     }

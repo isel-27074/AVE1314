@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using SqlMapper_v3;
 
 namespace DataModel
 {
@@ -14,9 +15,11 @@ namespace DataModel
         [Key]
         public int OrderID { set; get; }
         [ForeignKey("Customers")]
+        //[ForeignKeyMapper("Customers", typeof(Customer))]
         //public string CustomerID { set; get; }
         public Customer CustomerID;// { set; get; }
         [ForeignKey("Employees")]
+        //[ForeignKeyMapper("Employees", typeof(Employee))]
         //public int EmployeeID { set; get; }
         public Employee EmployeeID { set; get; }
         public DateTime OrderDate { set; get; }
@@ -66,9 +69,9 @@ namespace DataModel
 
         public override string ToString()
         {
-            return OrderID + " - " + CustomerID + " - " + EmployeeID + " - " + OrderDate + " - " + RequiredDate + " - " +
-                ShippedDate + " - " + ShipVia + " - "+ Freight + " - " + ShipName + " - " + ShipAddress + " - " +
-                ShipCity + " - " + ShipRegion + " - " + ShipPostalCode + " - " + ShipCountry;
+            return OrderID + "-" + CustomerID + "-" + EmployeeID + "-" + OrderDate + "-" + RequiredDate + "-" +
+                ShippedDate + "-" + ShipVia + "-"+ Freight + "-" + ShipName + "-" + ShipAddress + "-" +
+                ShipCity + "-" + ShipRegion + "-" + ShipPostalCode + "-" + ShipCountry;
         }
     }
 }

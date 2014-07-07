@@ -20,8 +20,8 @@ namespace SqlMapper_v1
         private string[] _columnlist; //nomes das colunas obtido no Build
         private bool _commitable;
 
-        public Builder(ConnectionPolicy cp, QueryData qd)
-        //public Builder(ConnectionPolicy cp)
+        //public Builder(ConnectionPolicy cp, QueryData qd)
+        public Builder(ConnectionPolicy cp)
         {
             string connectionString = "";
             connectionString = @"Data Source=" + cp.dataSource + "; ";
@@ -30,7 +30,7 @@ namespace SqlMapper_v1
             connectionString = connectionString + "Connection Timeout=" + cp.connectionTimeout + "; ";
             connectionString = connectionString + "Pooling=" + cp.pooling + ";";
             _builderConnection = new SqlConnection(connectionString);
-            _tableColumnPair = qd.GetQueryData();
+            //_tableColumnPair = qd.GetQueryData();
             _commitable = cp.commitable;
         }
 

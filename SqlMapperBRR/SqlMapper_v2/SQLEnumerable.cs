@@ -12,7 +12,7 @@ namespace SqlMapper_v2
 {
     public class SqlEnumerable<T> : ISqlEnumerable<T>
     {
-        private SqlConnection _connnection;
+        private SqlConnection _connection;
         private SqlCommand _command;
         private SqlDataReader _dr;
         private string[] _columns;
@@ -21,7 +21,7 @@ namespace SqlMapper_v2
 
         public SqlEnumerable(SqlConnection con, bool persistant, string table, string[] columns, bool commitable, SqlCommand cmd)
         {
-            _connnection = con;
+            _connection = con;
             _command = cmd;
             _columns = columns;
             _persistant = persistant;
@@ -42,9 +42,9 @@ namespace SqlMapper_v2
 
         public IEnumerator<T> GetEnumerator()
         {
-            if (!_persistant) _connnection.Open();
-            if (_connnection.State != ConnectionState.Open)
-                _connnection.Open(); //abre se não estava aberta
+            if (!_persistant) _connection.Open();
+            if (_connection.State != ConnectionState.Open)
+                _connection.Open(); //abre se não estava aberta
             _dr = _command.ExecuteReader();
             foreach (var dr in _dr)
             {
@@ -57,7 +57,7 @@ namespace SqlMapper_v2
                 yield return newT;
             }
             _dr.Close();
-            if (!_persistant) _connnection.Close();            
+            if (!_persistant) _connection.Close();            
         }
 
         IEnumerator IEnumerable.GetEnumerator()

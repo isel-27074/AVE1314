@@ -43,6 +43,7 @@
     <Compile Include="Builder.cs" />
     <Compile Include="ConnectionPolicy.cs" />
     <Compile Include="DataMapper.cs" />
+    <Compile Include="ForeignKeyMapper.cs" />
     <Compile Include="Interfaces\IConnectionPolicy.cs" />
     <Compile Include="Interfaces\IDataMapper.cs" />
     <Compile Include="Interfaces\IQueryData.cs" />
