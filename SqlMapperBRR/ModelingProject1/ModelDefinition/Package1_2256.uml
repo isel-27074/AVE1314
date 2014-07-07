@@ -1,0 +1,1107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="f3f7e1a4-c1e4-468d-ad3e-ba42b8773e14"
+  name="Tests"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="07570cfe-d6ac-4659-b6d8-7dcdbbdb4c2f"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DSqlMapperBRR.Tests"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="da1c18b4-3249-4eb2-9bfe-7f39dffc48f5"
+        name="UnitTest"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="8c5bf35b-f74f-4d55-abaa-2cac0862c21d"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapperBRR.Tests%2Fbin%2FDebug%2FSqlMapperBRR.Tests.dll Namespace%3DSqlMapperBRR.Tests Type%3DUnitTest"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="2d9b1c6e-5f9c-42de-9c85-a554064620b9"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="53078936-e447-40e4-9ca5-3ba23045d920">
+                <propertyInstance
+                  Id="8be49fa3-ab57-4206-938c-45d8ceee8452"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="c7c58130-bcd5-437f-b55b-047343f20635">
+                <propertyInstance
+                  Id="dc39f3a8-7cdd-455b-862f-1371de34af6d"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="6cdbf00c-c0ef-4a30-a56f-fdeea8db58e7">
+                <propertyInstance
+                  Id="381c17ec-e9dc-4be3-9030-3fb363b589c9"
+                  name="IsStatic"
+                  value="True" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="519daa91-2885-4106-8968-1c2f58d3ee50">
+                <propertyInstance
+                  Id="2442636b-b9c5-49c7-8f65-42bb43872581"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="07e35745-6dd4-4950-831c-8d94c828b6a8">
+                <propertyInstance
+                  Id="afef0414-7f80-4307-a806-3d3a884115ec"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="2768282d-8e71-4929-a63a-d66d40b58aaf"
+            name="TestDelete"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="556256ac-3351-4f06-9874-34a311cbbee6"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapperBRR.Tests%2Fbin%2FDebug%2FSqlMapperBRR.Tests.dll Namespace%3DSqlMapperBRR.Tests Type%3DUnitTest Member%3D(Name%3DTestDelete OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapper_v1%2Fbin%2FDebug%2FSqlMapper_v1.dll Namespace%3DSqlMapper_v1 Type%3D(Name%3DIDataMapper GenericParameterCount%3D1 GenericArguments%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FDataModel%2Fbin%2FDebug%2FDataModel.dll Namespace%3DDataModel Type%3DProduct)]))])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="c07f13ad-b643-44a1-bfd3-f63d733c937d"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="50c09349-b9b0-4b57-ae3e-e9d3798bf2a3">
+                    <propertyInstance
+                      Id="d98abddd-aeb1-476d-8b05-5807d7803601"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="76fcb22e-1556-4829-90a0-0c0a37ee2338">
+                    <propertyInstance
+                      Id="e86b4c7c-2c43-4a65-9f94-b75af981a740"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="81783cfa-c1ad-4bcf-9b94-fa728f0df743">
+                    <propertyInstance
+                      Id="057befe1-f89a-4136-b04c-2bf8fbb44141"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="eceb98fc-bcc7-478d-a8d4-410d6fdbed70">
+                    <propertyInstance
+                      Id="97599384-02a9-4147-a5aa-f8b8b1f0c9ab"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b9718098-77ba-4a0e-8186-5c786749fcbc">
+                    <propertyInstance
+                      Id="8370d3b3-d275-4c74-bc7f-2268311efd8f"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="95faef8a-5fb8-468f-aa03-59aa368f290c">
+                    <propertyInstance
+                      Id="6135de26-7fa3-41cc-904d-cec0f0fb3213"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="fa0336f7-94b1-4869-9c51-3d792b60d4a9"
+                  name="prodMapper"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="9abe5061-0ad3-4bcf-8399-5f2620ee266a"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapperBRR.Tests%2Fbin%2FDebug%2FSqlMapperBRR.Tests.dll Namespace%3DSqlMapperBRR.Tests Type%3DUnitTest Member%3D(Name%3DTestDelete OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapper_v1%2Fbin%2FDebug%2FSqlMapper_v1.dll Namespace%3DSqlMapper_v1 Type%3D(Name%3DIDataMapper GenericParameterCount%3D1 GenericArguments%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FDataModel%2Fbin%2FDebug%2FDataModel.dll Namespace%3DDataModel Type%3DProduct)]))]) ParameterIdentifier%3DprodMapper"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <interfaceMoniker
+                      Id="2a668689-6215-4d2a-af26-7ea5d256ff79"
+                      LastKnownName="IDataMapper&lt;Product‎&gt;"
+                      LastKnownLocation="Package_2255.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="71cf3355-6a13-4618-9f0d-723cc6726287"
+            name="TestDeletev3employee"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="5448d0f0-0cc8-47e3-b4dc-d2c5e7a6c2e2"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapperBRR.Tests%2Fbin%2FDebug%2FSqlMapperBRR.Tests.dll Namespace%3DSqlMapperBRR.Tests Type%3DUnitTest Member%3D(Name%3DTestDeletev3employee OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapper_v3%2Fbin%2FDebug%2FSqlMapper_v3.dll Namespace%3DSqlMapper_v3 Type%3DIDataMapper)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="beb49564-b4a4-4396-8bfc-af9175baba2b"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2b4a1648-795a-426b-9b6e-f4abf03f8d37">
+                    <propertyInstance
+                      Id="f0dbaf0a-2c12-4c07-beaf-07cc981114ee"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="17cdb963-0361-45ba-a127-51042f928fc0">
+                    <propertyInstance
+                      Id="c3c3e16f-a16f-4113-b13f-54d3cc6b4699"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="48bf3e88-f5bb-481f-8740-3c253f424b04">
+                    <propertyInstance
+                      Id="4a99798d-a9d8-4ae7-8713-78cdd622133b"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1740cf88-83da-4e46-8592-bc22a7950aea">
+                    <propertyInstance
+                      Id="a4fbfb32-ec8d-40e1-b4e1-577f748c0f7d"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="900dc509-454c-4817-b103-94da69df437b">
+                    <propertyInstance
+                      Id="e3b16cf1-4722-48ad-b18c-e4e8b0c10d9a"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a628a43d-7a7e-4eeb-b985-66126424df76">
+                    <propertyInstance
+                      Id="d9d00b73-8663-421a-a85e-145fe3087f02"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="caf86283-88e2-4a54-a99e-e73d52b5ee61"
+                  name="mapper"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="0af71899-592b-4ffb-bf98-4a8ac61344ce"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapperBRR.Tests%2Fbin%2FDebug%2FSqlMapperBRR.Tests.dll Namespace%3DSqlMapperBRR.Tests Type%3DUnitTest Member%3D(Name%3DTestDeletev3employee OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapper_v3%2Fbin%2FDebug%2FSqlMapper_v3.dll Namespace%3DSqlMapper_v3 Type%3DIDataMapper)]) ParameterIdentifier%3Dmapper"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <interfaceMoniker
+                      Id="1ffccaec-3d47-48ea-a9be-81390677edaa"
+                      LastKnownName="IDataMapper"
+                      LastKnownLocation="Package6_2255.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="2116fd95-f159-4699-8b63-a0d44963cb34"
+            name="TestDeletev3order"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="48353f37-11f4-4919-881e-fa17dcd1f920"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapperBRR.Tests%2Fbin%2FDebug%2FSqlMapperBRR.Tests.dll Namespace%3DSqlMapperBRR.Tests Type%3DUnitTest Member%3D(Name%3DTestDeletev3order OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapper_v3%2Fbin%2FDebug%2FSqlMapper_v3.dll Namespace%3DSqlMapper_v3 Type%3DIDataMapper)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="a7b56a0f-cd1b-4347-b38b-200cffd506e2"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="bcda415e-0208-4ea8-93b0-7e803fd03a4c">
+                    <propertyInstance
+                      Id="9680063f-984f-4888-8d6b-e5d10d854134"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ee22a706-bf52-4f46-a9aa-0aae54c48bf9">
+                    <propertyInstance
+                      Id="f8d3f98f-8378-4e68-8bfa-92265cde1136"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d3bede64-987a-4e5c-b9c6-d84f2cb0004d">
+                    <propertyInstance
+                      Id="da712b3d-71a8-4304-a44b-13507e39be7e"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7847d23d-a4cf-45d7-99c1-0fd20d55d4d6">
+                    <propertyInstance
+                      Id="abfb269e-c0ff-4e4f-a50c-6a4ef6348fc1"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="06360c44-1a69-4c95-af5a-06f5f0cb32cc">
+                    <propertyInstance
+                      Id="aca635fe-4d30-4595-9060-7093cd6ff045"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0e0af4a0-ace7-4ec8-8fbe-d9ffd64d9769">
+                    <propertyInstance
+                      Id="ce249bdc-6fa7-4f87-811d-76d915e5285b"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="029dd8f8-0607-4a44-9b75-23d76c160b92"
+                  name="orderMapper"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="9a750fc4-9994-4a7d-82dd-c5de6f483689"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapperBRR.Tests%2Fbin%2FDebug%2FSqlMapperBRR.Tests.dll Namespace%3DSqlMapperBRR.Tests Type%3DUnitTest Member%3D(Name%3DTestDeletev3order OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapper_v3%2Fbin%2FDebug%2FSqlMapper_v3.dll Namespace%3DSqlMapper_v3 Type%3DIDataMapper)]) ParameterIdentifier%3DorderMapper"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <interfaceMoniker
+                      Id="1ffccaec-3d47-48ea-a9be-81390677edaa"
+                      LastKnownName="IDataMapper"
+                      LastKnownLocation="Package6_2255.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="4de2e79f-d7b0-4902-98a6-bc4e1acf4ce2"
+            name="TestGetAll"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="67b0881e-a0c7-4b50-b2af-6655f9991ec5"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapperBRR.Tests%2Fbin%2FDebug%2FSqlMapperBRR.Tests.dll Namespace%3DSqlMapperBRR.Tests Type%3DUnitTest Member%3D(Name%3DTestGetAll OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapper_v1%2Fbin%2FDebug%2FSqlMapper_v1.dll Namespace%3DSqlMapper_v1 Type%3D(Name%3DIDataMapper GenericParameterCount%3D1 GenericArguments%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FDataModel%2Fbin%2FDebug%2FDataModel.dll Namespace%3DDataModel Type%3DProduct)]))])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="f8bc85c6-c742-4eb5-bd30-3c5fe2de4a6a"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e883ec9f-6429-4b0f-8f42-6e3aae75a571">
+                    <propertyInstance
+                      Id="6031e455-01f6-408b-9b5c-cedac7d5fb80"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f699d189-f055-404b-925d-8bf7ee2f88f2">
+                    <propertyInstance
+                      Id="c1e85379-4286-444f-8ad4-6b5507fa347a"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="20b8157b-bcb1-484f-b69a-5ee9baced6d9">
+                    <propertyInstance
+                      Id="4dfc1fb7-8010-4f15-a0ed-706b80ed598a"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d3cd8cd8-81c5-4e88-a297-4a6472f8501f">
+                    <propertyInstance
+                      Id="9ec6d75d-b1dc-4cf1-996d-3a6b2ea95158"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c0ac9ab0-717a-4502-ab44-611e28697166">
+                    <propertyInstance
+                      Id="a59dcd45-1438-477b-bd0b-2594f7ae3850"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4375ab16-dfa4-4f87-9a73-ce41445167de">
+                    <propertyInstance
+                      Id="0ac66f5a-a9d9-4055-88a8-85bd46d83440"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="5539fb23-c33e-4ac2-9cbf-87e76cee8bff"
+                  name="prodMapper"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="9e30c48e-1e26-4303-82f2-3959ecc9b8fe"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapperBRR.Tests%2Fbin%2FDebug%2FSqlMapperBRR.Tests.dll Namespace%3DSqlMapperBRR.Tests Type%3DUnitTest Member%3D(Name%3DTestGetAll OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapper_v1%2Fbin%2FDebug%2FSqlMapper_v1.dll Namespace%3DSqlMapper_v1 Type%3D(Name%3DIDataMapper GenericParameterCount%3D1 GenericArguments%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FDataModel%2Fbin%2FDebug%2FDataModel.dll Namespace%3DDataModel Type%3DProduct)]))]) ParameterIdentifier%3DprodMapper"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <interfaceMoniker
+                      Id="2a668689-6215-4d2a-af26-7ea5d256ff79"
+                      LastKnownName="IDataMapper&lt;Product‎&gt;"
+                      LastKnownLocation="Package_2255.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="96ca0fdb-a260-43bc-94fd-4ffc96ddfa70"
+            name="TestGetAllv2"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="a74e1f4e-1efe-4308-88b4-d3cfe06fbed9"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapperBRR.Tests%2Fbin%2FDebug%2FSqlMapperBRR.Tests.dll Namespace%3DSqlMapperBRR.Tests Type%3DUnitTest Member%3D(Name%3DTestGetAllv2 OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapper_v2%2Fbin%2FDebug%2FSqlMapper_v2.dll Namespace%3DSqlMapper_v2 Type%3D(Name%3DIDataMapper GenericParameterCount%3D1 GenericArguments%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FDataModel%2Fbin%2FDebug%2FDataModel.dll Namespace%3DDataModel Type%3DProduct)]))])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="3b76670f-31b4-4ce0-9554-2037dfb519dc"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f2b71629-43f5-433c-933c-be3c90e61c49">
+                    <propertyInstance
+                      Id="dcd615e2-3f27-420c-95f5-d05813eebb70"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="78fe429b-12c0-48d5-a666-ccc5c9af5241">
+                    <propertyInstance
+                      Id="5447d45f-4fe4-4cb5-a1b2-223b0e45cecb"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d2953f65-845e-4ded-ac18-e2f0482704db">
+                    <propertyInstance
+                      Id="0ef1501a-5f02-4446-90d7-589822517205"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f2b976a1-0a0f-4757-afed-7fa35372fd1c">
+                    <propertyInstance
+                      Id="dabf3765-78c8-459b-a5d2-95d95d32ac6a"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5a4c4208-544b-4f96-9b1b-6616e69c8d7d">
+                    <propertyInstance
+                      Id="3a299855-e129-4f0c-b58f-ef1e446b65e4"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ea4c9a0a-5702-41f8-b963-77fa33f71ea2">
+                    <propertyInstance
+                      Id="c23f900d-a0ff-4e93-8e6b-a6566c6708bf"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="8a21dddf-e9a2-4253-8b49-447d6b0984df"
+                  name="prodMapper"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="f5920a23-31e2-475c-990e-2029d53e0382"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapperBRR.Tests%2Fbin%2FDebug%2FSqlMapperBRR.Tests.dll Namespace%3DSqlMapperBRR.Tests Type%3DUnitTest Member%3D(Name%3DTestGetAllv2 OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapper_v2%2Fbin%2FDebug%2FSqlMapper_v2.dll Namespace%3DSqlMapper_v2 Type%3D(Name%3DIDataMapper GenericParameterCount%3D1 GenericArguments%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FDataModel%2Fbin%2FDebug%2FDataModel.dll Namespace%3DDataModel Type%3DProduct)]))]) ParameterIdentifier%3DprodMapper"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <interfaceMoniker
+                      Id="7ed1f698-929c-4b1f-9f13-6d65bb5cfd8e"
+                      LastKnownName="IDataMapper&lt;Product‎&gt;"
+                      LastKnownLocation="Package5_2255.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="d047c0b9-7479-41d0-ad7f-390445b75689"
+            name="TestGetAllv3"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="bbafb55f-5748-4c98-8324-2bc2f41fa3eb"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapperBRR.Tests%2Fbin%2FDebug%2FSqlMapperBRR.Tests.dll Namespace%3DSqlMapperBRR.Tests Type%3DUnitTest Member%3D(Name%3DTestGetAllv3 OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapper_v3%2Fbin%2FDebug%2FSqlMapper_v3.dll Namespace%3DSqlMapper_v3 Type%3DIDataMapper)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="1cc76716-c95e-43f6-bf20-130402cdfd91"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7eca9d42-575d-4f21-b181-29f3a3e299e1">
+                    <propertyInstance
+                      Id="a7d1958b-f5a4-46fe-a18f-811497154834"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5fcfd33d-63c0-4f70-b60c-837faae3bb7e">
+                    <propertyInstance
+                      Id="1dfc761c-1e68-4016-a3f0-44186c832b39"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b9dcc792-f944-4872-96b4-845afe91b0e2">
+                    <propertyInstance
+                      Id="dda91f4d-4bd4-47f9-881d-221bd954e9e6"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f959cba4-b19d-4907-a623-8f8ed9ac0890">
+                    <propertyInstance
+                      Id="8be46812-906e-4d89-bd51-370db2ed953a"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7b15edc3-b69e-4da9-9fb4-173cb47be2cc">
+                    <propertyInstance
+                      Id="554484d0-ad92-49c0-9ae2-a8b2e9289bd5"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0e6cd23e-1b99-4308-a06c-a0104f23d5ab">
+                    <propertyInstance
+                      Id="eefb659d-cbcb-49a3-86d2-50d1dc8528b5"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="30a05997-2f2c-404b-8b45-1dfe2db06fef"
+                  name="mapper"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="27ba9f58-79c0-46da-abe1-d770c4419347"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapperBRR.Tests%2Fbin%2FDebug%2FSqlMapperBRR.Tests.dll Namespace%3DSqlMapperBRR.Tests Type%3DUnitTest Member%3D(Name%3DTestGetAllv3 OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapper_v3%2Fbin%2FDebug%2FSqlMapper_v3.dll Namespace%3DSqlMapper_v3 Type%3DIDataMapper)]) ParameterIdentifier%3Dmapper"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <interfaceMoniker
+                      Id="1ffccaec-3d47-48ea-a9be-81390677edaa"
+                      LastKnownName="IDataMapper"
+                      LastKnownLocation="Package6_2255.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="40d5a5fe-6986-43e2-91ed-a68c1dddbda6"
+            name="TestInsert"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="f05d3458-b4e3-4d4c-ae00-1cdf8ae7e2b3"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapperBRR.Tests%2Fbin%2FDebug%2FSqlMapperBRR.Tests.dll Namespace%3DSqlMapperBRR.Tests Type%3DUnitTest Member%3D(Name%3DTestInsert OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapper_v1%2Fbin%2FDebug%2FSqlMapper_v1.dll Namespace%3DSqlMapper_v1 Type%3D(Name%3DIDataMapper GenericParameterCount%3D1 GenericArguments%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FDataModel%2Fbin%2FDebug%2FDataModel.dll Namespace%3DDataModel Type%3DProduct)]))])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="81481d47-6357-44d3-b10d-713b35224ec3"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="592dfcf7-1dd4-4095-9f9d-056aed2402ce">
+                    <propertyInstance
+                      Id="5edc06ee-43e5-4066-9dc1-001bdfb9fac6"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0df477af-49a2-40db-88d8-bfe398399cfa">
+                    <propertyInstance
+                      Id="9871dee9-4841-4e97-922d-5e820f135b5c"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="51e63d49-4627-471e-b02a-4f359d654081">
+                    <propertyInstance
+                      Id="b7b1b8f9-a399-4d37-b400-61303fe4312b"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d7a23806-021f-4dac-9f69-12d36adbf010">
+                    <propertyInstance
+                      Id="b16ed130-e067-4b7b-a1a0-e98419082e90"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="199fb07a-bb35-439e-aaa0-e9689315f21a">
+                    <propertyInstance
+                      Id="e02adebe-52ff-45f5-9a37-548673eeafaa"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9bfebcd3-f5e9-4ade-9284-150aefed94a9">
+                    <propertyInstance
+                      Id="d2e614c9-ccdd-4f21-84c7-2ae343520fc7"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="5b3fca04-28ee-4108-9b83-05c12a606095"
+                  name="prodMapper"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="1181049a-0fc8-4e92-97b7-4ab21ec5dddf"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapperBRR.Tests%2Fbin%2FDebug%2FSqlMapperBRR.Tests.dll Namespace%3DSqlMapperBRR.Tests Type%3DUnitTest Member%3D(Name%3DTestInsert OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapper_v1%2Fbin%2FDebug%2FSqlMapper_v1.dll Namespace%3DSqlMapper_v1 Type%3D(Name%3DIDataMapper GenericParameterCount%3D1 GenericArguments%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FDataModel%2Fbin%2FDebug%2FDataModel.dll Namespace%3DDataModel Type%3DProduct)]))]) ParameterIdentifier%3DprodMapper"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <interfaceMoniker
+                      Id="2a668689-6215-4d2a-af26-7ea5d256ff79"
+                      LastKnownName="IDataMapper&lt;Product‎&gt;"
+                      LastKnownLocation="Package_2255.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="832cc2b1-8b51-4015-adab-521f7b40d586"
+            name="TestInsertv3employee"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="95527a33-4bf2-41c8-a0aa-91e6c52f1359"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapperBRR.Tests%2Fbin%2FDebug%2FSqlMapperBRR.Tests.dll Namespace%3DSqlMapperBRR.Tests Type%3DUnitTest Member%3D(Name%3DTestInsertv3employee OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapper_v3%2Fbin%2FDebug%2FSqlMapper_v3.dll Namespace%3DSqlMapper_v3 Type%3DIDataMapper)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="301632ba-b21a-4ef5-89e8-9ec8123f8d98"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0da4c543-7726-4100-9fa7-878a1349b981">
+                    <propertyInstance
+                      Id="b0fbe016-d143-4ba7-94d6-07bfea81ab5b"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f72efa29-12f8-4b5b-a541-a747fab573f9">
+                    <propertyInstance
+                      Id="003d7b23-133f-4af3-8455-c8dedcb04da0"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d885a3a8-d9d7-45dc-bc5a-bc8533e1c083">
+                    <propertyInstance
+                      Id="a9dd8a43-d4b0-451a-a8d8-aa7bf76b0a05"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a3e1280d-73e5-4fdc-af7a-790608f94f44">
+                    <propertyInstance
+                      Id="ad75bf9c-e9ee-4db7-ab80-f964e9c7f5c7"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9cf77a78-1f7e-43d2-81a0-6fefc7c3d227">
+                    <propertyInstance
+                      Id="faa72f0d-915c-4a10-bd5b-dae01ca21ac7"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ff0c3c94-9947-4969-9193-d427320a3d26">
+                    <propertyInstance
+                      Id="b8238515-81f7-48e4-8a5f-fbb0de3c6674"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="0becee08-d27d-46e1-9940-ec31b4639a84"
+                  name="mapper"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="8a448d20-dd2b-4bbc-b2d2-99c483a7bc67"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapperBRR.Tests%2Fbin%2FDebug%2FSqlMapperBRR.Tests.dll Namespace%3DSqlMapperBRR.Tests Type%3DUnitTest Member%3D(Name%3DTestInsertv3employee OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapper_v3%2Fbin%2FDebug%2FSqlMapper_v3.dll Namespace%3DSqlMapper_v3 Type%3DIDataMapper)]) ParameterIdentifier%3Dmapper"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <interfaceMoniker
+                      Id="1ffccaec-3d47-48ea-a9be-81390677edaa"
+                      LastKnownName="IDataMapper"
+                      LastKnownLocation="Package6_2255.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="58ac0808-e329-4f3a-b705-50c9338f7bb8"
+            name="TestInsertv3order"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="1ac96751-8589-46e3-a27b-998d5b387994"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapperBRR.Tests%2Fbin%2FDebug%2FSqlMapperBRR.Tests.dll Namespace%3DSqlMapperBRR.Tests Type%3DUnitTest Member%3D(Name%3DTestInsertv3order OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapper_v3%2Fbin%2FDebug%2FSqlMapper_v3.dll Namespace%3DSqlMapper_v3 Type%3DIDataMapper)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="07d10aad-1776-4d0e-8c00-9bff405a8c96"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5164358c-fae5-495a-b134-43446feb9ff2">
+                    <propertyInstance
+                      Id="92c63600-315e-4723-8eb3-2b58215c8787"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b8476fc9-515a-43fb-a2a8-81615a2992f1">
+                    <propertyInstance
+                      Id="c2389ab7-b207-47e5-8225-1633437f29bc"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d078d5ff-e8c5-4700-a219-62489d4c46e3">
+                    <propertyInstance
+                      Id="af86400b-9a6d-4034-9a33-83079076d500"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="379d3259-f189-4d8c-9cd6-bac868a4215c">
+                    <propertyInstance
+                      Id="4361aa5a-e0ec-4a87-9662-e8536be662e9"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c38e6531-b452-4835-8253-b0582a052b89">
+                    <propertyInstance
+                      Id="5e5c36cc-56a0-4984-bf07-7d8cd40c13ab"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f79f5324-640e-413a-9f0e-9080d7d7b7e9">
+                    <propertyInstance
+                      Id="f5499f0d-3ac9-4e86-8b1a-d07ae52e0b9f"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="1d9cfa81-d1eb-40f6-9aef-f25d91b5e24b"
+                  name="orderMapper"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="21b7c30b-f9ac-4bbb-9b42-0cc727fb132f"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapperBRR.Tests%2Fbin%2FDebug%2FSqlMapperBRR.Tests.dll Namespace%3DSqlMapperBRR.Tests Type%3DUnitTest Member%3D(Name%3DTestInsertv3order OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapper_v3%2Fbin%2FDebug%2FSqlMapper_v3.dll Namespace%3DSqlMapper_v3 Type%3DIDataMapper)]) ParameterIdentifier%3DorderMapper"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <interfaceMoniker
+                      Id="1ffccaec-3d47-48ea-a9be-81390677edaa"
+                      LastKnownName="IDataMapper"
+                      LastKnownLocation="Package6_2255.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="6f9affdf-4ed5-4e1f-8c20-cce2abde496f"
+            name="TestUpdate"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="407f0c51-cb99-47c9-946f-b66a9392f7ae"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapperBRR.Tests%2Fbin%2FDebug%2FSqlMapperBRR.Tests.dll Namespace%3DSqlMapperBRR.Tests Type%3DUnitTest Member%3D(Name%3DTestUpdate OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapper_v1%2Fbin%2FDebug%2FSqlMapper_v1.dll Namespace%3DSqlMapper_v1 Type%3D(Name%3DIDataMapper GenericParameterCount%3D1 GenericArguments%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FDataModel%2Fbin%2FDebug%2FDataModel.dll Namespace%3DDataModel Type%3DProduct)]))])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="3e1f1741-b1f1-4d6b-af92-0a03b46e25a7"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="aadf7fec-a6b8-4dce-876f-13631e54c1bf">
+                    <propertyInstance
+                      Id="ab5b5cc4-fe79-44e8-8201-03d5075a5e57"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8ddcb5a2-3219-4c24-8e0a-efe3677f656c">
+                    <propertyInstance
+                      Id="f212ddbc-c8e4-42d5-932a-1d3748883f9a"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="59f108f7-947d-4900-91fa-82094f4a8926">
+                    <propertyInstance
+                      Id="8457df39-c561-4f2e-ac32-81867ab5d6fa"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6694a431-c404-4837-8c53-49fd9ec9d2ba">
+                    <propertyInstance
+                      Id="a92d57b6-c614-4309-9c35-7886f5c3ea4c"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="96e355d1-3306-4fce-a2b6-4b969b0b22d9">
+                    <propertyInstance
+                      Id="79d6d04d-a938-4552-b3ea-4b598bf9c6e0"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d53e90ba-5f85-42b0-9d3b-ecfcd923f452">
+                    <propertyInstance
+                      Id="bf1831fd-efba-46c9-aaa8-53b6b5d65115"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="511ad092-62a0-4c37-9de0-c33b764403cc"
+                  name="prodMapper"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="3c42f665-9d7b-48a8-856f-e45e62d432f4"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapperBRR.Tests%2Fbin%2FDebug%2FSqlMapperBRR.Tests.dll Namespace%3DSqlMapperBRR.Tests Type%3DUnitTest Member%3D(Name%3DTestUpdate OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapper_v1%2Fbin%2FDebug%2FSqlMapper_v1.dll Namespace%3DSqlMapper_v1 Type%3D(Name%3DIDataMapper GenericParameterCount%3D1 GenericArguments%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FDataModel%2Fbin%2FDebug%2FDataModel.dll Namespace%3DDataModel Type%3DProduct)]))]) ParameterIdentifier%3DprodMapper"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <interfaceMoniker
+                      Id="2a668689-6215-4d2a-af26-7ea5d256ff79"
+                      LastKnownName="IDataMapper&lt;Product‎&gt;"
+                      LastKnownLocation="Package_2255.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="1ef0cafc-dfa7-439d-bce1-7c7c53b81944"
+            name="TestUpdatev3employee"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="f039e946-dbdb-44e9-ba00-36e736f457c1"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapperBRR.Tests%2Fbin%2FDebug%2FSqlMapperBRR.Tests.dll Namespace%3DSqlMapperBRR.Tests Type%3DUnitTest Member%3D(Name%3DTestUpdatev3employee OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapper_v3%2Fbin%2FDebug%2FSqlMapper_v3.dll Namespace%3DSqlMapper_v3 Type%3DIDataMapper)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="ac90ceb1-fbb1-4cbc-a41a-62f1642f1024"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ae3f3fb7-d9e9-49dd-8ef2-3639cbd5c2a2">
+                    <propertyInstance
+                      Id="28986cd5-d6f7-4af0-99c9-a90b94466cf0"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="75fd0f93-25ce-4af5-a6d9-4905a6546399">
+                    <propertyInstance
+                      Id="a9f1428d-6c6a-473a-91d6-d580b8be5478"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0a4f49b9-dc2f-4a4c-a9b5-33ffec9a94eb">
+                    <propertyInstance
+                      Id="90dbfe25-0c3c-468e-b7cd-81a71995b2b1"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f854e6c0-4a73-45ae-8595-fd31e291a9f7">
+                    <propertyInstance
+                      Id="6eb2f307-6fc4-48bc-aa68-b9c41fb1df87"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b918d26c-305f-49af-9605-875b916f6c61">
+                    <propertyInstance
+                      Id="fe367ca0-dd50-407c-ba3c-9a3b360da700"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="dde8872f-925f-4b73-a872-a5bcce491cdb">
+                    <propertyInstance
+                      Id="78e59f26-305c-4a33-aa3e-5f2e1c059fb9"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="e902fc57-4de6-4244-bcf0-1b15fb24224f"
+                  name="mapper"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="effb0260-a269-4afa-ab1a-6daf81e0d9f9"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapperBRR.Tests%2Fbin%2FDebug%2FSqlMapperBRR.Tests.dll Namespace%3DSqlMapperBRR.Tests Type%3DUnitTest Member%3D(Name%3DTestUpdatev3employee OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapper_v3%2Fbin%2FDebug%2FSqlMapper_v3.dll Namespace%3DSqlMapper_v3 Type%3DIDataMapper)]) ParameterIdentifier%3Dmapper"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <interfaceMoniker
+                      Id="1ffccaec-3d47-48ea-a9be-81390677edaa"
+                      LastKnownName="IDataMapper"
+                      LastKnownLocation="Package6_2255.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="6ce5fe2d-19fd-4430-bc26-7660040e236f"
+            name="TestUpdatev3order"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="a7900503-7e12-48cd-81a5-4cae9398e440"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapperBRR.Tests%2Fbin%2FDebug%2FSqlMapperBRR.Tests.dll Namespace%3DSqlMapperBRR.Tests Type%3DUnitTest Member%3D(Name%3DTestUpdatev3order OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapper_v3%2Fbin%2FDebug%2FSqlMapper_v3.dll Namespace%3DSqlMapper_v3 Type%3DIDataMapper)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="0c60139e-26dd-4842-860f-dd976372eebe"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e7ce7ede-ee52-4eda-baa8-2e1bd6a5491b">
+                    <propertyInstance
+                      Id="8ee3b511-2592-4d39-8b45-f82106f30990"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="26213103-0c1f-43cc-b4b9-6719a3e4938c">
+                    <propertyInstance
+                      Id="e8ca97f1-9a25-434c-8b59-f445a17c9405"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e8fd47b3-58bc-43bd-9764-5abfb2d7b8e2">
+                    <propertyInstance
+                      Id="8a5e711c-9869-40eb-bd88-045c3a063cc8"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2997f5b2-92fb-4125-b1cd-4260489410b8">
+                    <propertyInstance
+                      Id="cd0b4525-5410-4295-8321-4f2101526f96"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="82e6664f-a5f6-4ccf-8557-64b645fe748f">
+                    <propertyInstance
+                      Id="318cd847-3292-4e3d-abbc-38f6105a2ebb"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="27b36f27-e311-4355-89b1-8d2f82dd823e">
+                    <propertyInstance
+                      Id="210960bd-f0b6-4d90-ac74-f5bf730a55c7"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="3aec0132-31d3-45dc-9a45-ea3aaa5ce009"
+                  name="orderMapper"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="49cc2e6e-8191-4d56-ad11-626b9d6eb979"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapperBRR.Tests%2Fbin%2FDebug%2FSqlMapperBRR.Tests.dll Namespace%3DSqlMapperBRR.Tests Type%3DUnitTest Member%3D(Name%3DTestUpdatev3order OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FDropbox%2FCurrent%2FAVE%2FAVE1314%2FSqlMapperBRR%2FSqlMapper_v3%2Fbin%2FDebug%2FSqlMapper_v3.dll Namespace%3DSqlMapper_v3 Type%3DIDataMapper)]) ParameterIdentifier%3DorderMapper"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <interfaceMoniker
+                      Id="1ffccaec-3d47-48ea-a9be-81390677edaa"
+                      LastKnownName="IDataMapper"
+                      LastKnownLocation="Package6_2255.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>
