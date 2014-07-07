@@ -104,19 +104,26 @@ namespace SqlMapper_v3
                     ForeignKeyAttribute fkattr = (ForeignKeyAttribute)properties[i].GetCustomAttribute(typeof(ForeignKeyAttribute));
                     if (fkattr == null)
                     {
-                        if ((properties[i].GetValue(val).GetType() == typeof(String))
-                            || (properties[i].GetValue(val).GetType() == typeof(DateTime)))
+                        if ((properties[i].GetValue(val)) == null)
                         {
-                            valuesProperties = valuesProperties + properties[i].Name + " = " + "\'" + properties[i].GetValue(val) + "\'";
+                            valuesProperties = valuesProperties + properties[i].Name + " = " + "\' \'";
                         }
                         else
                         {
-                            valuesProperties = valuesProperties + properties[i].Name + " = " + properties[i].GetValue(val);
+                            if ((properties[i].GetValue(val).GetType() == typeof(String))
+                                || (properties[i].GetValue(val).GetType() == typeof(DateTime)))
+                            {
+                                valuesProperties = valuesProperties + properties[i].Name + " = " + "\'" + properties[i].GetValue(val) + "\'";
+                            }
+                            else
+                            {
+                                valuesProperties = valuesProperties + properties[i].Name + " = " + properties[i].GetValue(val);
+                            }
                         }
                     }
                     else
                     {
-                        Type typeFK = (properties[i].GetValue(val)).GetType();
+                        Type typeFK = properties[i].GetValue(val).GetType();
                         PropertyInfo[] fkproperties = typeFK.GetProperties();
                         int fknumberOfProperties = fkproperties.Length;
                         FieldInfo[] fkfields = typeFK.GetFields();
@@ -163,6 +170,17 @@ namespace SqlMapper_v3
                                     break;
                                 }
                         }
+                        if(!properties[i].PropertyType.IsClass)
+                            if ((properties[i].GetValue(val).GetType() == typeof(String))
+                            || (properties[i].GetValue(val).GetType() == typeof(DateTime)))
+                            {
+                                valuesProperties = valuesProperties + properties[i].Name + " = " +
+                                    "\'" + properties[i].GetValue(val) + "\'";
+                            }
+                            else
+                            {
+                                valuesProperties = valuesProperties + properties[i].Name + " = " + properties[i].GetValue(val);
+                            }
                     }
                     if (i != numberOfProperties - 1)
                     {
@@ -186,14 +204,21 @@ namespace SqlMapper_v3
                     ForeignKeyAttribute fkattr = (ForeignKeyAttribute)fields[i].GetCustomAttribute(typeof(ForeignKeyAttribute));
                     if (fkattr == null)
                     {
-                        if ((fields[i].GetValue(val).GetType() == typeof(String))
-                            || (fields[i].GetValue(val).GetType() == typeof(DateTime)))
+                        if ((fields[i].GetValue(val)) == null)
                         {
-                            valuesFields = valuesFields + fields[i].Name + " = " + "\'" + fields[i].GetValue(val) + "\'";
+                            valuesFields = valuesFields + fields[i].Name + " = " + "\' \'";
                         }
                         else
                         {
-                            valuesFields = valuesFields + fields[i].Name + " = " + fields[i].GetValue(val);
+                            if ((fields[i].GetValue(val).GetType() == typeof(String))
+                               || (fields[i].GetValue(val).GetType() == typeof(DateTime)))
+                            {
+                                valuesFields = valuesFields + fields[i].Name + " = " + "\'" + fields[i].GetValue(val) + "\'";
+                            }
+                            else
+                            {
+                                valuesFields = valuesFields + fields[i].Name + " = " + fields[i].GetValue(val);
+                            }
                         }
                     }
                     else
@@ -245,6 +270,17 @@ namespace SqlMapper_v3
                                     break;
                                 }
                         }
+                        if (!fields[i].FieldType.IsClass)
+                            if ((fields[i].GetValue(val).GetType() == typeof(String))
+                            || (fields[i].GetValue(val).GetType() == typeof(DateTime)))
+                            {
+                                valuesFields = valuesFields + fields[i].Name + " = " +
+                                    "\'" + fields[i].GetValue(val) + "\'";
+                            }
+                            else
+                            {
+                                valuesFields = valuesFields + fields[i].Name + " = " + fields[i].GetValue(val);
+                            }
                     }
                     if (i != numberOfFields - 1)
                     {

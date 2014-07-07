@@ -97,7 +97,12 @@ namespace SqlMapper_v3
                                         if (_dr.GetName(i).GetType() == typeof(String))
                                             value = "\'" + value.ToString() + "\'";
                                         _dr.Close();//liberto o DataReader
+                                        string localconnectionstring = _connection.ConnectionString;
+                                        _connection.Close();
+                                        _connection.Dispose();
 
+                                        SqlConnection localcon = new SqlConnection();
+                                        _connection = localcon;
                                         Console.WriteLine("mapper.Value = " + mapper.Value + "\n" + condition + " = " + value);
                                         var obj = localmapper.GetAll().Where(condition + " = " + value);
                                         
@@ -114,6 +119,12 @@ namespace SqlMapper_v3
                                         o[i] = l;
                                         //string text2 = _command.CommandText;
                                         //Console.WriteLine("-------------->" + text2);
+                                        _connection.Close();
+                                        _connection.Dispose();
+                                        localcon = new SqlConnection();
+                                        localcon.ConnectionString = localconnectionstring;
+                                        _connection = localcon;
+                                        _connection.Open();
                                         _dr = _command.ExecuteReader();//reactivo o DataReader
                                     }
                                 }

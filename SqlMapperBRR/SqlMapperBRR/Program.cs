@@ -71,8 +71,8 @@ namespace SqlMapperBRR
             Console.WriteLine("Teste GetALL");
             UnitTest.TestGetAll(prodMapperv1);
             //Test Insert
-            Console.WriteLine("Teste Insert");
-            UnitTest.TestInsert(prodMapperv1);
+            //Console.WriteLine("Teste Insert");
+            //UnitTest.TestInsert(prodMapperv1);
             //Test Delete
             Console.WriteLine("Teste Delete com Insert");
             UnitTest.TestDelete(prodMapperv1);
@@ -113,21 +113,23 @@ namespace SqlMapperBRR
 
             Console.WriteLine("********** 2ª Parte **********");
             //Test GetAll
-            Console.WriteLine("------------------> Product get all");
-            UnitTest.TestGetAllv3(prodMapperv3);
-            Console.WriteLine("------------------> Customer get all");
-            UnitTest.TestGetAllv3(custMapperv3);
-            Console.WriteLine("------------------> Employee get all");
-            UnitTest.TestGetAllv3(emplMapperv3);
+            //Console.WriteLine("------------------> Product get all");
+            //UnitTest.TestGetAllv3(prodMapperv3);
+            //Console.WriteLine("------------------> Customer get all");
+            //UnitTest.TestGetAllv3(custMapperv3);
+            //Console.WriteLine("------------------> Employee get all");
+            //UnitTest.TestGetAllv3(emplMapperv3);
             //Console.WriteLine("------------------> Order get all");
             //UnitTest.TestGetAllv3(orderMapperv3);
 
             //Test Insert
-            //UnitTest.TestInsertv3(orderMapperv3);
+            //UnitTest.TestInsertv3order(orderMapperv3);
             //Test Delete
-            UnitTest.TestDeletev3(orderMapperv3);
-            //Test Update
-            UnitTest.TestUpdatev3(orderMapperv3);
+            //UnitTest.TestDeletev3order(orderMapperv3);
+            //Test Update Order
+            //UnitTest.TestUpdatev3order(orderMapperv3);
+            //Test Update Employee
+            //UnitTest.TestUpdatev3employee(emplMapperv3);
             #endregion
 
 
